@@ -13,6 +13,8 @@ if BUILD_SSH_TUNNEL
 
 pgadmin3_SOURCES += \
 	libssh2/agent.c \
+	libssh2/bcrypt_pbkdf.c \
+	libssh2/blowfish.c \
 	libssh2/channel.c \
     libssh2/comp.c \
     libssh2/crypt.c \
