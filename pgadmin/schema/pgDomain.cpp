@@ -57,11 +57,11 @@ wxString pgDomain::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop domain \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop domain \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop domain cascaded?");
@@ -187,7 +187,7 @@ void pgDomain::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prop
 		browser->RemoveDummyChild(this);
 
 		// Log
-		wxLogInfo(wxT("Adding child object to domain %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to domain %s"), GetIdentifier());
 		if (GetConnection()->BackendMinimumVersion(7, 4))
 			browser->AppendCollection(this, constraintFactory);
 	}

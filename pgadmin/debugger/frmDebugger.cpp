@@ -994,13 +994,13 @@ void frmDebugger::LaunchWaitingDialog(const wxString &msg)
 			strStatus =
 			    wxString::Format(
 			        _("Waiting for the session (pid:%s) to invoke the specified targets."),
-			        strTargetPid.c_str());
+			        strTargetPid);
 		}
 		else
 		{
 			strStatus =
 			    wxString::Format(
-			        _("Waiting for another session to invoke the target - \"%s\""), strTarget.c_str());
+			        _("Waiting for another session to invoke the target - \"%s\""), strTarget);
 		}
 	}
 	else

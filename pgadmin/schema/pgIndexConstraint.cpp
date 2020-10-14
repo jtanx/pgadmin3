@@ -40,11 +40,11 @@ wxString pgIndexConstraint::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop index constraint \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop index constraint \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop index constraint cascaded?");
@@ -219,11 +219,11 @@ wxString pgPrimaryKey::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop primary key \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop primary key \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop primary key cascaded?");
@@ -302,11 +302,11 @@ wxString pgUnique::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop unique constraint \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop unique constraint \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop unique constraint cascaded?");
@@ -385,11 +385,11 @@ wxString pgExclude::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop exclusion constraint \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop exclusion constraint \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop exclusion constraint cascaded?");

@@ -594,7 +594,7 @@ void frmBackup::OnOK(wxCommandEvent &ev)
 		else if (wxFile::Exists(txtFilename->GetValue()))
 		{
 			wxString msg;
-			msg.Printf(_("The file: \n\n%s\n\nalready exists. Do you want to overwrite it?"), txtFilename->GetValue().c_str());
+			msg.Printf(_("The file: \n\n%s\n\nalready exists. Do you want to overwrite it?"), txtFilename->GetValue());
 			if (wxMessageBox(msg, _("Overwrite file?"), wxICON_WARNING | wxYES_NO) != wxYES)
 				return;
 		}

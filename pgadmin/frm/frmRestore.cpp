@@ -502,7 +502,7 @@ wxString frmRestore::getCmdPart2(int step)
 			// Open a temporary file to store the TOC
 			restoreTOCFilename = wxFileName::CreateTempFileName(wxT("restore"));
 			wxFile tocFile;
-			tocFile.Open(restoreTOCFilename.c_str(), wxFile::write);
+			tocFile.Open(restoreTOCFilename, wxFile::write);
 
 			// Write all selected items in it
 			for (int i = 0; i < numberOfTOCItems; i++)
@@ -706,7 +706,7 @@ void frmRestore::OnEndProcess(wxProcessEvent &ev)
 					type += wxT(" ") + col.GetNextToken();
 					if (type != wxT("DEFAULT ACL"))
 					{
-						wxLogError(wxString::Format(_("Unexpected DEFAULT statement found: '%s'!"), str.c_str()));
+						wxLogError(wxString::Format(_("Unexpected DEFAULT statement found: '%s'!"), str));
 						continue;
 					}
 				}

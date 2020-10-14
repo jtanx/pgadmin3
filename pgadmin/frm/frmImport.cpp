@@ -271,7 +271,7 @@ void frmImport::OnOK(wxCommandEvent &ev)
 		if (!wxFileName::FileExists(pickerImportfile->GetPath()))
 		{
 			wxString msg;
-			msg.Printf(_("The file %s doesn't exist.\nPlease select a valid file."), pickerImportfile->GetPath().c_str());
+			msg.Printf(_("The file %s doesn't exist.\nPlease select a valid file."), pickerImportfile->GetPath());
 			wxLogError(msg);
 			return;
 		}

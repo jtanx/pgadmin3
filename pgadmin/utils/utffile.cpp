@@ -81,7 +81,7 @@ off_t wxUtfFile::Read(wxString &str, off_t nCount)
 			{
 				if (!m_strFileName.IsEmpty())
 				{
-					wxLogWarning(_("The file \"%s\" could not be opened because it contains characters that could not be interpreted."), m_strFileName.c_str());
+					wxLogWarning(_("The file \"%s\" could not be opened because it contains characters that could not be interpreted."), m_strFileName);
 				}
 				Seek(decr - nLen, wxFromCurrent);
 				return (size_t) - 1;
@@ -115,7 +115,7 @@ bool wxUtfFile::Write(const wxString &str)
 		return wxFile::Write(str, *m_conversion);
 	}
 	else
-		return wxFile::Write(str.c_str(), len * sizeof(wxChar)) == len * sizeof(wxChar);
+		return wxFile::Write(str, len * sizeof(wxChar)) == len * sizeof(wxChar);
 }
 
 

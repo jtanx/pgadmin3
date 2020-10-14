@@ -238,7 +238,7 @@ void gqbView::OnMenuTableSetAlias(wxCommandEvent &event)
 		// Because a bug that scrolled automatically the panel of the view if this dialog is called, then assign
 		// as his parent the main container of the view, and void the bug
 		wxTextEntryDialog dialog(controller->getDialogParent(),
-		                         wxString::Format(_("Enter an alias for table %s"), cTempSelected->getName().c_str()),
+		                         wxString::Format(_("Enter an alias for table %s"), cTempSelected->getName()),
 		                         _("Please enter an alias for the table."),
 		                         wxT(""),
 		                         wxOK | wxCANCEL | wxCENTRE);
@@ -273,7 +273,7 @@ void gqbView::onDoubleClick(wxMouseEvent &event)
 			// Because a bug that scrolled automatically the panel of the view if this dialog is called, then assign
 			// as his parent the main container of the view, and void the bug
 			wxTextEntryDialog dialog(controller->getDialogParent(),
-			                         wxString::Format(_("Enter an alias for table %s"), t->getName().c_str()),
+			                         wxString::Format(_("Enter an alias for table %s"), t->getName()),
 			                         _("Please enter an alias for the table."),
 			                         wxT(""),
 			                         wxOK | wxCANCEL | wxCENTRE);
@@ -836,7 +836,7 @@ void gqbView::SaveAsImage(const wxString &fileName, wxBitmapType imgType)
 
 	if (!tempBitmap.SaveFile(fileName, imgType))
 	{
-		wxLogError(_("Could not write the file %s: Errcode=%d."), fileName.c_str(), wxSysErrorCode());
+		wxLogError(_("Could not write the file %s: Errcode=%d."), fileName, wxSysErrorCode());
 	}
 }
 

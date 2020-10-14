@@ -382,7 +382,7 @@ bool dlgEditGridOptions::Validate()
 		}
 	}
 	else
-		wxLogError(wxT("%s"), errMsg.BeforeFirst('\n').c_str());
+		wxLogError(wxT("%s"), errMsg.BeforeFirst('\n'));
 
 	// Cleanup
 	PQclear(qryRes);

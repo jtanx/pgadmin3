@@ -331,7 +331,7 @@ void frmConfig::OpenLastFile()
 
 		DisplayFile(buffer);
 
-		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), lastPath.c_str()));
+		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), lastPath));
 
 		fileMenu->Enable(MNU_SAVE, false);
 		editMenu->Enable(MNU_UNDO, false);
@@ -404,9 +404,9 @@ bool frmConfig::DoWriteFile(const wxChar *str, pgConn *conn)
 	if (done)
 	{
 		if (conn)
-			statusBar->SetStatusText(wxString::Format(_(" Configuration written to %s"), conn->GetHost().c_str()));
+			statusBar->SetStatusText(wxString::Format(_(" Configuration written to %s"), conn->GetHost()));
 		else
-			statusBar->SetStatusText(wxString::Format(_(" Configuration written to %s"), lastPath.c_str()));
+			statusBar->SetStatusText(wxString::Format(_(" Configuration written to %s"), lastPath));
 	}
 	return done;
 }

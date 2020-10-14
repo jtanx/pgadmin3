@@ -242,7 +242,7 @@ pgConn *pgServer::CreateConn(wxString dbName, OID oid, wxString applicationname)
 
 	if (conn && conn->GetStatus() != PGCONN_OK)
 	{
-		wxLogError(wxT("%s"), conn->GetLastError().c_str());
+		wxLogError(wxT("%s"), conn->GetLastError());
 		delete conn;
 		return 0;
 	}
@@ -367,7 +367,7 @@ bool pgServer::StartService()
 			}
 			// report error
 			wxLogError(__("Failed to start server %s: Errcode=%d\nCheck event log for details."),
-			           serviceId.c_str(), rc);
+			           serviceId, rc);
 		}
 		else
 		{
@@ -482,7 +482,7 @@ bool pgServer::StopService()
 
 			if (!done)
 				wxLogError(__("Failed to stop server %s: Errcode=%d\nCheck event log for details."),
-				           serviceId.c_str(), ::GetLastError());
+				           serviceId, ::GetLastError());
 		}
 	}
 #else
@@ -560,7 +560,7 @@ wxString pgServer::passwordFilename()
 {
 	wxString fname = sysSettings::GetConfigFile(sysSettings::PGPASS);
 
-	wxLogInfo(wxT("Using password file %s"), fname.c_str());
+	wxLogInfo(wxT("Using password file %s"), fname);
 	return fname;
 }
 
@@ -696,7 +696,7 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 			if ((sshTunnel || !passwordValid || !GetPasswordIsStored() || !GetStorePwd()) && GetSSLCert() == wxEmptyString)
 			{
 				wxString txt;
-				txt.Printf(_("Please enter password for user %s\non server %s (%s)"), username.c_str(), description.c_str(), GetName().c_str());
+				txt.Printf(_("Please enter password for user %s\non server %s (%s)"), username, description, GetName());
 				dlgConnect *dlg = NULL;
 				// if sshTunnel is true then we have to hide 'Stored Password' option
 				if(sshTunnel)
@@ -756,11 +756,11 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 				wxString txt;
 				if(GetAuthModePwd())
 				{
-					txt.Printf(_("Please enter the SSH tunnel password for user %s\non server %s"), tunnelUserName.c_str(), tunnelHost.c_str());
+					txt.Printf(_("Please enter the SSH tunnel password for user %s\non server %s"), tunnelUserName, tunnelHost);
 				}
 				else
 				{
-					txt.Printf(_("Please enter the pass phrase for the identity file\n%s"), identityFile.c_str());
+					txt.Printf(_("Please enter the pass phrase for the identity file\n%s"), identityFile);
 				}
 				dlgConnect dlg(NULL, txt, false);
 
@@ -841,8 +841,8 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 			if (conn->GetIsHawq())
 			{
 				wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected."),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             appearanceFactory->GetLongAppName().c_str());
+				             appearanceFactory->GetLongAppName(),
+				             appearanceFactory->GetLongAppName());
 			}
 			else
 			{
@@ -856,17 +856,17 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 					if (GP_MIN_VERSION_N == GP_MAX_VERSION_N)
 					{
 						wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server version is %s."),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             wxString(GP_MIN_VERSION_T).c_str());
+						             appearanceFactory->GetLongAppName(),
+						             appearanceFactory->GetLongAppName(),
+						             wxString(GP_MIN_VERSION_T));
 					}
 					else
 					{
 						wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             appearanceFactory->GetLongAppName().c_str(),
-						             wxString(GP_MIN_VERSION_T).c_str(),
-						             wxString(GP_MAX_VERSION_T).c_str());
+						             appearanceFactory->GetLongAppName(),
+						             appearanceFactory->GetLongAppName(),
+						             wxString(GP_MIN_VERSION_T),
+						             wxString(GP_MAX_VERSION_T));
 					}
 				}
 			}
@@ -877,10 +877,10 @@ int pgServer::Connect(frmMain *form, bool askPassword, const wxString &pwd, bool
 			        (conn->BackendMinimumVersion(SERVER_MAX_VERSION_N >> 8, (SERVER_MAX_VERSION_N & 0x00FF) + 1)))
 			{
 				wxLogWarning(_("The server you are connecting to is not a version that is supported by this release of %s.\n\n%s may not function as expected.\n\nSupported server versions are %s to %s."),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             appearanceFactory->GetLongAppName().c_str(),
-				             wxString(SERVER_MIN_VERSION_T).c_str(),
-				             wxString(SERVER_MAX_VERSION_T).c_str());
+				             appearanceFactory->GetLongAppName(),
+				             appearanceFactory->GetLongAppName(),
+				             wxString(SERVER_MIN_VERSION_T),
+				             wxString(SERVER_MAX_VERSION_T));
 			}
 		}
 
@@ -988,12 +988,12 @@ wxString pgServer::GetIdentifier() const
 		if (GetName().IsEmpty())
 			idstr.Printf(wxT("local:.s.PGSQL.%d"), port);
 		else if (GetName().StartsWith(wxT("/")))
-			idstr.Printf(wxT("local:%s/.s.PGSQL.%d"), GetName().c_str(), port);
+			idstr.Printf(wxT("local:%s/.s.PGSQL.%d"), GetName(), port);
 		else
-			idstr.Printf(wxT("%s:%d"), GetName().c_str(), port);
+			idstr.Printf(wxT("%s:%d"), GetName(), port);
 	}
 	else
-		idstr.Printf(_("service %s"), GetService().c_str());
+		idstr.Printf(_("service %s"), GetService());
 	return idstr;
 }
 
@@ -1043,7 +1043,7 @@ OID pgServer::GetLastSystemOID()
 bool pgServer::SetPassword(const wxString &newVal)
 {
 	wxString sql;
-	sql.Printf(wxT("ALTER USER %s WITH ENCRYPTED PASSWORD %s;"), qtIdent(username).c_str(), qtDbString(conn->EncryptPassword(username, newVal)).c_str());
+	sql.Printf(wxT("ALTER USER %s WITH ENCRYPTED PASSWORD %s;"), qtIdent(username), qtDbString(conn->EncryptPassword(username, newVal)));
 	bool executed = conn->ExecuteVoid(sql);
 	if (executed)
 	{
@@ -1065,7 +1065,7 @@ wxString pgServer::GetLastError() const
 		{
 			if (conn->GetLastError() != wxT(""))
 			{
-				msg.Printf(wxT("%s\n%s"), error.c_str(), conn->GetLastError().c_str());
+				msg.Printf(wxT("%s\n%s"), error, conn->GetLastError());
 			}
 			else
 			{
@@ -1095,7 +1095,7 @@ void pgServer::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prop
 			expandedKids = true;
 			// Log
 
-			wxLogInfo(wxT("Adding child object to server %s"), GetIdentifier().c_str());
+			wxLogInfo(wxT("Adding child object to server %s"), GetIdentifier());
 
 			if (settings->GetDisplayOption(_("Databases")))
 				browser->AppendCollection(this, databaseFactory);
@@ -1356,7 +1356,7 @@ void pgServer::ShowStatistics(frmMain *form, ctlListView *statistics)
 		wxString querycol = GetConnection()->BackendMinimumVersion(9, 2) ? wxT("query") : wxT("current_query");
 		wxString sql;
 		wxString replication_query = wxT("state || ' (' || sent_location || ' sent, ' || write_location || ' written, ' || flush_location || ' flushed, ' || replay_location || ' applied)'");
-		wxLogInfo(wxT("Displaying statistics for server %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Displaying statistics for server %s"), GetIdentifier());
 
 		// Add the statistics view columns
 		statistics->ClearAll();
@@ -1925,7 +1925,7 @@ wxWindow *addServerFactory::StartDialog(frmMain *form, pgObject *obj)
 		if (dlg.GetTryConnect())
 		{
 			wxBusyInfo waiting(wxString::Format(_("Connecting to server %s (%s:%d)"),
-			                                    server->GetDescription().c_str(), server->GetName().c_str(), server->GetPort()), form);
+			                                    server->GetDescription(), server->GetName(), server->GetPort()), form);
 
 			// Give the UI a chance to redraw
 			wxSafeYield();

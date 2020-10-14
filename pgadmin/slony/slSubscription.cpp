@@ -63,11 +63,11 @@ wxString slSubscription::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony subscription \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony subscription \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop Slony subscription cascaded?");
@@ -161,7 +161,7 @@ void slSubscription::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView
 				slSet *set = (slSet *)browser->GetObject(id);
 				if (set && set->IsCreatedBy(setFactory))
 				{
-					wxLogInfo(wxT("Adding child object to subscription %s"), GetIdentifier().c_str());
+					wxLogInfo(wxT("Adding child object to subscription %s"), GetIdentifier());
 
 					browser->AppendCollection(this, slSequenceFactory);
 					browser->AppendCollection(this, slTableFactory);

@@ -162,7 +162,7 @@ dlgSearchObject::dlgSearchObject(frmMain *p, pgDatabase *db, pgObject *obj)
 		currentSchema = wxEmptyString;
 
 	if (!currentSchema.IsEmpty())
-		cbSchemaIdxCurrent = cbSchema->Append(wxString::Format(_("Current schema (%s)"), currentSchema.c_str()));
+		cbSchemaIdxCurrent = cbSchema->Append(wxString::Format(_("Current schema (%s)"), currentSchema));
 
 	wxString sql;
 

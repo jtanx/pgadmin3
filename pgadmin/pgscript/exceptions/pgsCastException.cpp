@@ -26,5 +26,5 @@ const wxString pgsCastException::message() const
 {
 	return wxString() << PGSOUTEXCEPTION <<
 	       wxString::Format(_("Cast Exception - Cannot convert '%s' to '%s'"),
-	                        m_value.c_str(), m_type.c_str());
+	                        m_value, m_type);
 }

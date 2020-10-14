@@ -67,8 +67,8 @@ frmMainConfig::frmMainConfig(frmMain *parent, pgServer *server)
 
 		wxString txt;
 		txt.Printf(_(" - %s on %s (%s:%d)"),
-		           serverFileName.c_str(), server->GetDescription().c_str(),
-		           server->GetName().c_str(), server->GetPort());
+		           serverFileName, server->GetDescription(),
+		           server->GetName(), server->GetPort());
 		SetTitle(BCE_TITLE + txt);
 
 		wxString str;
@@ -77,7 +77,7 @@ frmMainConfig::frmMainConfig(frmMain *parent, pgServer *server)
 
 		DisplayFile(str);
 
-		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), conn->GetHost().c_str()));
+		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), conn->GetHost()));
 	}
 }
 
@@ -380,7 +380,7 @@ void frmMainConfig::DisplayFile(const wxString &str)
 
 		// identify option
 		bool isComment = false;
-		const wxChar *p = line->text.c_str();
+		const wxChar *p = line->text;
 
 		// identify keywords
 		while (*p && wxStrchr(wxT("# \n"), *p))
@@ -530,7 +530,7 @@ void frmMainConfig::FillList(const wxString &categoryMember, const wxString &alt
 	if (!categoryItem && !altCategoryMember.IsEmpty())
 		categoryItem = options[altCategoryMember];
 
-	wxASSERT_MSG(categoryItem, wxString::Format(wxT("%s/%s"), categoryMember.c_str(), altCategoryMember.c_str()));
+	wxASSERT_MSG(categoryItem, wxString::Format(wxT("%s/%s"), categoryMember, altCategoryMember));
 
 	if (categoryItem)
 	{

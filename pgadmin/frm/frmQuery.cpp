@@ -1171,7 +1171,7 @@ void frmQuery::OnSaveHistory(wxCommandEvent &event)
 	{
 		if (!FileWrite(dlg->GetPath(), msgHistory->GetValue(), false))
 		{
-			wxLogError(__("Could not write the file %s: Errcode=%d."), dlg->GetPath().c_str(), wxSysErrorCode());
+			wxLogError(__("Could not write the file %s: Errcode=%d."), dlg->GetPath(), wxSysErrorCode());
 		}
 	}
 	delete dlg;
@@ -1658,7 +1658,7 @@ bool frmQuery::CheckChanged(bool canVeto)
 		wxString fn, filename;
 		filename = sqlQuery->GetFilename();
 		if (!filename.IsNull())
-			fn = wxString::Format(_("The text in file %s has changed.\nDo you want to save changes?"), filename.c_str());
+			fn = wxString::Format(_("The text in file %s has changed.\nDo you want to save changes?"), filename);
 		else
 			fn = _("The text has changed.\nDo you want to save changes?");
 		wxMessageDialog msg(this, fn, _("Query"),
@@ -1890,7 +1890,7 @@ void frmQuery::OnSave(wxCommandEvent &event)
 	}
 	else
 	{
-		wxLogError(__("Could not write the file %s: Errcode=%d."), filename.c_str(), wxSysErrorCode());
+		wxLogError(__("Could not write the file %s: Errcode=%d."), filename, wxSysErrorCode());
 	}
 }
 
@@ -2062,7 +2062,7 @@ void frmQuery::OnSaveAs(wxCommandEvent &event)
 		}
 		else
 		{
-			wxLogError(__("Could not write the file %s: Errcode=%d."), lastPath.c_str(), wxSysErrorCode());
+			wxLogError(__("Could not write the file %s: Errcode=%d."), lastPath, wxSysErrorCode());
 		}
 	}
 	delete dlg;
@@ -2515,7 +2515,7 @@ void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singl
 	msgResult->Clear();
 	msgResult->SetFont(settings->GetSQLFont());
 
-	msgHistory->AppendText(wxString::Format(_("-- Executing query [%s]:\n"), sqlQueryExec->GetTitle(false).c_str()));
+	msgHistory->AppendText(wxString::Format(_("-- Executing query [%s]:\n"), sqlQueryExec->GetTitle(false)));
 	msgHistory->AppendText(query);
 	msgHistory->AppendText(wxT("\n"));
 	Update();
@@ -2761,7 +2761,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 				showMessage(
 				    wxString::Format(
 				        _("Query returned successfully with no result in %s."),
-				        ElapsedTimeToStr(elapsedQuery).c_str()
+				        ElapsedTimeToStr(elapsedQuery)
 				    ),
 				    _("OK.")
 				);
@@ -2774,7 +2774,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 					    wxString::Format(
 					        _("Query returned successfully: one row with OID %ld inserted, %s execution time."),
 					        (long)insertedOid,
-					        ElapsedTimeToStr(elapsedQuery).c_str()),
+					        ElapsedTimeToStr(elapsedQuery)),
 					    wxString::Format(
 					        _("One row with OID %ld inserted."),
 					        (long)insertedOid
@@ -2786,7 +2786,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 					showMessage(
 					    wxString::Format(
 					        _("Query returned successfully: one row affected, %s execution time."),
-					        ElapsedTimeToStr(elapsedQuery).c_str()),
+					        ElapsedTimeToStr(elapsedQuery)),
 					    wxString::Format(_("One row affected."))
 					);
 				}
@@ -2797,7 +2797,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 				    wxString::Format(
 				        _("Query returned successfully: %d rows affected, %s execution time."),
 				        insertedCount,
-				        ElapsedTimeToStr(elapsedQuery).c_str()
+				        ElapsedTimeToStr(elapsedQuery)
 				    ),
 				    wxString::Format(
 				        _("%d rows affected."), insertedCount
@@ -2820,13 +2820,13 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 			pgError err = sqlResult->GetResultError();
 			errMsg = err.formatted_msg;
-			wxLogQuietError(wxT("%s"), conn->GetLastError().Trim().c_str());
+			wxLogQuietError(wxT("%s"), conn->GetLastError().Trim());
 			err.statement_pos.ToLong(&errPos);
 
 			if (err.sql_state.IsEmpty())
 			{
 				if (wxMessageBox(_("Do you want to attempt to reconnect to the database?"),
-				                 wxString::Format(_("Connection to database %s lost."), conn->GetDbname().c_str()),
+				                 wxString::Format(_("Connection to database %s lost."), conn->GetDbname()),
 				                 wxICON_EXCLAMATION | wxYES_NO) == wxYES)
 				{
 					conn->Reset();
@@ -2934,7 +2934,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 				str = wxString::Format(
 				          _("Total query runtime: %s\n"),
-				          ElapsedTimeToStr(elapsedQuery).c_str()
+				          ElapsedTimeToStr(elapsedQuery)
 				      );
 				msgResult->AppendText(str);
 				msgHistory->AppendText(str);
@@ -3046,7 +3046,7 @@ void frmQuery::OnScriptComplete(wxCommandEvent &ev)
 	msgHistory->AppendText(
 	    wxString::Format(
 	        _("Total pgScript runtime: %s\n\n"),
-	        fmtExecTime.c_str()
+	        fmtExecTime
 	    )
 	);
 	// Check whether there was an error/exception
@@ -3093,9 +3093,9 @@ void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 		notifies++;
 
 		if (notify->data.IsEmpty())
-			notifyStr.Printf(_("\nAsynchronous notification of '%s' received from backend pid %d"), notify->name.c_str(), notify->pid);
+			notifyStr.Printf(_("\nAsynchronous notification of '%s' received from backend pid %d"), notify->name, notify->pid);
 		else
-			notifyStr.Printf(_("\nAsynchronous notification of '%s' received from backend pid %d\n   Data: %s"), notify->name.c_str(), notify->pid, notify->data.c_str());
+			notifyStr.Printf(_("\nAsynchronous notification of '%s' received from backend pid %d\n   Data: %s"), notify->name, notify->pid, notify->data);
 
 		msgResult->AppendText(notifyStr);
 		msgHistory->AppendText(notifyStr);
@@ -3111,7 +3111,7 @@ void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 
 		SetStatusText(wxString::Format(
 		                  wxPLURAL("%s (%d asynchronous notification received).", "%s (%d asynchronous notifications received).", notifies),
-		                  statusMsg.c_str(), notifies), STATUSPOS_MSGS);
+		                  statusMsg, notifies), STATUSPOS_MSGS);
 	}
 
 	msgResult->AppendText(wxT("\n"));
@@ -3146,7 +3146,7 @@ void frmQuery::completeQuery(bool done, bool explain, bool verbose)
 			if (sqlResult->NumRows() == 1)
 			{
 				// Avoid shared storage issues with strings
-				str.Append(sqlResult->OnGetItemText(0, 0).c_str());
+				str.Append(sqlResult->OnGetItemText(0, 0));
 			}
 			else
 			{
@@ -3537,7 +3537,7 @@ void frmQuery::SetOutputPaneCaption(bool update)
 		// We don't want to make it look like Output Pane has been changed,
 		// so request the title without the change indicator
 		title = sqlQueryExecLast->GetTitle(false);
-		caption = wxString::Format(_("Output pane [%s]"), title.c_str());
+		caption = wxString::Format(_("Output pane [%s]"), title);
 	}
 
 	manager.GetPane(wxT("outputPane")).Caption(caption);

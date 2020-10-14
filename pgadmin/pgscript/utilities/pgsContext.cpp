@@ -84,13 +84,13 @@ void pgsContext::clear_columns()
 
 void pgsContext::push_var(pgsExpression *var)
 {
-	wxLogScriptVerbose(wxT("PUSH EXPR %s"), var->value().c_str());
+	wxLogScriptVerbose(wxT("PUSH EXPR %s"), var->value());
 	m_vars.push_back(var);
 }
 
 void pgsContext::pop_var()
 {
-	wxLogScriptVerbose(wxT("POP EXPR %s"), m_vars.back()->value().c_str());
+	wxLogScriptVerbose(wxT("POP EXPR %s"), m_vars.back()->value());
 	m_vars.pop_back();
 }
 
@@ -102,14 +102,14 @@ size_t pgsContext::size_vars() const
 void pgsContext::push_stmt(pgsStmt *stmt)
 {
 	wxLogScriptVerbose(wxT("PUSH STMT %s"), wxString(typeid(*stmt).name(),
-	                   wxConvUTF8).c_str());
+	                   wxConvUTF8));
 	m_stmts.push_back(stmt);
 }
 
 void pgsContext::pop_stmt()
 {
 	wxLogScriptVerbose(wxT("POP STMT %s"), wxString(typeid(*(m_stmts.back()))
-	                   .name(), wxConvUTF8).c_str());
+	                   .name(), wxConvUTF8));
 	m_stmts.pop_back();
 }
 

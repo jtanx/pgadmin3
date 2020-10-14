@@ -90,11 +90,11 @@ wxString slCluster::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony cluster \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony cluster \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop Slony cluster cascaded?");
@@ -354,7 +354,7 @@ void slCluster::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *pro
 			delete set;
 		}
 
-		wxLogInfo(wxT("Adding child object to cluster %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to cluster %s"), GetIdentifier());
 
 		browser->AppendCollection(this, nodeFactory);
 		browser->AppendCollection(this, setFactory);
@@ -556,7 +556,7 @@ wxWindow *slonyRestartFactory::StartDialog(frmMain *form, pgObject *obj)
 
 	if (notifyName.IsEmpty())
 	{
-		wxMessageDialog dlg(form, wxString::Format(_("Node \"%s\" not running"), cluster->GetLocalNodeName().c_str()),
+		wxMessageDialog dlg(form, wxString::Format(_("Node \"%s\" not running"), cluster->GetLocalNodeName()),
 		                    _("Can't restart node"), wxICON_EXCLAMATION | wxOK);
 		dlg.ShowModal();
 		form->CheckAlive();
@@ -565,7 +565,7 @@ wxWindow *slonyRestartFactory::StartDialog(frmMain *form, pgObject *obj)
 	}
 
 	wxMessageDialog dlg(form, wxString::Format(_("Restart node \"%s\"?"),
-	                    cluster->GetLocalNodeName().c_str()), _("Restart node"), wxICON_EXCLAMATION | wxYES_NO | wxNO_DEFAULT);
+	                    cluster->GetLocalNodeName()), _("Restart node"), wxICON_EXCLAMATION | wxYES_NO | wxNO_DEFAULT);
 
 	if (dlg.ShowModal() != wxID_YES)
 		return 0;

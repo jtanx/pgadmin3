@@ -61,8 +61,8 @@ frmHbaConfig::frmHbaConfig(frmMain *parent, pgServer *server)
 
 		wxString txt;
 		txt.Printf(_(" - %s on %s (%s:%d)"),
-		           serverFileName.c_str(), server->GetDescription().c_str(),
-		           server->GetName().c_str(), server->GetPort());
+		           serverFileName, server->GetDescription(),
+		           server->GetName(), server->GetPort());
 		SetTitle(BACE_TITLE + txt);
 
 		wxString str;
@@ -71,7 +71,7 @@ frmHbaConfig::frmHbaConfig(frmMain *parent, pgServer *server)
 
 		DisplayFile(str);
 
-		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), conn->GetHost().c_str()));
+		statusBar->SetStatusText(wxString::Format(_(" Configuration read from %s"), conn->GetHost()));
 	}
 }
 

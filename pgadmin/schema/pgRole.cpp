@@ -58,11 +58,11 @@ wxString pgLoginRole::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop login role \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop login role \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop login role cascaded?");
@@ -120,11 +120,11 @@ wxString pgGroupRole::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop group role \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop group role \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop group role cascaded?");

@@ -357,7 +357,7 @@ bool pgAdmin3::OnInit()
 
 	if (cmdParser.Found(wxT("v")))
 	{
-		wxPrintf(wxT("%s %s\n"), appearanceFactory->GetLongAppName().c_str(), VERSION_STR);
+		wxPrintf(wxT("%s %s\n"), appearanceFactory->GetLongAppName(), VERSION_STR);
 		return false;
 	}
 
@@ -367,7 +367,7 @@ bool pgAdmin3::OnInit()
 	wxString msg;
 	msg << wxT("# ") << appearanceFactory->GetLongAppName() << wxT(" Version ") << VERSION_STR << wxT(" Startup");
 	wxLogInfo(wxT("##############################################################"));
-	wxLogInfo(wxT("%s"), msg.c_str());
+	wxLogInfo(wxT("%s"), msg);
 	wxLogInfo(wxT("##############################################################"));
 
 #ifdef PG_SSL
@@ -381,24 +381,24 @@ bool pgAdmin3::OnInit()
 #endif
 
 	// Log the path info
-	wxLogInfo(wxT("i18n path     : %s"), i18nPath.c_str());
-	wxLogInfo(wxT("UI path       : %s"), uiPath.c_str());
-	wxLogInfo(wxT("Doc path      : %s"), docPath.c_str());
-	wxLogInfo(wxT("Branding path : %s"), brandingPath.c_str());
-	wxLogInfo(wxT("Plugins path  : %s"), pluginsDir.c_str());
-	wxLogInfo(wxT("Settings INI  : %s"), settingsIni.c_str());
+	wxLogInfo(wxT("i18n path     : %s"), i18nPath);
+	wxLogInfo(wxT("UI path       : %s"), uiPath);
+	wxLogInfo(wxT("Doc path      : %s"), docPath);
+	wxLogInfo(wxT("Branding path : %s"), brandingPath);
+	wxLogInfo(wxT("Plugins path  : %s"), pluginsDir);
+	wxLogInfo(wxT("Settings INI  : %s"), settingsIni);
 
-	wxLogInfo(wxT("PG pg_dump    : %s"), pgBackupExecutable.c_str());
-	wxLogInfo(wxT("PG pg_dumpall : %s"), pgBackupAllExecutable.c_str());
-	wxLogInfo(wxT("PG pg_restore : %s"), pgRestoreExecutable.c_str());
+	wxLogInfo(wxT("PG pg_dump    : %s"), pgBackupExecutable);
+	wxLogInfo(wxT("PG pg_dumpall : %s"), pgBackupAllExecutable);
+	wxLogInfo(wxT("PG pg_restore : %s"), pgRestoreExecutable);
 
-	wxLogInfo(wxT("EDB pg_dump   : %s"), edbBackupExecutable.c_str());
-	wxLogInfo(wxT("EDB pg_dumpall: %s"), edbBackupAllExecutable.c_str());
-	wxLogInfo(wxT("EDB pg_restore: %s"), edbRestoreExecutable.c_str());
+	wxLogInfo(wxT("EDB pg_dump   : %s"), edbBackupExecutable);
+	wxLogInfo(wxT("EDB pg_dumpall: %s"), edbBackupAllExecutable);
+	wxLogInfo(wxT("EDB pg_restore: %s"), edbRestoreExecutable);
 
-	wxLogInfo(wxT("Greenplum pg_dump   : %s"), gpBackupExecutable.c_str());
-	wxLogInfo(wxT("Greenplum pg_dumpall: %s"), gpBackupAllExecutable.c_str());
-	wxLogInfo(wxT("Greenplum pg_restore: %s"), gpRestoreExecutable.c_str());
+	wxLogInfo(wxT("Greenplum pg_dump   : %s"), gpBackupExecutable);
+	wxLogInfo(wxT("Greenplum pg_dumpall: %s"), gpBackupAllExecutable);
+	wxLogInfo(wxT("Greenplum pg_restore: %s"), gpRestoreExecutable);
 
 #ifdef __WXGTK__
 	static pgRendererNative *renderer = new pgRendererNative();
@@ -449,10 +449,10 @@ bool pgAdmin3::OnInit()
 
 	// Setup the help paths
 	InitHelp();
-	wxLogInfo(wxT("PG Help       : %s"), settings->GetPgHelpPath().c_str());
-	wxLogInfo(wxT("EDB Help      : %s"), settings->GetEdbHelpPath().c_str());
-	wxLogInfo(wxT("Greenplum Help: %s"), settings->GetGpHelpPath().c_str());
-	wxLogInfo(wxT("Slony Help    : %s"), settings->GetSlonyHelpPath().c_str());
+	wxLogInfo(wxT("PG Help       : %s"), settings->GetPgHelpPath());
+	wxLogInfo(wxT("EDB Help      : %s"), settings->GetEdbHelpPath());
+	wxLogInfo(wxT("Greenplum Help: %s"), settings->GetGpHelpPath());
+	wxLogInfo(wxT("Slony Help    : %s"), settings->GetSlonyHelpPath());
 
 #ifndef __WXDEBUG__
 	wxTheApp->Yield(true);
@@ -469,13 +469,13 @@ bool pgAdmin3::OnInit()
 	{
 		if (configMode == frmConfig::ANYFILE && wxDir::Exists(configFile))
 		{
-			wxLogInfo(wxT("Starting in ANYFILE config editor mode, in directory: %s"), configFile.c_str());
+			wxLogInfo(wxT("Starting in ANYFILE config editor mode, in directory: %s"), configFile);
 			frmConfig::Create(appearanceFactory->GetLongAppName(), configFile + wxT("/pg_hba.conf"), frmConfig::HBAFILE);
 			frmConfig::Create(appearanceFactory->GetLongAppName(), configFile + wxT("/postgresql.conf"), frmConfig::MAINFILE);
 		}
 		else
 		{
-			wxLogInfo(wxT("Starting in config editor mode, file: %s"), configFile.c_str());
+			wxLogInfo(wxT("Starting in config editor mode, file: %s"), configFile);
 			frmConfig::Create(appearanceFactory->GetLongAppName(), configFile, configMode);
 		}
 		if (winSplash)
@@ -505,7 +505,7 @@ bool pgAdmin3::OnInit()
 
 			if (cmdParser.Found(wxT("S")))
 			{
-				wxLogInfo(wxT("Starting in server status mode (-S)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in server status mode (-S)."), configFile);
 
 				winSplash->Show(false);
 				dlgSelectConnection dlg(NULL, NULL);
@@ -519,7 +519,7 @@ bool pgAdmin3::OnInit()
 			}
 			else if (cmdParser.Found(wxT("Sc"), &connstr))
 			{
-				wxLogInfo(wxT("Starting in server status connect mode (-Sc)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in server status connect mode (-Sc)."), configFile);
 				wxString host, database, username, rolename, tmps;
 				int sslmode = 0, port = 0;
 				wxStringTokenizer tkn(connstr, wxT(" "), wxTOKEN_STRTOK);
@@ -593,7 +593,7 @@ bool pgAdmin3::OnInit()
 
 			if (cmdParser.Found(wxT("d")))
 			{
-				wxLogInfo(wxT("Starting in designer mode (-d)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in designer mode (-d)."), configFile);
 
 				winSplash->Show(false);
 				dlgSelectConnection dlg(NULL, NULL);
@@ -607,7 +607,7 @@ bool pgAdmin3::OnInit()
 			}
 			else if (cmdParser.Found(wxT("dc"), &connstr))
 			{
-				wxLogInfo(wxT("Starting in database designer connect mode (-dc)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in database designer connect mode (-dc)."), configFile);
 				wxString host, database, username, rolename, tmps;
 				int sslmode = 0, port = 0;
 				wxStringTokenizer tkn(connstr, wxT(" "), wxTOKEN_STRTOK);
@@ -688,7 +688,7 @@ bool pgAdmin3::OnInit()
 			if (cmdParser.Found(wxT("q")))
 #endif
 			{
-				wxLogInfo(wxT("Starting in query tool mode (-q)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in query tool mode (-q)."), configFile);
 
 				winSplash->Show(false);
 				dlgSelectConnection dlg(NULL, NULL);
@@ -702,7 +702,7 @@ bool pgAdmin3::OnInit()
 			}
 			else if (cmdParser.Found(wxT("qc"), &connstr))
 			{
-				wxLogInfo(wxT("Starting in query tool connect mode (-qc)."), configFile.c_str());
+				wxLogInfo(wxT("Starting in query tool connect mode (-qc)."), configFile);
 				wxString host, database, username, rolename, tmps;
 				int sslmode = 0, port = 0;
 				wxStringTokenizer tkn(connstr, wxT(" "), wxTOKEN_STRTOK);
@@ -765,7 +765,7 @@ bool pgAdmin3::OnInit()
 #ifdef __WXMAC__
 			if (!macFileToOpen.IsEmpty())
 			{
-				wxLogInfo(wxT("Mac file launch: %s."), macFileToOpen.c_str());
+				wxLogInfo(wxT("Mac file launch: %s."), macFileToOpen);
 				fn = macFileToOpen;
 			}
 			else
@@ -775,7 +775,7 @@ bool pgAdmin3::OnInit()
 #endif
 			if (!fn.IsEmpty())
 			{
-				wxLogInfo(wxT("Auto-loading file: %s"), fn.c_str());
+				wxLogInfo(wxT("Auto-loading file: %s"), fn);
 			}
 			frmQuery *fq = new frmQuery(NULL, wxEmptyString, conn, wxEmptyString, fn);
 			fq->Go();
@@ -806,7 +806,7 @@ bool pgAdmin3::OnInit()
 						cmdParser.Found(wxT("f"), &fn);
 						if (!fn.IsEmpty())
 						{
-							wxLogInfo(wxT("Auto-loading file: %s"), fn.c_str());
+							wxLogInfo(wxT("Auto-loading file: %s"), fn);
 						}
 						frmQuery *fq = new frmQuery(winMain, wxEmptyString, conn, wxEmptyString, fn);
 						fq->Go();

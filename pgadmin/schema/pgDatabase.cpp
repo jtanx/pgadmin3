@@ -64,11 +64,11 @@ wxString pgDatabase::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop database \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop database \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop database cascaded?");
@@ -113,11 +113,11 @@ wxString pgDatabase::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case BACKUPTITLE:
 			message = wxString::Format(_("Backup database \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case RESTORETITLE:
 			message = wxString::Format(_("Restore database \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 	}
 
@@ -612,7 +612,7 @@ void pgDatabase::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *pr
 		// Add child nodes if necessary
 		if (browser->GetChildrenCount(GetId(), false) == 0)
 		{
-			wxLogInfo(wxT("Adding child object to database %s"), GetIdentifier().c_str());
+			wxLogInfo(wxT("Adding child object to database %s"), GetIdentifier());
 
 			if (settings->GetDisplayOption(_("Catalogs")))
 				browser->AppendCollection(this, catalogFactory);

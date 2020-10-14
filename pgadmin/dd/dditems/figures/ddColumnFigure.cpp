@@ -80,7 +80,7 @@ ddColumnFigure::ddColumnFigure(wxString &columnName, ddTableFigure *owner, ddCol
 	else
 	{
 		wxMessageBox(wxString::Format(_("%s column has a non compatible data type (%s).\n%s will now have the default data type."),
-		                              columnName.c_str(), colDataType.c_str(), columnName.c_str()));
+		                              columnName, colDataType, columnName));
 		setDataType((ddDataType)0);
 	}
 

@@ -256,7 +256,7 @@ bool CSSHTunnelThread::Initialize()
 			m_local_listenip = wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc);
 			m_local_listenport = ntohs(m_sin.sin_port);
 
-			wxLogInfo(wxT("Waiting for TCP connection on %s:%d..."), m_local_listenip.c_str(), m_local_listenport);
+			wxLogInfo(wxT("Waiting for TCP connection on %s:%d..."), m_local_listenip, m_local_listenport);
 			return true;
 		}
 		else
@@ -266,7 +266,7 @@ bool CSSHTunnelThread::Initialize()
 	}
 	else
 	{
-		LogSSHTunnelErrors(wxString::Format(_("SSH error: Unable to resolve host: %s"), m_tunnelhost.c_str()), GetId());
+		LogSSHTunnelErrors(wxString::Format(_("SSH error: Unable to resolve host: %s"), m_tunnelhost), GetId());
 	}
 
 	return false;
@@ -430,7 +430,7 @@ bool CSSHTunnelThread::IsHostKeyVerified(const wxString &newHostKey)
 	if (cachedHostKey == wxEmptyString)
 	{
 		// Prompt User to accept or reject
-		wxString msg = wxString::Format(wxT("Host key received for the SSH server \"%s\" is \n\n%s\n\nWould you like to accept it and continue with the connection?"), m_tunnelhost.c_str(), newHostKey.c_str());
+		wxString msg = wxString::Format(wxT("Host key received for the SSH server \"%s\" is \n\n%s\n\nWould you like to accept it and continue with the connection?"), m_tunnelhost, newHostKey);
 		int answer = wxMessageBox(msg, wxT("Host key verification"), wxYES_NO | wxNO_DEFAULT);
 		if (answer == wxYES)
 		{
@@ -447,7 +447,7 @@ bool CSSHTunnelThread::IsHostKeyVerified(const wxString &newHostKey)
 		else
 		{
 			// Prompt user to accept or reject the new host key received for the tunnel host
-			wxString msg = wxString::Format(wxT("The host key received from the server \"%s\" is\n\n%s\n\nbut the stored key is\n\n%s\n\nThis may indicate that this is not the same server that was previously used.\n\nDo you wish to accept and store the new key, and continue with the connection?"), m_tunnelhost.c_str(), newHostKey.c_str(), cachedHostKey.c_str());
+			wxString msg = wxString::Format(wxT("The host key received from the server \"%s\" is\n\n%s\n\nbut the stored key is\n\n%s\n\nThis may indicate that this is not the same server that was previously used.\n\nDo you wish to accept and store the new key, and continue with the connection?"), m_tunnelhost, newHostKey, cachedHostKey);
 			int answer = wxMessageBox(msg, wxT("Host key verification - WARNING"), wxYES_NO | wxNO_DEFAULT);
 			if (answer == wxYES)
 			{
@@ -487,8 +487,8 @@ CSubThread::Entry()
 	const char *shost = inet_ntoa(m_sin.sin_addr);
 	unsigned int sport = ntohs(m_sin.sin_port);
 
-	wxLogInfo(wxT("Forwarding connection from %s:%d to %s:%d"), wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc).c_str(),
-	          sport, m_remote_desthost.c_str(), m_remote_destport);
+	wxLogInfo(wxT("Forwarding connection from %s:%d to %s:%d"), wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc),
+	          sport, m_remote_desthost, m_remote_destport);
 
 	/* Must use blocking here to avoid connect errors */
 	//libssh2_session_set_blocking(m_subThreadSession, 1);
@@ -535,7 +535,7 @@ CSubThread::Entry()
 			}
 			else if (0 == len)
 			{
-				wxLogInfo(_("The client at %s:%d disconnected!"), wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc).c_str(), sport);
+				wxLogInfo(_("The client at %s:%d disconnected!"), wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc), sport);
 				goto shutdown;
 			}
 			wr = 0;
@@ -577,7 +577,7 @@ CSubThread::Entry()
 			if (libssh2_channel_eof(m_channel))
 			{
 				wxLogInfo(_("Connection at %s:%d disconnected by server"),
-				          wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc).c_str(), sport);
+				          wxString(inet_ntoa(m_sin.sin_addr), wxConvLibc), sport);
 				goto shutdown;
 			}
 		}
@@ -613,7 +613,7 @@ void LogSSHTunnelErrors(const wxString &msg, const int &id, struct _LIBSSH2_SESS
 		if (errmsg_len > 0)
 		{
 			wxString errmsg_s(errmsg, wxConvLibc);
-			errorMsg += wxString::Format(_(" [%s]"), errmsg_s.c_str());
+			errorMsg += wxString::Format(_(" [%s]"), errmsg_s);
 		}
 	}
 

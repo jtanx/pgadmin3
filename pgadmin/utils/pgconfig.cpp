@@ -406,7 +406,7 @@ void pgHbaConfigLine::Init(const wxString &line)
 
 	text = line;
 
-	const wxChar *p0 = line.c_str();
+	const wxChar *p0 = line;
 
 	if (*p0 == '#')
 	{

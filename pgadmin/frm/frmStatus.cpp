@@ -2015,7 +2015,7 @@ void frmStatus::addLogFile(const wxString &filename, const wxDateTime timestamp,
 				// In CSV logs, the first field must be a Timestamp, so must start with "2009" or "201" or "202" (at least for the next 20 years).
 				if (str.length() > 4 && str.Left(4) != wxT("2009") && str.Left(3) != wxT("201") && str.Left(3) != wxT("202"))
 				{
-					wxLogNotice(wxT("Log line does not start with timestamp: %s \n"), str.Mid(0, 100).c_str());
+					wxLogNotice(wxT("Log line does not start with timestamp: %s \n"), str.Mid(0, 100));
 					// Something isn't right, as we are not at the beginning of a csv log record.
 					// We should never get here, but if we do, try to handle it in a smart way.
 					str = str.Mid(str.Find(wxT("\n20")) + 1); // Try to re-sync.
@@ -2047,12 +2047,12 @@ void frmStatus::addLogFile(const wxString &filename, const wxDateTime timestamp,
 					if (str.length() > 5 && str.Left(4) != wxT("2009") && str.Left(3) != wxT("201") && str.Left(3) != wxT("202"))
 					{
 						// BUG:  We are out of sync on the log
-						wxLogNotice(wxT("Log line does not start with timestamp: %s\n"), str.c_str());
+						wxLogNotice(wxT("Log line does not start with timestamp: %s\n"), str);
 					}
 					else if (str.length() < 20)
 					{
 						// BUG:  We are out of sync on the log, or the log is garbled
-						wxLogNotice(wxT("Log line too short: %s\n"), str.c_str());
+						wxLogNotice(wxT("Log line too short: %s\n"), str);
 					}
 				}
 
@@ -2359,7 +2359,7 @@ void frmStatus::addLogLine(const wxString &str, bool formatted, bool csv_log_for
 				rest = rest.AfterFirst(':').Mid(2);
 			}
 
-			wxString ts = str.BeforeFirst(logFormat.c_str()[logFmtPos + 2]);
+			wxString ts = str.BeforeFirst(logFormat[logFmtPos + 2]);
 			if (ts.Length() < 20  || (logHasTimestamp && (ts.Left(2) != wxT("20") || str.Find(':') < 0)))
 			{
 				// No Timestamp?  Must be a continuation of a previous line?
@@ -2394,7 +2394,7 @@ void frmStatus::addLogLine(const wxString &str, bool formatted, bool csv_log_for
 					rest = str.Mid(logFmtPos + 22).AfterFirst(':');
 					wxString ts = str.Mid(logFmtPos, str.Length() - rest.Length() - logFmtPos - 1);
 
-					int pos = ts.Find(logFormat.c_str()[logFmtPos + 2], true);
+					int pos = ts.Find(logFormat[logFmtPos + 2], true);
 					logList->InsertItem(row, ts.Left(pos), -1);
 					logList->SetItem(row, idxLevelCol, ts.Mid(pos + logFormat.Length() - logFmtPos - 2));
 					logList->SetItem(row, idxLogEntryCol, rest.Mid(2));

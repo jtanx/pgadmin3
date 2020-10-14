@@ -147,7 +147,7 @@ bool frmExport::Export(pgSet *set)
 	wxFile file(txtFilename->GetValue(), wxFile::write);
 	if (!file.IsOpened())
 	{
-		wxLogError(__("Failed to open file %s."), txtFilename->GetValue().c_str());
+		wxLogError(__("Failed to open file %s."), txtFilename->GetValue());
 		return false;
 	}
 

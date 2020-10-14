@@ -215,13 +215,13 @@ pgsOperand pgsExecute::eval(pgsVarMap &vars) const
 			else
 			{
 				wxLogError(wxT("PGSCRIPT: Cannot run query thread for the query:\n%s"),
-				           m_query.c_str());
+				           m_query);
 			}
 		}
 		else
 		{
 			wxLogError(wxT("PGSCRIPT: Cannot create query thread for the query:\n%s"),
-			           m_query.c_str());
+			           m_query);
 		}
 	}
 

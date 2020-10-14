@@ -84,7 +84,7 @@ dlgMainConfig::dlgMainConfig(pgFrame *parent, pgSettingItem *_item) :
 
 	item = _item;
 
-	SetTitle(wxString::Format(_("Configuration setting \"%s\""), item->name.c_str()));
+	SetTitle(wxString::Format(_("Configuration setting \"%s\""), item->name));
 
 	// Setup the default values
 

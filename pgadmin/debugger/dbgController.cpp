@@ -40,14 +40,14 @@
 #if LOG_DBG_MUTEX_LOCKING
 
 #define LOCKMUTEX(m) \
-	wxPrintf(wxT("Mutex locking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__); \
+	wxPrintf(wxT("Mutex locking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__); \
 	m.Lock(); \
-	wxPrintf(wxT("Mutex locked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__);
+	wxPrintf(wxT("Mutex locked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__);
 
 #define UNLOCKMUTEX(m) \
-	wxPrintf(wxT("Mutex unlocking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__); \
+	wxPrintf(wxT("Mutex unlocking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__); \
 	m.Unlock(); \
-	wxPrintf(wxT("Mutex unlocked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__);
+	wxPrintf(wxT("Mutex unlocked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__);
 
 #else
 
@@ -319,7 +319,7 @@ dbgController::dbgController(frmMain *main, pgObject *_obj, bool _directDebuggin
 			wxLogError(
 			    wxString::Format(
 			        _("Couldn't determine the debugger plugin version.\n%s"),
-			        m_dbgConn->GetLastError().c_str()));
+			        m_dbgConn->GetLastError()));
 
 			m_dbgConn->Close();
 			delete m_dbgConn;
@@ -337,7 +337,7 @@ dbgController::dbgController(frmMain *main, pgObject *_obj, bool _directDebuggin
 		wxLogError(
 		    wxString::Format(
 		        _("Couldn't determine the debugger plugin version.\n%s"),
-		        m_dbgConn->GetLastError().c_str()));
+		        m_dbgConn->GetLastError()));
 
 		m_dbgConn->Close();
 		delete m_dbgConn;
@@ -357,7 +357,7 @@ dbgController::dbgController(frmMain *main, pgObject *_obj, bool _directDebuggin
 		m_frm = new frmDebugger(
 		    main, this, wxString::Format(
 		        _("Debugger - %s"),
-		        m_model->GetTarget()->GetQualifiedName().c_str()));
+		        m_model->GetTarget()->GetQualifiedName()));
 	}
 	else
 	{
@@ -609,9 +609,9 @@ void dbgController::ClearBreakpoint(int _lineNo)
 		LOCKMUTEX(m_dbgThreadLock);
 		m_dbgThread->AddQuery(
 		    wxString::Format(
-		        ms_cmdClearBreakpointV1, m_model->GetSession().c_str(),
-		        m_model->GetDisplayedPackage().c_str(),
-		        m_model->GetDisplayedFunction().c_str(), _lineNo + 1),
+		        ms_cmdClearBreakpointV1, m_model->GetSession(),
+		        m_model->GetDisplayedPackage(),
+		        m_model->GetDisplayedFunction(), _lineNo + 1),
 		    NULL, (long) RESULT_ID_NEW_BREAKPOINT);
 		UNLOCKMUTEX(m_dbgThreadLock);
 	}
@@ -620,8 +620,8 @@ void dbgController::ClearBreakpoint(int _lineNo)
 		LOCKMUTEX(m_dbgThreadLock);
 		m_dbgThread->AddQuery(
 		    wxString::Format(
-		        ms_cmdClearBreakpointV2, m_model->GetSession().c_str(),
-		        m_model->GetDisplayedFunction().c_str(), _lineNo + 1),
+		        ms_cmdClearBreakpointV2, m_model->GetSession(),
+		        m_model->GetDisplayedFunction(), _lineNo + 1),
 		    NULL, RESULT_ID_NEW_BREAKPOINT);
 		UNLOCKMUTEX(m_dbgThreadLock);
 	}
@@ -638,9 +638,9 @@ void dbgController::SetBreakpoint(int _lineNo)
 		LOCKMUTEX(m_dbgThreadLock);
 		m_dbgThread->AddQuery(
 		    wxString::Format(
-		        ms_cmdSetBreakpointV1, m_model->GetSession().c_str(),
-		        m_model->GetDisplayedPackage().c_str(),
-		        m_model->GetDisplayedFunction().c_str(), _lineNo + 1),
+		        ms_cmdSetBreakpointV1, m_model->GetSession(),
+		        m_model->GetDisplayedPackage(),
+		        m_model->GetDisplayedFunction(), _lineNo + 1),
 		    NULL, RESULT_ID_NEW_BREAKPOINT);
 		UNLOCKMUTEX(m_dbgThreadLock);
 	}
@@ -649,8 +649,8 @@ void dbgController::SetBreakpoint(int _lineNo)
 		LOCKMUTEX(m_dbgThreadLock);
 		m_dbgThread->AddQuery(
 		    wxString::Format(
-		        ms_cmdSetBreakpointV2, m_model->GetSession().c_str(),
-		        m_model->GetDisplayedFunction().c_str(), _lineNo + 1),
+		        ms_cmdSetBreakpointV2, m_model->GetSession(),
+		        m_model->GetDisplayedFunction(), _lineNo + 1),
 		    NULL, RESULT_ID_NEW_BREAKPOINT);
 		UNLOCKMUTEX(m_dbgThreadLock);
 	}
@@ -764,7 +764,7 @@ bool dbgController::Stop()
 						// target backend will wait for any commands from debugging proxy.
 						pgConn *conn = m_dbgThread->GetConn();
 						pgSet *set = conn->ExecuteSet(
-						                 wxString::Format(ms_cmdAbortTarget, m_model->GetSession().c_str()));
+						                 wxString::Format(ms_cmdAbortTarget, m_model->GetSession()));
 
 						if (set)
 							delete set;
@@ -829,9 +829,9 @@ void dbgController::DepositValue(const wxString &_name, const wxString &_val)
 	LOCKMUTEX(m_dbgThreadLock);
 	m_dbgThread->AddQuery(
 	    wxString::Format(
-	        ms_cmdDepositValue, m_model->GetSession().c_str(),
-	        m_dbgConn->qtDbString(_name).c_str(), -1,
-	        m_dbgConn->qtDbString(_val).c_str()),
+	        ms_cmdDepositValue, m_model->GetSession(),
+	        m_dbgConn->qtDbString(_name), -1,
+	        m_dbgConn->qtDbString(_val)),
 	    NULL, RESULT_ID_DEPOSIT_VALUE);
 	UNLOCKMUTEX(m_dbgThreadLock);
 }
@@ -884,7 +884,7 @@ void dbgController::UpdateBreakpoints()
 
 	LOCKMUTEX(m_dbgThreadLock);
 	m_dbgThread->AddQuery(
-	    wxString::Format(ms_cmdGetBreakpoints, m_model->GetSession().c_str()),
+	    wxString::Format(ms_cmdGetBreakpoints, m_model->GetSession()),
 	    NULL, RESULT_ID_GET_BREAKPOINTS);
 	UNLOCKMUTEX(m_dbgThreadLock);
 }

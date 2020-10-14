@@ -44,7 +44,7 @@ wxString edbPrivateSynonym::GetTranslatedMessage(int kindOfMessage) const
 	{
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop synonym \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPTITLE:
 			message = _("Drop synonym?");

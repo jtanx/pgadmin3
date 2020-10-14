@@ -280,7 +280,7 @@ void sysLogger::WriteLog(const wxString &msg)
 	wxLogNull foo;
 
 	pid.Printf(wxT("%ld"), wxGetProcessId());
-	logfile.Printf(wxT("%s"), logFile.c_str());
+	logfile.Printf(wxT("%s"), logFile);
 	logfile.Replace(wxT("%ID"), pid);
 
 	wxFFile file(logfile, wxT("a"));

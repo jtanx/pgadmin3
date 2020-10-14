@@ -112,7 +112,7 @@ void dlgSelectConnection::OnChangeServer(wxCommandEvent &ev)
 			remoteServer->Connect(mainForm, remoteServer->GetStorePwd());
 			if (!remoteServer->GetConnected())
 			{
-				wxLogError(wxT("%s"), remoteServer->GetLastError().c_str());
+				wxLogError(wxT("%s"), remoteServer->GetLastError());
 				return;
 			}
 		}
@@ -274,7 +274,7 @@ pgConn *dlgSelectConnection::CreateConn(wxString &server, wxString &dbname, wxSt
 		newconn = NULL;
 
 		wxString txt;
-		txt.Printf(_("Please enter password for user %s\non server %s"), username.c_str(), server.c_str());
+		txt.Printf(_("Please enter password for user %s\non server %s"), username, server);
 		dlgConnect dlg(NULL, txt, false);
 		if (dlg.Go() != wxID_OK)
 			return NULL;

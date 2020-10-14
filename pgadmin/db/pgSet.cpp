@@ -209,7 +209,7 @@ int pgSet::ColNumber(const wxString &colname) const
 
 	if (col < 0)
 	{
-		wxLogError(__("Column not found in pgSet: %s"), colname.c_str());
+		wxLogError(__("Column not found in pgSet: %s"), colname);
 	}
 	return col;
 }

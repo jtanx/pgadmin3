@@ -80,11 +80,11 @@ wxString slSet::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony set \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony set \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop Slony set cascaded?");
@@ -173,7 +173,7 @@ void slSet::ShowDependencies(frmMain *form, ctlListView *list, const wxString &w
 			wxString comment = set->GetVal(wxT("comment"));
 			wxString typname;
 			int icon = -1;
-			switch ( (wxChar)typestr.c_str()[0])
+			switch ( (wxChar)typestr[0])
 			{
 				case 'S':
 					typname = _("Sequence");
@@ -239,7 +239,7 @@ void slSet::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *propert
 
 		browser->RemoveDummyChild(this);
 		// Log
-		wxLogInfo(wxT("Adding child object to set %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to set %s"), GetIdentifier());
 
 		if (GetOriginId() == GetCluster()->GetLocalNodeID())
 		{

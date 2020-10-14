@@ -286,7 +286,7 @@ void frmReport::OnOK(wxCommandEvent &ev)
 	if (wxFileExists(fn.GetFullPath()))
 	{
 		wxString msg;
-		msg.Printf(_("The file: \n\n%s\n\nalready exists. Do you want to overwrite it?"), fn.GetFullPath().c_str());
+		msg.Printf(_("The file: \n\n%s\n\nalready exists. Do you want to overwrite it?"), fn.GetFullPath());
 
 		if (wxMessageBox(msg, _("Overwrite file?"), wxYES_NO | wxICON_QUESTION) != wxYES)
 		{
@@ -325,7 +325,7 @@ void frmReport::OnOK(wxCommandEvent &ev)
 			wxString css = FileRead(txtHtmlStylesheet->GetValue());
 			if (css.IsEmpty())
 			{
-				wxLogError(_("No stylesheet data could be read from the file %s: Errcode=%d."), txtHtmlStylesheet->GetValue().c_str(), wxSysErrorCode());
+				wxLogError(_("No stylesheet data could be read from the file %s: Errcode=%d."), txtHtmlStylesheet->GetValue(), wxSysErrorCode());
 				return;
 			}
 			wxString xsl = GetDefaultXsl(GetEmbeddedCss(css));
@@ -354,7 +354,7 @@ void frmReport::OnOK(wxCommandEvent &ev)
 			wxString xsl = FileRead(txtXmlStylesheet->GetValue());
 			if (xsl.IsEmpty())
 			{
-				wxLogError(_("No stylesheet data could be read from the file %s: Errcode=%d."), txtXmlStylesheet->GetValue().c_str(), wxSysErrorCode());
+				wxLogError(_("No stylesheet data could be read from the file %s: Errcode=%d."), txtXmlStylesheet->GetValue(), wxSysErrorCode());
 				return;
 			}
 			report = XslProcessReport(xml, xsl);
@@ -369,7 +369,7 @@ void frmReport::OnOK(wxCommandEvent &ev)
 	wxFile file(fn.GetFullPath(), wxFile::write);
 	if (!file.IsOpened())
 	{
-		wxLogError(_("Failed to open file %s."), fn.GetFullPath().c_str());
+		wxLogError(_("Failed to open file %s."), fn.GetFullPath());
 		return;
 	}
 	file.Write(report, wxConvUTF8);
@@ -1326,7 +1326,7 @@ void reportObjectDataDictionaryFactory::GenerateReport(frmReport *report, pgObje
 	if (haveInherit)
 	{
 		wxString info;
-		info.Printf(_("* Inherited columns from %s."), table->GetInheritedTables().c_str());
+		info.Printf(_("* Inherited columns from %s."), table->GetInheritedTables());
 		report->XmlSetSectionTableInfo(section, info);
 	}
 

@@ -104,7 +104,7 @@ wxString sysProcess::ReadStream(wxInputStream *input)
 		if (size)
 		{
 			buffer[size] = 0;
-			str.Append(wxString::Format(wxT("%s"), wxString(buffer, m_conv).c_str()));
+			str.Append(wxString::Format(wxT("%s"), wxString(buffer, m_conv)));
 		}
 	}
 	return str;

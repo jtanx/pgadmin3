@@ -617,12 +617,12 @@ void frmOptions::OnOK(wxCommandEvent &ev)
 
 	// Logfile
 	wxString logFile = pickerLogfile->GetPath();
-	wxLogInfo(wxT("Setting logfile to: %s"), logFile.c_str());
+	wxLogInfo(wxT("Setting logfile to: %s"), logFile);
 	settings->SetLogFile(logFile);
 
 	// Loglevel
 	wxString logInfo = radLoglevel->GetStringSelection();
-	wxLogInfo(wxT("Setting loglevel to: %s"), logInfo.c_str());
+	wxLogInfo(wxT("Setting loglevel to: %s"), logInfo);
 	int sel = radLoglevel->GetSelection();
 
 	switch(sel)

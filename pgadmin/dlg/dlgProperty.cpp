@@ -125,7 +125,7 @@ dlgProperty::dlgProperty(pgaFactory *f, frmMain *frame, const wxString &resName)
 	nbNotebook = CTRL_NOTEBOOK("nbNotebook");
 	if (!nbNotebook)
 	{
-		wxMessageBox(wxString::Format(_("Problem with resource %s: Notebook not found.\nPrepare to crash!"), resName.c_str()));
+		wxMessageBox(wxString::Format(_("Problem with resource %s: Notebook not found.\nPrepare to crash!"), resName));
 		return;
 	}
 
@@ -295,7 +295,7 @@ int dlgProperty::Go(bool modal)
 					long setId = sets.GetLong(wxT("set_id"));
 					long majorVer = sets.GetLong(wxT("slonyversionmajor"));
 					long minorVer = sets.GetLong(wxT("slonyversionminor"));
-					str.Printf(_("Cluster \"%s\", set %ld"), clusters.Item(i).c_str(), setId);
+					str.Printf(_("Cluster \"%s\", set %ld"), clusters.Item(i), setId);
 					cbClusterSet->Append(str, static_cast<void *>(new replClientData(cluster, setId, majorVer, minorVer)));
 				}
 			}
@@ -720,7 +720,7 @@ void dlgProperty::FillSQLTextfield()
 		{
 			replClientData *data = (replClientData *)cbClusterSet->wxItemContainer::GetClientData(cbClusterSet->GetSelection());
 			if(data)
-				tmp.Printf(_("-- Execute replicated using cluster \"%s\", set %ld\n"), data->cluster.c_str(), data->setId);
+				tmp.Printf(_("-- Execute replicated using cluster \"%s\", set %ld\n"), data->cluster, data->setId);
 		}
 		sqlTextField1->SetText(tmp + GetSql());
 		if (enableSQL2)

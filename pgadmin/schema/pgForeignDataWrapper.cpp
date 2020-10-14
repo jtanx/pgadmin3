@@ -41,11 +41,11 @@ wxString pgForeignDataWrapper::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop foreign data wrapper \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop foreign data wrapper \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop foreign data wrapper cascaded?");
@@ -138,7 +138,7 @@ void pgForeignDataWrapper::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlLi
 		browser->RemoveDummyChild(this);
 
 		// Log
-		wxLogInfo(wxT("Adding child object to foreign data wrapper %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to foreign data wrapper %s"), GetIdentifier());
 
 		if (settings->GetDisplayOption(_("Foreign Servers")))
 			browser->AppendCollection(this, foreignServerFactory);

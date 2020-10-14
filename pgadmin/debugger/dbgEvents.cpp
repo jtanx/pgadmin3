@@ -38,14 +38,14 @@
 #if LOG_DBG_MUTEX_LOCKING
 
 #define LOCKMUTEX(m) \
-	wxPrintf(wxT("Mutex locking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__); \
+	wxPrintf(wxT("Mutex locking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__); \
 	m.Lock(); \
-	wxPrintf(wxT("Mutex locked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__);
+	wxPrintf(wxT("Mutex locked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__);
 
 #define UNLOCKMUTEX(m) \
-	wxPrintf(wxT("Mutex unlocking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__); \
+	wxPrintf(wxT("Mutex unlocking @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__); \
 	m.Unlock(); \
-	wxPrintf(wxT("Mutex unlocked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__).c_str(), __LINE__);
+	wxPrintf(wxT("Mutex unlocked @ %s:%d\n"), wxString::FromAscii(__WXFUNCTION__), __LINE__);
 
 #else
 
@@ -97,7 +97,7 @@ void dbgController::OnStartDebugging(wxCommandEvent &_ev)
 	if (m_dbgThread && m_dbgThread->IsRunning())
 	{
 		m_dbgThread->AddQuery(
-		    wxString::Format(ms_cmdAttachToPort, m_model->GetPort().c_str()),
+		    wxString::Format(ms_cmdAttachToPort, m_model->GetPort()),
 		    NULL, RESULT_ID_ATTACH_TO_PORT);
 	}
 	UNLOCKMUTEX(m_dbgThreadLock);
@@ -156,7 +156,7 @@ void dbgController::ResultTargetComplete(pgQueryResultEvent &_ev)
 				wxLogInfo(
 				    wxString::Format(
 				        _("Debugger(%ld): Function/Procedure terminated with an error.\n%s"),
-				        m_execConnThread->GetId(), strErr.c_str()));
+				        m_execConnThread->GetId(), strErr));
 
 				m_frm->GetMessageWindow()->AddMessage(qry->GetMessage());
 				m_frm->GetMessageWindow()->SetFocus();
@@ -172,7 +172,7 @@ void dbgController::ResultTargetComplete(pgQueryResultEvent &_ev)
 				wxLogInfo(
 				    wxString::Format(
 				        _("Debugger(%ld): Function/Procedure terminated with an error.\n%s"),
-				        m_execConnThread->GetId(), strErr.c_str()));
+				        m_execConnThread->GetId(), strErr));
 
 				m_frm->GetMessageWindow()->AddMessage(qry->GetMessage());
 				m_frm->GetMessageWindow()->SetFocus();
@@ -298,9 +298,9 @@ void dbgController::ResultPortAttach(pgQueryResultEvent &_ev)
 			{
 				m_dbgThread->AddQuery(
 				    wxString::Format(
-				        ms_cmdSetBreakpointV1, m_model->GetSession().c_str(),
-				        breakpoint->GetPackageOid().c_str(),
-				        breakpoint->GetFunctionOid().c_str(),
+				        ms_cmdSetBreakpointV1, m_model->GetSession(),
+				        breakpoint->GetPackageOid(),
+				        breakpoint->GetFunctionOid(),
 				        breakpoint->GetLineNo()),
 				    NULL, RESULT_ID_NEW_BREAKPOINT);
 			}
@@ -308,8 +308,8 @@ void dbgController::ResultPortAttach(pgQueryResultEvent &_ev)
 			{
 				m_dbgThread->AddQuery(
 				    wxString::Format(
-				        ms_cmdSetBreakpointV2, m_model->GetSession().c_str(),
-				        breakpoint->GetFunctionOid().c_str(),
+				        ms_cmdSetBreakpointV2, m_model->GetSession(),
+				        breakpoint->GetFunctionOid(),
 				        breakpoint->GetLineNo()),
 				    NULL, RESULT_ID_NEW_BREAKPOINT);
 			}
@@ -402,7 +402,7 @@ bool dbgController::HandleQuery(pgBatchQuery *_qry, const wxString &_err)
 				// Let's check if the target pid has stopped or exited after
 				// successful debugging, let's move on and wait for the next
 				// target to hit.
-				wxString isTargetRunning = m_dbgConn->ExecuteScalar(wxString::Format(ms_cmdIsBackendRunning, m_currTargetPid.c_str()));
+				wxString isTargetRunning = m_dbgConn->ExecuteScalar(wxString::Format(ms_cmdIsBackendRunning, m_currTargetPid));
 
 				if (isTargetRunning == wxT("0"))
 				{
@@ -410,7 +410,7 @@ bool dbgController::HandleQuery(pgBatchQuery *_qry, const wxString &_err)
 					m_currTargetPid = wxT("");
 					m_dbgThread->AddQuery(
 					    wxString::Format(
-					        ms_cmdWaitForTarget, m_model->GetSession().c_str()),
+					        ms_cmdWaitForTarget, m_model->GetSession()),
 					    NULL, RESULT_ID_TARGET_READY);
 
 					m_frm->LaunchWaitingDialog();
@@ -491,7 +491,7 @@ void dbgController::ResultBreakpoint(pgQueryResultEvent &_ev)
 			m_frm->DisplaySource(src);
 
 			m_dbgThread->AddQuery(
-			    wxString::Format(ms_cmdGetStack, m_model->GetSession().c_str()),
+			    wxString::Format(ms_cmdGetStack, m_model->GetSession()),
 			    NULL, RESULT_ID_GET_STACK);
 
 			m_frm->EnableToolsAndMenus(true);
@@ -597,7 +597,7 @@ void dbgController::ResultStack(pgQueryResultEvent &_ev)
 
 			// Fetched the stack, now fetch the break-points
 			m_dbgThread->AddQuery(
-			    wxString::Format(ms_cmdGetBreakpoints, m_model->GetSession().c_str()),
+			    wxString::Format(ms_cmdGetBreakpoints, m_model->GetSession()),
 			    NULL, RESULT_ID_GET_BREAKPOINTS);
 
 			stackWin->ClearStack();
@@ -620,9 +620,9 @@ void dbgController::ResultStack(pgQueryResultEvent &_ev)
 				    set->GetVal(funCol),
 				    wxString::Format(
 				        wxT("%s(%s)@%s"),
-				        set->GetVal(targetCol).c_str(),
-				        set->GetVal(argsCol).c_str(),
-				        set->GetVal(lineCol).c_str()));
+				        set->GetVal(targetCol),
+				        set->GetVal(argsCol),
+				        set->GetVal(lineCol)));
 
 				// Select this one in the stack window
 				if (frame->GetFunction() == m_model->GetDisplayedFunction() &&
@@ -669,7 +669,7 @@ void dbgController::ResultBreakpoints(pgQueryResultEvent &_ev)
 			}
 
 			m_dbgThread->AddQuery(
-			    wxString::Format(ms_cmdGetVars, m_model->GetSession().c_str()),
+			    wxString::Format(ms_cmdGetVars, m_model->GetSession()),
 			    NULL, RESULT_ID_GET_VARS);
 
 			m_frm->ClearBreakpointMarkers();
@@ -744,7 +744,7 @@ void dbgController::ResultNewBreakpointWait(pgQueryResultEvent &_ev)
 
 			m_dbgThread->AddQuery(
 			    wxString::Format(
-			        ms_cmdWaitForTarget, m_model->GetSession().c_str()),
+			        ms_cmdWaitForTarget, m_model->GetSession()),
 			    NULL, RESULT_ID_TARGET_READY);
 
 			m_frm->LaunchWaitingDialog();
@@ -815,7 +815,7 @@ void dbgController::ResultDepositValue(pgQueryResultEvent &_ev)
 				m_frm->SetStatusText(_("Value changed"));
 
 				m_dbgThread->AddQuery(
-				    wxString::Format(ms_cmdGetVars, m_model->GetSession().c_str()),
+				    wxString::Format(ms_cmdGetVars, m_model->GetSession()),
 				    NULL, RESULT_ID_GET_VARS);
 			}
 			else
@@ -890,19 +890,19 @@ void dbgController::ResultListenerCreated(pgQueryResultEvent &_ev)
 				{
 					m_dbgThread->AddQuery(
 					    wxString::Format(
-					        ms_cmdAddBreakpointEDB, m_model->GetSession().c_str(),
-					        breakpoint->GetPackageOid().c_str(),
-					        breakpoint->GetFunctionOid().c_str(),
-					        m_model->GetTargetPid().c_str()),
+					        ms_cmdAddBreakpointEDB, m_model->GetSession(),
+					        breakpoint->GetPackageOid(),
+					        breakpoint->GetFunctionOid(),
+					        m_model->GetTargetPid()),
 					    NULL, resultId);
 				}
 				else
 				{
 					m_dbgThread->AddQuery(
 					    wxString::Format(
-					        ms_cmdAddBreakpointPG, m_model->GetSession().c_str(),
-					        breakpoint->GetFunctionOid().c_str(),
-					        m_model->GetTargetPid().c_str()),
+					        ms_cmdAddBreakpointPG, m_model->GetSession(),
+					        breakpoint->GetFunctionOid(),
+					        m_model->GetTargetPid()),
 					    NULL, resultId);
 				}
 			}

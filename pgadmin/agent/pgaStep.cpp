@@ -61,7 +61,7 @@ wxString pgaStep::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop step \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPTITLE:
 			message = _("Drop step?");
@@ -222,7 +222,7 @@ void pgaStep::ShowStatistics(frmMain *form, ctlListView *statistics)
 
 	if (statistics)
 	{
-		wxLogInfo(wxT("Displaying statistics for job %s"), GetFullIdentifier().c_str());
+		wxLogInfo(wxT("Displaying statistics for job %s"), GetFullIdentifier());
 
 		// Add the statistics view columns
 		statistics->ClearAll();

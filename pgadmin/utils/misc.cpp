@@ -308,7 +308,7 @@ wxString qtConnString(const wxString &value)
 wxString IdAndName(long id, const wxString &name)
 {
 	wxString str;
-	str.Printf(wxT("%ld - %s"), id, name.BeforeFirst('\n').c_str());
+	str.Printf(wxT("%ld - %s"), id, name.BeforeFirst('\n'));
 	return str;
 }
 
@@ -329,7 +329,7 @@ wxString qtDbStringDollar(const wxString &value)
 	}
 
 	while (value.Find(wxT("$") + qt + wxT("$")) >= 0)
-		qt.Printf(wxT("%s%d"), qtDefault.c_str(), counter++);
+		qt.Printf(wxT("%s%d"), qtDefault, counter++);
 
 
 	return wxT("$") + qt + wxT("$")
@@ -455,7 +455,7 @@ wxString qtStrip(const wxString &str)
 
 wxString TransformToNewDatconfig(const wxString &list)
 {
-	const wxChar *cp = list.c_str();
+	const wxChar *cp = list;
 
 	wxString config = wxEmptyString;
 	wxString str = wxEmptyString;
@@ -515,7 +515,7 @@ wxString TransformToNewDatconfig(const wxString &list)
 
 void FillArray(wxArrayString &array, const wxString &list)
 {
-	const wxChar *cp = list.c_str();
+	const wxChar *cp = list;
 
 	wxString str;
 	bool quote = false;
@@ -935,7 +935,7 @@ void DisplayExternalHelp(const wxString &helpTopic, const wxString &docPath, wxH
 	}
 	else
 	{
-		wxLogError(_("The help source (\"%s\") could not be opened. Please check the help configuration options."), docPath.c_str());
+		wxLogError(_("The help source (\"%s\") could not be opened. Please check the help configuration options."), docPath);
 	}
 }
 
@@ -1199,7 +1199,7 @@ bool pgAppMinimumVersion(const wxString &cmd, const int majorVer, const int mino
 	if (ExecProcess(cmd + wxT(" --version"), output) != 0)
 #endif
 	{
-		wxLogError(_("Failed to execute: %s --version"), cmd.c_str());
+		wxLogError(_("Failed to execute: %s --version"), cmd);
 		return false;
 	}
 
@@ -1258,7 +1258,7 @@ bool isPgApp(const wxString &app)
 	if (ExecProcess(app + wxT(" --version"), output) != 0)
 #endif
 	{
-		wxLogError(_("Failed to execute: %s --version"), app.c_str());
+		wxLogError(_("Failed to execute: %s --version"), app);
 		return false;
 	}
 
@@ -1281,7 +1281,7 @@ bool isEdbApp(const wxString &app)
 	if (ExecProcess(app + wxT(" --version"), output) != 0)
 #endif
 	{
-		wxLogError(_("Failed to execute: %s --version"), app.c_str());
+		wxLogError(_("Failed to execute: %s --version"), app);
 		return false;
 	}
 
@@ -1304,7 +1304,7 @@ bool isGpApp(const wxString &app)
 	if (ExecProcess(app + wxT(" --version"), output) != 0)
 #endif
 	{
-		wxLogError(_("Failed to execute: %s --version"), app.c_str());
+		wxLogError(_("Failed to execute: %s --version"), app);
 		return false;
 	}
 

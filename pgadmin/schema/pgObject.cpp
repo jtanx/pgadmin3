@@ -116,18 +116,18 @@ wxString pgObject::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop object \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPTITLE:
 			message = _("Drop object?");
 			break;
 		case BACKUPTITLE:
 			message = wxString::Format(_("Backup \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case RESTORETITLE:
 			message = wxString::Format(_("Restore \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 	}
 	//message += wxT(" ") + factory->GetTypeName();
@@ -282,7 +282,7 @@ void pgObject::ShowDependency(pgDatabase *db, ctlListView *list, const wxString 
 
 				wxString typestr = set->GetVal(wxT("type"));
 				pgaFactory *depFactory = 0;
-				switch ((wxChar)typestr.c_str()[0])
+				switch ((wxChar)typestr[0])
 				{
 					case 'c':
 					case 's':   // we don't know these; internally handled
@@ -334,7 +334,7 @@ void pgObject::ShowDependency(pgDatabase *db, ctlListView *list, const wxString 
 					}
 					case 'C':
 					{
-						switch ((wxChar)typestr.c_str()[1])
+						switch ((wxChar)typestr[1])
 						{
 							case 'c':
 								depFactory = &checkFactory;
@@ -393,7 +393,7 @@ void pgObject::ShowDependency(pgDatabase *db, ctlListView *list, const wxString 
 
 				wxString deptype;
 
-				switch ( (wxChar) set->GetVal(wxT("deptype")).c_str()[0])
+				switch ( (wxChar) set->GetVal(wxT("deptype"))[0])
 				{
 					case 'n':
 						deptype = wxT("normal");
@@ -756,7 +756,7 @@ void pgObject::ShowTree(frmMain *form, ctlTree *browser, ctlListView *properties
 		}
 	}
 
-	wxLogInfo(wxT("Displaying properties for %s %s"), GetTypeName().c_str(), GetIdentifier().c_str());
+	wxLogInfo(wxT("Displaying properties for %s %s"), GetTypeName(), GetIdentifier());
 
 	if (form)
 	{
@@ -996,7 +996,7 @@ wxString pgObject::GetPrivileges(const wxString &allPattern, const wxString &str
 {
 	wxString aclWithGrant, aclWithoutGrant;
 
-	const wxChar *p = str.c_str();
+	const wxChar *p = str;
 	while (*p)
 	{
 		if (allPattern.Find(*p) >= 0)
@@ -1256,7 +1256,7 @@ void pgServerObject::FillOwned(ctlTree *browser, ctlListView *referencedBy, cons
 					relname += qtIdent(set->GetVal(wxT("relname")));
 					pgaFactory *ownerFactory = 0;
 
-					switch ( (wxChar)set->GetVal(wxT("relkind")).c_str()[0])
+					switch ( (wxChar)set->GetVal(wxT("relkind"))[0])
 					{
 						case 'r':
 							ownerFactory = &tableFactory;
@@ -1358,7 +1358,7 @@ void pgDatabaseObject::DisplayStatistics(ctlListView *statistics, const wxString
 {
 	if (statistics)
 	{
-		wxLogInfo(wxT("Displaying statistics for %s %s"), GetTypeName().c_str(), GetFullIdentifier().c_str());
+		wxLogInfo(wxT("Displaying statistics for %s %s"), GetTypeName(), GetFullIdentifier());
 
 		// Add the statistics view columns
 		CreateListColumns(statistics, _("Statistic"), _("Value"));

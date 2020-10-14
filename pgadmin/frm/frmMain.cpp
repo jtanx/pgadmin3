@@ -117,7 +117,7 @@ frmMain::frmMain(const wxString &title)
 
 	{
 		wxLogInfo(wxT("Using fontmetrics %d/%d, %d Point"), GetCharWidth(), GetCharHeight(), GetFont().GetPointSize());
-		wxLogInfo(wxT("Native Description '%s'"), GetFont().GetNativeFontInfoDesc().c_str());
+		wxLogInfo(wxT("Native Description '%s'"), GetFont().GetNativeFontInfoDesc());
 		wxWindowDC dc(this);
 		dc.SetFont(GetFont());
 
@@ -589,14 +589,14 @@ void frmMain::Refresh(pgObject *data)
 
 		if (newData != data)
 		{
-			wxLogInfo(wxT("Deleting %s %s for refresh"), data->GetTypeName().c_str(), data->GetQuotedFullIdentifier().c_str());
+			wxLogInfo(wxT("Deleting %s %s for refresh"), data->GetTypeName(), data->GetQuotedFullIdentifier());
 
 			if (data == currentObject)
 				currentObject = newData;
 
 			if (newData)
 			{
-				wxLogInfo(wxT("Replacing with new node %s %s for refresh"), newData->GetTypeName().c_str(), newData->GetQuotedFullIdentifier().c_str());
+				wxLogInfo(wxT("Replacing with new node %s %s for refresh"), newData->GetTypeName(), newData->GetQuotedFullIdentifier());
 
 				newData->SetId(currentItem);    // not done automatically
 				browser->SetItemData(currentItem, newData);
@@ -871,7 +871,7 @@ bool frmMain::CheckAlive()
 												if (!userInformed)
 												{
 													wxMessageDialog dlg(this, _("Do you want to attempt to reconnect to the database?"),
-													                    wxString::Format(_("Connection to database %s lost."), db->GetName().c_str()),
+													                    wxString::Format(_("Connection to database %s lost."), db->GetName()),
 													                    wxICON_EXCLAMATION | wxYES_NO | wxYES_DEFAULT);
 
 													closeIt = (dlg.ShowModal() != wxID_YES);
@@ -888,7 +888,7 @@ bool frmMain::CheckAlive()
 												{
 													// Create a server object and connect it.
 													wxBusyInfo waiting(wxString::Format(_("Reconnecting to database %s"),
-													                                    db->GetName().c_str()), this);
+													                                    db->GetName()), this);
 
 													// Give the UI a chance to redraw
 													wxSafeYield();
@@ -924,7 +924,7 @@ bool frmMain::CheckAlive()
 							if (!userInformed)
 							{
 								wxMessageDialog dlg(this, _("Do you want to attempt to reconnect to the server?"),
-								                    wxString::Format(_("Connection to server %s lost."), server->GetName().c_str()),
+								                    wxString::Format(_("Connection to server %s lost."), server->GetName()),
 								                    wxICON_EXCLAMATION | wxYES_NO | wxYES_DEFAULT);
 
 								closeIt = (dlg.ShowModal() != wxID_YES);
@@ -941,7 +941,7 @@ bool frmMain::CheckAlive()
 							{
 								// Create a server object and connect it.
 								wxBusyInfo waiting(wxString::Format(_("Reconnecting to server %s (%s:%d)"),
-								                                    server->GetDescription().c_str(), server->GetName().c_str(), server->GetPort()), this);
+								                                    server->GetDescription(), server->GetName(), server->GetPort()), this);
 
 								// Give the UI a chance to redraw
 								wxSafeYield();
@@ -1052,7 +1052,7 @@ int frmMain::ReconnectServer(pgServer *server, bool restore)
 {
 	// Create a server object and connect it.
 	wxBusyInfo waiting(wxString::Format(_("Connecting to server %s (%s:%d)"),
-	                                    server->GetDescription().c_str(), server->GetName().c_str(), server->GetPort()), this);
+	                                    server->GetDescription(), server->GetName(), server->GetPort()), this);
 
 	// Give the UI a chance to redraw
 	wxSafeYield();
@@ -1172,7 +1172,7 @@ void frmMain::ReportConnError(pgServer *server)
 	}
 	if (!wantHint)
 	{
-		wxLogError(__("Error connecting to the server: %s"), error.c_str());
+		wxLogError(__("Error connecting to the server: %s"), error);
 	}
 }
 
@@ -1327,7 +1327,7 @@ void frmMain::StartMsg(const wxString &msg)
 	if (msgLevel++)
 		return;
 
-	timermsg.Printf(wxT("%s..."), msg.c_str());
+	timermsg.Printf(wxT("%s..."), msg);
 	wxBeginBusyCursor();
 	stopwatch.Start(0);
 
@@ -1369,8 +1369,8 @@ void frmMain::EndMsg(bool done)
 			statusBar->SetStatusText(timermsg + _(" Failed."), 1);
 
 		wxLogStatus(
-		    wxT("%s (%s)"), timermsg.c_str(),
-		    ElapsedTimeToStr(timeval).c_str()
+		    wxT("%s (%s)"), timermsg,
+		    ElapsedTimeToStr(timeval)
 		);
 		wxEndBusyCursor();
 	}

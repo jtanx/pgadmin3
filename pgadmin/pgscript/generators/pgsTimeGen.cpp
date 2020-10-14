@@ -22,8 +22,8 @@ pgsTimeGen::pgsTimeGen(wxDateTime min, wxDateTime max, const bool &sequence,
 	m_min.SetYear(1970); // We know this date is not a DST date
 	m_min.SetMonth(wxDateTime::Jan);
 	m_min.SetDay(1);
-	m_randomizer = pgsRandomizer(pnew pgsIntegerGen(0, std::string(m_range
-	                             .ToString().mb_str()).c_str(), is_sequence(), m_seed));
+	m_randomizer = pgsRandomizer(pnew pgsIntegerGen(0, m_range.ToString()
+	                             .ToStdString().c_str(), is_sequence(), m_seed));
 }
 
 bool pgsTimeGen::is_sequence() const

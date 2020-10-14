@@ -160,9 +160,9 @@ void dlgManageFavourites::OnDelete(wxCommandEvent &ev)
 		return;
 
 	if (item->GetId() != -2)
-		msg = wxString::Format(_("Are you sure you want to delete the favourite '%s'?"), item->GetTitle().c_str());
+		msg = wxString::Format(_("Are you sure you want to delete the favourite '%s'?"), item->GetTitle());
 	else
-		msg = wxString::Format(_("Are you sure you want to delete the folder '%s'?"), item->GetTitle().c_str());
+		msg = wxString::Format(_("Are you sure you want to delete the folder '%s'?"), item->GetTitle());
 	if (wxMessageDialog(this, msg, _("Confirm delete"), wxYES_NO | wxICON_QUESTION).ShowModal() != wxID_YES)
 		return;
 

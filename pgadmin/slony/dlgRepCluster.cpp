@@ -786,7 +786,7 @@ void dlgRepCluster::OnOK(wxCommandEvent &ev)
 		{
 			wxMessageDialog msg(this,
 			                    wxString::Format(_("The newly created cluster version (%s)\n doesn't match the existing cluster's version (%s)"),
-			                                     newVersion.c_str(), clusterVersion.c_str()),
+			                                     newVersion, clusterVersion),
 			                    _("Error while joining replication cluster"), wxICON_ERROR);
 			msg.ShowModal();
 			done = false;
@@ -1001,13 +1001,13 @@ wxString ReplaceString(const wxString &str, const wxString &oldStr, const wxStri
 
 	wxChar *buf = new wxChar[buflen + 1];
 
-	const wxChar *ptrIn = str.c_str();
+	const wxChar *ptrIn = str;
 	const wxChar *ptrFound = wxStrstr(ptrIn, oldStr);
 
 	while (ptrFound)
 	{
 		AppendBuf(buf, buflen, len, ptrIn, ptrFound - ptrIn);
-		AppendBuf(buf, buflen, len, newStr.c_str());
+		AppendBuf(buf, buflen, len, newStr);
 		ptrIn = ptrFound + oldStr.Length();
 		ptrFound = wxStrstr(ptrIn, oldStr);
 	}

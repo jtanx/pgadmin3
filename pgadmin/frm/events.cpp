@@ -474,7 +474,7 @@ void frmMain::execSelChange(wxTreeItemId item, bool currentNode)
 
 					if (newData != 0)
 					{
-						wxLogInfo(wxT("Replacing with new node %s %s for refresh"), newData->GetTypeName().c_str(), newData->GetQuotedFullIdentifier().c_str());
+						wxLogInfo(wxT("Replacing with new node %s %s for refresh"), newData->GetTypeName(), newData->GetQuotedFullIdentifier());
 
 						browser->DeleteChildren(currentItem);
 						newData->SetId(currentItem);    // not done automatically
@@ -942,7 +942,7 @@ bool frmMain::dropSingleObject(pgObject *data, bool updateFinal, bool cascaded)
 				*/
 				if (data->GetMetaType() == PGM_SERVER)
 					text = wxString::Format(_("Are you sure you wish to drop server \"%s\"?"),
-					                        ((pgServer *)data)->GetFullIdentifier().c_str());
+					                        ((pgServer *)data)->GetFullIdentifier());
 				else if (data->GetMetaType() == EDB_SYNONYM)
 					text = ((edbPrivateSynonym *)data)->GetTranslatedMessage(DROPEXCLUDINGDEPS);
 				else
@@ -960,7 +960,7 @@ bool frmMain::dropSingleObject(pgObject *data, bool updateFinal, bool cascaded)
 
 	if (done)
 	{
-		wxLogInfo(wxT("Dropping %s %s"), data->GetTypeName().c_str(), data->GetIdentifier().c_str());
+		wxLogInfo(wxT("Dropping %s %s"), data->GetTypeName(), data->GetIdentifier());
 
 		wxTreeItemId parentItem = browser->GetItemParent(data->GetId());
 
@@ -1081,7 +1081,7 @@ void frmMain::OnSaveDefinition(wxCommandEvent &event)
 		// Write the file
 		if (!FileWrite(filename.GetPath(), sqlPane->GetText()))
 		{
-			wxLogError(__("Could not write the file %s: Errcode=%d."), filename.GetPath().c_str(), wxSysErrorCode());
+			wxLogError(__("Could not write the file %s: Errcode=%d."), filename.GetPath(), wxSysErrorCode());
 		}
 	}
 	else

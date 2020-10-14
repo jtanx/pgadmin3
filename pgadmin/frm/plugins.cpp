@@ -42,7 +42,7 @@ void frmMain::LoadPluginUtilities()
 	if (!iniDir.IsOpened())
 		return;
 
-	wxLogInfo(wxT("Loading plugin ini files from %s"), pluginsDir.c_str());
+	wxLogInfo(wxT("Loading plugin ini files from %s"), pluginsDir);
 
 	bool cont = iniDir.GetFirst(&iniFile, wxT("*.ini"), wxDIR_FILES);
 
@@ -56,7 +56,7 @@ void frmMain::LoadPluginUtilities()
 			continue;
 		}
 
-		wxLogInfo(wxT("Loading plugin utilities from %s"), utilIni.GetFullPath().c_str());
+		wxLogInfo(wxT("Loading plugin utilities from %s"), utilIni.GetFullPath());
 		wxString brCfg = FileRead(utilIni.GetFullPath());
 
 		wxStringTokenizer tkz(brCfg, wxT("\r\n"));
@@ -212,9 +212,9 @@ void frmMain::AddPluginUtility(PluginUtility *util)
 // Create a new Plugin utility factory
 void frmMain::CreatePluginUtility(PluginUtility *util)
 {
-	wxLogInfo(wxT("Adding plugin utility: %s"), util->title.c_str());
-	wxLogInfo(wxT("              Command: %s"), util->command.c_str());
-	wxLogInfo(wxT("          Description: %s"), util->description.c_str());
+	wxLogInfo(wxT("Adding plugin utility: %s"), util->title);
+	wxLogInfo(wxT("              Command: %s"), util->command);
+	wxLogInfo(wxT("          Description: %s"), util->description);
 	wxLogInfo(wxT("            Database?: %s"), util->database ? wxT("Yes") : wxT("No"));
 	wxLogInfo(wxT("        Set Password?: %s"), util->set_password ? wxT("Yes") : wxT("No"));
 
@@ -357,7 +357,7 @@ wxWindow *pluginUtilityFactory::StartDialog(frmMain *form, pgObject *obj)
 	// Let's go!!
 	if (wxExecute(execCmd) == 0)
 	{
-		wxLogError(_("Failed to execute plugin %s (%s)"), title.c_str(), command.c_str());
+		wxLogError(_("Failed to execute plugin %s (%s)"), title, command);
 	}
 
 	// Reset the environment variables set by us

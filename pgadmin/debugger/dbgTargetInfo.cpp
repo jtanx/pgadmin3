@@ -197,7 +197,7 @@ dbgTargetInfo::dbgTargetInfo(Oid _target, pgConn *_conn)
 		           _conn->GetLastError());
 
 		throw (std::runtime_error(
-		           (const char *)(_conn->GetLastError().c_str())));
+		           (const char *)(_conn->GetLastError())));
 	}
 
 	if (set->NumRows() == 0)
@@ -302,7 +302,7 @@ dbgTargetInfo::dbgTargetInfo(Oid _target, pgConn *_conn)
 		if (idx < argModes.Count())
 		{
 			wxString tmp = argModes[idx];
-			switch ((char)(tmp.c_str())[0])
+			switch ((char)(tmp)[0])
 			{
 				case 'i':
 					argMode = pgParam::PG_PARAM_IN;

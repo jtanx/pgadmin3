@@ -218,7 +218,7 @@ pgConn::pgConn(const wxString &server, const wxString &service, const wxString &
 	// Open the connection
 	wxString cleanConnStr = connstr;
 	cleanConnStr.Replace(qtConnString(password), wxT("'XXXXXX'"));
-	wxLogInfo(wxT("Opening connection with connection string: %s"), cleanConnStr.c_str());
+	wxLogInfo(wxT("Opening connection with connection string: %s"), cleanConnStr);
 
 	DoConnect();
 }
@@ -297,10 +297,10 @@ bool pgConn::Initialize()
 			else
 				conv = &wxConvLibc;
 
-			wxLogInfo(wxT("Setting client_encoding to '%s'"), encoding.c_str());
+			wxLogInfo(wxT("Setting client_encoding to '%s'"), encoding);
 			if (PQsetClientEncoding(conn, encoding.ToAscii()))
 			{
-				wxLogError(wxT("%s"), GetLastError().c_str());
+				wxLogError(wxT("%s"), GetLastError());
 			}
 
 			delete set;
@@ -349,7 +349,7 @@ bool pgConn::Reconnect()
 	// Attempt the reconnect
 	if (!DoConnect())
 	{
-		wxLogError(_("Failed to re-establish the connection to the server %s"), GetName().c_str());
+		wxLogError(_("Failed to re-establish the connection to the server %s"), GetName());
 		return false;
 	}
 
@@ -654,12 +654,12 @@ wxString pgConn::GetName() const
 	if (save_service.IsEmpty())
 	{
 		if (dbHost.IsEmpty())
-			str.Printf(_("%s on local socket"), save_database.c_str());
+			str.Printf(_("%s on local socket"), save_database);
 		else
-			str.Printf(_("%s on %s@%s:%d"), save_database.c_str(), GetUser().c_str(), dbHost.c_str(), GetPort());
+			str.Printf(_("%s on %s@%s:%d"), save_database, GetUser(), dbHost, GetPort());
 	}
 	else
-		str.Printf(_("service %s"), save_service.c_str());
+		str.Printf(_("service %s"), save_service);
 
 
 	return str;
@@ -706,7 +706,7 @@ void pgConn::Notice(const char *msg)
 		if (settings->GetShowNotices())
 			wxMessageBox(str, _("Notice"), wxICON_INFORMATION | wxOK);
 
-		wxLogNotice(wxT("%s"), str.Trim().c_str());
+		wxLogNotice(wxT("%s"), str.Trim());
 	}
 }
 
@@ -744,7 +744,7 @@ bool pgConn::ExecuteVoid(const wxString &sql, bool reportError)
 	// Execute the query and get the status.
 	PGresult *qryRes;
 
-	wxLogSql(wxT("Void query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
+	wxLogSql(wxT("Void query (%s:%d): %s"), this->GetHost(), this->GetPort(), sql);
 
 	SetConnCancel();
 	qryRes = PQexec(conn, sql.mb_str(*conv));
@@ -777,7 +777,7 @@ wxString pgConn::ExecuteScalar(const wxString &sql, bool reportError)
 	{
 		// Execute the query and get the status.
 		PGresult *qryRes;
-		wxLogSql(wxT("Scalar query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
+		wxLogSql(wxT("Scalar query (%s:%d): %s"), this->GetHost(), this->GetPort(), sql);
 
 		SetConnCancel();
 		qryRes = PQexec(conn, sql.mb_str(*conv));
@@ -805,7 +805,7 @@ wxString pgConn::ExecuteScalar(const wxString &sql, bool reportError)
 		// Retrieve the query result and return it.
 		result = wxString(PQgetvalue(qryRes, 0, 0), *conv);
 
-		wxLogSql(wxT("Query result: %s"), result.c_str());
+		wxLogSql(wxT("Query result: %s"), result);
 
 		// Cleanup & exit
 		PQclear(qryRes);
@@ -820,7 +820,7 @@ pgSet *pgConn::ExecuteSet(const wxString &sql, bool reportError)
 	if (GetStatus() == PGCONN_OK)
 	{
 		PGresult *qryRes;
-		wxLogSql(wxT("Set query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), sql.c_str());
+		wxLogSql(wxT("Set query (%s:%d): %s"), this->GetHost(), this->GetPort(), sql);
 
 		SetConnCancel();
 		qryRes = PQexec(conn, sql.mb_str(*conv));
@@ -863,7 +863,7 @@ bool pgConn::StartCopy(const wxString query)
 	// Execute the query and get the status
 	PGresult *qryRes;
 
-	wxLogSql(wxT("COPY query (%s:%d): %s"), this->GetHost().c_str(), this->GetPort(), query.c_str());
+	wxLogSql(wxT("COPY query (%s:%d): %s"), this->GetHost(), this->GetPort(), query);
 	qryRes = PQexec(conn, query.mb_str(*conv));
 	lastResultStatus = PQresultStatus(qryRes);
 	SetLastResultError(qryRes);
@@ -954,11 +954,11 @@ void pgConn::LogError(const bool quiet)
 	{
 		if (quiet)
 		{
-			wxLogQuietError(wxT("%s"), GetLastError().Trim().c_str());
+			wxLogQuietError(wxT("%s"), GetLastError().Trim());
 		}
 		else
 		{
-			wxLogError(wxT("%s"), GetLastError().Trim().c_str());
+			wxLogError(wxT("%s"), GetLastError().Trim());
 			IsAlive();
 		}
 	}

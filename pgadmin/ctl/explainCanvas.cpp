@@ -69,7 +69,7 @@ void ExplainCanvas::SetExplainString(const wxString &str)
 		int braceCount = 0;
 		do
 		{
-			const wxChar *cp = line.c_str();
+			const wxChar *cp = line;
 			while (*cp)
 			{
 				if (*cp == '(')
@@ -242,7 +242,7 @@ void ExplainCanvas::SaveAsImage(const wxString &fileName, wxBitmapType imageType
 
 	if (!tempBitmap.SaveFile(fileName, imageType))
 	{
-		wxLogError(_("Could not write file \"%s\": error code %d."), fileName.c_str(), wxSysErrorCode());
+		wxLogError(_("Could not write file \"%s\": error code %d."), fileName, wxSysErrorCode());
 	}
 }
 

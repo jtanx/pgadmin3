@@ -90,11 +90,11 @@ wxString pgTable::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop table \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop table \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop table cascaded?");
@@ -143,11 +143,11 @@ wxString pgTable::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case BACKUPTITLE:
 			message = wxString::Format(_("Backup table \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case RESTORETITLE:
 			message = wxString::Format(_("Restore table \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 	}
 
@@ -922,7 +922,7 @@ void pgTable::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prope
 		browser->RemoveDummyChild(this);
 
 		// Log
-		wxLogInfo(wxT("Adding child object to table %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to table %s"), GetIdentifier());
 
 		browser->AppendCollection(this, columnFactory);
 		browser->AppendCollection(this, constraintFactory);
@@ -1002,7 +1002,7 @@ void pgTable::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *prope
 		long repStat = GetReplicationStatus(browser, &clusterName, &setId);
 
 		wxString clusterInfo;
-		clusterInfo.Printf(_("Cluster \"%s\", set %ld"), clusterName.c_str(), setId);
+		clusterInfo.Printf(_("Cluster \"%s\", set %ld"), clusterName, setId);
 
 		wxString repString;
 		switch (repStat)
@@ -1234,7 +1234,7 @@ wxString pgTableCollection::GetTranslatedMessage(int kindOfMessage) const
 
 void pgTableCollection::ShowStatistics(frmMain *form, ctlListView *statistics)
 {
-	wxLogInfo(wxT("Displaying statistics for tables on %s"), GetSchema()->GetIdentifier().c_str());
+	wxLogInfo(wxT("Displaying statistics for tables on %s"), GetSchema()->GetIdentifier());
 
 	bool hasSize = GetConnection()->HasFeature(FEATURE_SIZE);
 

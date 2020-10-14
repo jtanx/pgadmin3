@@ -906,7 +906,7 @@ void *dbgArgValueEvaluator::Entry()
 						ev.SetString(
 						    wxString::Format(
 						        _("Specified value for argument '%s' is not valid.\nPlease re-enter the value for it."),
-						        strName.c_str()));
+						        strName));
 					}
 					ev.SetInt(pgQueryResultEvent::PGQ_RESULT_ERROR);
 					m_dlg->LoadLastCellSetting(row - 1, idx - 1, arr_idx_bound - 1, true);
@@ -1037,7 +1037,7 @@ void *dbgArgValueEvaluator::Entry()
 
 				ev.SetString(
 				    wxString::Format(_("Please re-enter the value for argument '%s'."),
-				                     strName.c_str()));
+				                     strName));
 				ev.SetInt(pgQueryResultEvent::PGQ_RESULT_ERROR);
 
 				m_dlg->GetEventHandler()->AddPendingEvent(ev);

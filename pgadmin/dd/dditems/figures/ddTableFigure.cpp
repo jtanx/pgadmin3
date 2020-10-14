@@ -1176,7 +1176,7 @@ wxString ddTableFigure::generateAltersTable(pgConn *connection, wxString schemaN
 	if(oidTable == -1)
 	{
 		wxMessageBox(wxString::Format(_("Cannot build an ALTER TABLE statement for a non existing table (%s.%s)."),
-		                              schemaName.c_str(), getTableName().c_str()), _("Error when trying to get table OID"),  wxICON_ERROR);
+		                              schemaName, getTableName()), _("Error when trying to get table OID"),  wxICON_ERROR);
 		return wxEmptyString;
 	}
 
@@ -1184,7 +1184,7 @@ wxString ddTableFigure::generateAltersTable(pgConn *connection, wxString schemaN
 	if(!dbTable)
 	{
 		wxMessageBox(wxString::Format(_("Cannot reverse engineering table %s.%s."),
-		                              schemaName.c_str(), getTableName().c_str()), _("Error when trying to get stub table"),  wxICON_ERROR);
+		                              schemaName, getTableName()), _("Error when trying to get stub table"),  wxICON_ERROR);
 		return wxEmptyString;
 	}
 
@@ -1466,7 +1466,7 @@ wxString ddTableFigure::generateAltersTable(pgConn *connection, wxString schemaN
 		if(this->getUkConstraintsNames()[i].Len() == 0)
 		{
 			wxMessageBox(wxString::Format(_("Some UNIQUE keys on table %s have no name.\nYou should set a name for them, so that pgAdmin can check consistency with the already available database constraints."),
-			                              getTableName().c_str()), _("Trying to build ALTER sentences"),  wxICON_ERROR);
+			                              getTableName()), _("Trying to build ALTER sentences"),  wxICON_ERROR);
 			return wxEmptyString;
 		}
 	}
@@ -1721,7 +1721,7 @@ wxString ddTableFigure::generateAltersTable(pgConn *connection, wxString schemaN
 		if(r->getConstraintName().Len() == 0)	// Add to list, FKs with this table as destination. source ---<| destination
 		{
 			wxMessageBox(wxString::Format(_("Some foreign keys keys on table %s have no name.\nYou should set a name for them, so that pgAdmin can check consistency with the already available database constraints."),
-			                              getTableName().c_str()), _("Trying to build ALTER sentences"),  wxICON_ERROR);
+			                              getTableName()), _("Trying to build ALTER sentences"),  wxICON_ERROR);
 			return wxEmptyString;
 		}
 	}

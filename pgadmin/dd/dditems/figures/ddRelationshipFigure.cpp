@@ -450,7 +450,7 @@ void ddRelationshipFigure::OnGenericPopupClick(wxCommandEvent &event, hdDrawingV
 				//Relationship can be delete only NOT REMOVED
 				delremDialog = new hdRemoveDeleteDialog(
 				    wxString::Format(_("Are you sure you wish to delete relationship between tables %s and %s?"),
-				                     t1->getTableName().c_str(), t2->getTableName().c_str()),
+				                     t1->getTableName(), t2->getTableName()),
 				    _("Delete relationship?"),
 				    (wxScrolledWindow *)view,
 				    false);

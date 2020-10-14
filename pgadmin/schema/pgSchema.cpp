@@ -69,11 +69,11 @@ wxString pgSchema::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop schema \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop schema \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop schema cascaded?");
@@ -111,11 +111,11 @@ wxString pgSchema::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case BACKUPTITLE:
 			message = wxString::Format(_("Backup schema \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case RESTORETITLE:
 			message = wxString::Format(_("Restore schema \"%s\""),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 	}
 
@@ -325,7 +325,7 @@ void pgSchemaBase::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *
 		browser->RemoveDummyChild(this);
 
 		// Log
-		wxLogInfo(wxT("Adding child object to schema %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to schema %s"), GetIdentifier());
 
 		if (!(GetMetaType() == PGM_CATALOG && (GetFullName() == wxT("dbo") || GetFullName() == wxT("sys") || GetFullName() == wxT("information_schema"))))
 		{

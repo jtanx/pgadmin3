@@ -34,7 +34,7 @@ void pgNoticeProcessor(void *_arg, const char *_message)
 {
 	wxString str(_message, wxConvUTF8);
 
-	wxLogNotice(wxT("%s"), str.Trim().c_str());
+	wxLogNotice(wxT("%s"), str.Trim());
 	if (_arg)
 	{
 		((pgQueryThread *)_arg)->AppendMessage(str);
@@ -108,7 +108,7 @@ pgQueryThread::pgQueryThread(pgConn *_conn, const wxString &_qry,
 	    new pgBatchQuery(_qry, (pgParamsArray *)NULL, _eventId, _data, false,
 	                     _resultToRetrieve));
 
-	wxLogInfo(wxT("queueing : %s"), _qry.c_str());
+	wxLogInfo(wxT("queueing : %s"), _qry);
 	m_noticeHandler = (void *)this;
 
 	if (_caller)
@@ -130,7 +130,7 @@ void pgQueryThread::AddQuery(const wxString &_qry, pgParamsArray *_params,
 	                     // use callable statement only if supported
 	                     m_useCallable && _useCallable, _resultToRetrieve));
 
-	wxLogInfo(wxT("queueing (%ld): %s"), GetId(), _qry.c_str());
+	wxLogInfo(wxT("queueing (%ld): %s"), GetId(), _qry);
 }
 
 
@@ -711,8 +711,8 @@ void *pgQueryThread::Entry()
 			m_queries[m_currIndex]->m_rowsInserted = -1l;
 
 			wxLogSql(wxT("Thread executing query (%d:%s:%d): %s"),
-			         m_currIndex + 1, m_conn->GetHost().c_str(), m_conn->GetPort(),
-			         m_queries[m_currIndex]->m_query.c_str());
+			         m_currIndex + 1, m_conn->GetHost(), m_conn->GetPort(),
+			         m_queries[m_currIndex]->m_query);
 
 			// register the notice processor for the current query
 			m_conn->RegisterNoticeProcessor(m_processor, m_noticeHandler);

@@ -37,8 +37,8 @@ pgsReferenceGen::pgsReferenceGen(pgsThread *app, const wxString &table,
 	{
 		m_nb_rows = 0;
 	}
-	wxLogScriptVerbose(wxT("REFGEN: Number of rows in %s: %s"), m_table.c_str(),
-	                   pgsMapm::pgs_mapm_str(m_nb_rows).c_str());
+	wxLogScriptVerbose(wxT("REFGEN: Number of rows in %s: %s"), m_table,
+	                   pgsMapm::pgs_mapm_str(m_nb_rows));
 
 	// Create an integer generator with that number of lines
 	m_randomizer = pgsRandomizer(pnew pgsIntegerGen(0, m_nb_rows - 1,

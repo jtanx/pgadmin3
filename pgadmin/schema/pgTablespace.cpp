@@ -44,11 +44,11 @@ wxString pgTablespace::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop tablespace \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop tablespace \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop tablespace cascaded?");
@@ -223,7 +223,7 @@ void pgTablespace::ShowStatistics(frmMain *form, ctlListView *statistics)
 	{
 		if (GetConnection()->HasFeature(FEATURE_SIZE))
 		{
-			wxLogInfo(wxT("Displaying statistics for %s"), GetTypeName().c_str());
+			wxLogInfo(wxT("Displaying statistics for %s"), GetTypeName());
 
 			// Add the statistics view columns
 			CreateListColumns(statistics, _("Statistic"), _("Value"));
@@ -255,7 +255,7 @@ void pgTablespace::MoveTablespace(frmMain *form)
 	{
 		if (wxMessageBox(wxString::Format(
 		                     _("Are you sure you wish to move objects from %s to %s?"),
-		                     GetQuotedFullIdentifier().c_str(), rdo.GetTablespace().c_str()),
+		                     GetQuotedFullIdentifier(), rdo.GetTablespace()),
 		                 _("Move tablespace?"),
 		                 wxYES_NO) != wxYES)
 			return;
@@ -269,17 +269,17 @@ void pgTablespace::MoveTablespace(frmMain *form)
 		{
 			ownerInfo = wxString::Format(
 			                wxT(" OWNED BY %s"),
-			                qtIdent(rdo.GetOwner()).c_str());
+			                qtIdent(rdo.GetOwner()));
 		}
 
 		for(size_t index = 0; index < kind.GetCount(); ++index)
 		{
 			query += wxString::Format(
 			             wxT("ALTER %s ALL IN TABLESPACE %s%s SET TABLESPACE %s;\n"),
-			             kind.Item(index).c_str(),
-			             currTblSpace.c_str(),
-			             ownerInfo.c_str(),
-			             moveTo.c_str());
+			             kind.Item(index),
+			             currTblSpace,
+			             ownerInfo,
+			             moveTo);
 		}
 		GetConnection()->ExecuteVoid(query);
 	}

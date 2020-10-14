@@ -218,12 +218,12 @@ bool ddColumnKindIcon::uniqueConstraintManager(bool ukCol, hdDrawingView *view, 
 						tmpString.append(wxT("_uk"));
 
 						int newIndex = i + 1;
-						wxString inumber = wxString::Format(wxT("%s%d"), tmpString.c_str(), (int)newIndex);
+						wxString inumber = wxString::Format(wxT("%s%d"), tmpString, (int)newIndex);
 						//Validate new name of uk doesn't exists
 						while(getOwnerColumn()->getOwnerTable()->getUkConstraintsNames().Index(inumber, false) != -1)
 						{
 							newIndex++;
-							inumber = wxString::Format(wxT("%s%d"), tmpString.c_str(), (int)newIndex);
+							inumber = wxString::Format(wxT("%s%d"), tmpString, (int)newIndex);
 						}
 						inumber = wxString::Format(wxT("%d"), (int)newIndex);
 						tmpString.append(inumber);

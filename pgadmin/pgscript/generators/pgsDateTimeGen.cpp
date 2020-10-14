@@ -19,8 +19,8 @@ pgsDateTimeGen::pgsDateTimeGen(wxDateTime min, wxDateTime max,
 	m_max(max.IsLaterThan(min) || max.IsEqualTo(min) ? max : min),
 	m_range(m_max.Subtract(m_min).GetSeconds()), m_sequence(sequence)
 {
-	m_randomizer = pgsRandomizer(pnew pgsIntegerGen(0, std::string(m_range
-	                             .ToString().mb_str()).c_str(), is_sequence(), m_seed));
+	m_randomizer = pgsRandomizer(pnew pgsIntegerGen(0, m_range.ToString()
+	                             .ToStdString().c_str(), is_sequence(), m_seed));
 }
 
 bool pgsDateTimeGen::is_sequence() const

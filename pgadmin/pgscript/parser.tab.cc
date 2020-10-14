@@ -3,47 +3,69 @@
 #pragma warning(disable: 4800)
 #endif
 
-/* A Bison parser, made by GNU Bison 2.3.  */
+// A Bison parser, made by GNU Bison 3.0.4.
 
-/* Skeleton implementation for Bison LALR(1) parsers in C++
+// Skeleton implementation for Bison LALR(1) parsers in C++
 
-   Copyright (C) 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+// Copyright (C) 2002-2015 Free Software Foundation, Inc.
 
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-/* As a special exception, you may create a larger work that contains
-   part or all of the Bison parser skeleton and distribute that work
-   under terms of your choice, so long as that work isn't itself a
-   parser generator using the skeleton or a modified version thereof
-   as a parser skeleton.  Alternatively, if you modify or redistribute
-   the parser skeleton itself, you may (at your option) remove this
-   special exception, which will cause the skeleton and the resulting
-   Bison output files to be licensed under the GNU General Public
-   License without this special exception.
+// As a special exception, you may create a larger work that contains
+// part or all of the Bison parser skeleton and distribute that work
+// under terms of your choice, so long as that work isn't itself a
+// parser generator using the skeleton or a modified version thereof
+// as a parser skeleton.  Alternatively, if you modify or redistribute
+// the parser skeleton itself, you may (at your option) remove this
+// special exception, which will cause the skeleton and the resulting
+// Bison output files to be licensed under the GNU General Public
+// License without this special exception.
 
-   This special exception was added by the Free Software Foundation in
-   version 2.2 of Bison.  */
+// This special exception was added by the Free Software Foundation in
+// version 2.2 of Bison.
 
 // Take the name prefix into account.
 #define yylex   pgscriptlex
 
+// First part of user declarations.
+#line 11 "pgscript/pgsParser.yy" // lalr1.cc:404
+ /*** C/C++ Declarations ***/
+
+//////////////////////////////////////////////////////////////////////////
+//
+// pgScript - PostgreSQL Tools
+//
+// Copyright (C) 2002 - 2016, The pgAdmin Development Team
+// This software is released under the PostgreSQL Licence
+//
+//////////////////////////////////////////////////////////////////////////
+
+
+#line 51 "pgscript/parser.tab.cc" // lalr1.cc:404
+
+# ifndef YY_NULLPTR
+#  if defined __cplusplus && 201103L <= __cplusplus
+#   define YY_NULLPTR nullptr
+#  else
+#   define YY_NULLPTR 0
+#  endif
+# endif
+
 #include "pgscript/parser.tab.hh"
 
-/* User implementation prologue.  */
-#line 251 "pgscript/pgsParser.yy"
+// User implementation prologue.
+#line 255 "pgscript/pgsParser.yy" // lalr1.cc:412
 
 
 #include "pgscript/utilities/pgsDriver.h"
@@ -56,14 +78,13 @@
 #define yylex driver.lexer->lex
 
 
+#line 77 "pgscript/parser.tab.cc" // lalr1.cc:412
 
-/* Line 317 of lalr1.cc.  */
-#line 57 "pgscript/parser.tab.cc"
 
 #ifndef YY_
-# if YYENABLE_NLS
+# if defined YYENABLE_NLS && YYENABLE_NLS
 #  if ENABLE_NLS
-#   include <libintl.h> /* FIXME: INFRINGES ON USER NAME SPACE */
+#   include <libintl.h> // FIXME: INFRINGES ON USER NAME SPACE.
 #   define YY_(msgid) dgettext ("bison-runtime", msgid)
 #  endif
 # endif
@@ -72,54 +93,78 @@
 # endif
 #endif
 
-/* Suppress unused-variable warnings by "using" E.  */
-#define YYUSE(e) ((void) (e))
+#define YYRHSLOC(Rhs, K) ((Rhs)[K].location)
+/* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
+   If N is 0, then set CURRENT to the empty location which ends
+   the previous symbol: RHS[0] (always defined).  */
 
-/* A pseudo ostream that takes yydebug_ into account.  */
-# define YYCDEBUG							\
-  for (bool yydebugcond_ = yydebug_; yydebugcond_; yydebugcond_ = false)	\
-    (*yycdebug_)
+# ifndef YYLLOC_DEFAULT
+#  define YYLLOC_DEFAULT(Current, Rhs, N)                               \
+    do                                                                  \
+      if (N)                                                            \
+        {                                                               \
+          (Current).begin  = YYRHSLOC (Rhs, 1).begin;                   \
+          (Current).end    = YYRHSLOC (Rhs, N).end;                     \
+        }                                                               \
+      else                                                              \
+        {                                                               \
+          (Current).begin = (Current).end = YYRHSLOC (Rhs, 0).end;      \
+        }                                                               \
+    while (/*CONSTCOND*/ false)
+# endif
 
-/* Enable debugging if requested.  */
+
+// Suppress unused-variable warnings by "using" E.
+#define YYUSE(E) ((void) (E))
+
+// Enable debugging if requested.
 #if YYDEBUG
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)	\
-do {							\
-  if (yydebug_)						\
-    {							\
-      *yycdebug_ << Title << ' ';			\
-      yy_symbol_print_ ((Type), (Value), (Location));	\
-      *yycdebug_ << std::endl;				\
-    }							\
-} while (false)
+// A pseudo ostream that takes yydebug_ into account.
+# define YYCDEBUG if (yydebug_) (*yycdebug_)
 
-# define YY_REDUCE_PRINT(Rule)		\
-do {					\
-  if (yydebug_)				\
-    yy_reduce_print_ (Rule);		\
-} while (false)
+# define YY_SYMBOL_PRINT(Title, Symbol)         \
+  do {                                          \
+    if (yydebug_)                               \
+    {                                           \
+      *yycdebug_ << Title << ' ';               \
+      yy_print_ (*yycdebug_, Symbol);           \
+      *yycdebug_ << std::endl;                  \
+    }                                           \
+  } while (false)
 
-# define YY_STACK_PRINT()		\
-do {					\
-  if (yydebug_)				\
-    yystack_print_ ();			\
-} while (false)
+# define YY_REDUCE_PRINT(Rule)          \
+  do {                                  \
+    if (yydebug_)                       \
+      yy_reduce_print_ (Rule);          \
+  } while (false)
 
-#else /* !YYDEBUG */
+# define YY_STACK_PRINT()               \
+  do {                                  \
+    if (yydebug_)                       \
+      yystack_print_ ();                \
+  } while (false)
 
-# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
-# define YY_REDUCE_PRINT(Rule)
-# define YY_STACK_PRINT()
+#else // !YYDEBUG
 
-#endif /* !YYDEBUG */
+# define YYCDEBUG if (false) std::cerr
+# define YY_SYMBOL_PRINT(Title, Symbol)  YYUSE(Symbol)
+# define YY_REDUCE_PRINT(Rule)           static_cast<void>(0)
+# define YY_STACK_PRINT()                static_cast<void>(0)
 
-#define YYACCEPT	goto yyacceptlab
-#define YYABORT		goto yyabortlab
-#define YYERROR		goto yyerrorlab
+#endif // !YYDEBUG
 
-namespace pgscript
-{
-#if YYERROR_VERBOSE
+#define yyerrok         (yyerrstatus_ = 0)
+#define yyclearin       (yyla.clear ())
+
+#define YYACCEPT        goto yyacceptlab
+#define YYABORT         goto yyabortlab
+#define YYERROR         goto yyerrorlab
+#define YYRECOVERING()  (!!yyerrstatus_)
+
+
+namespace pgscript {
+#line 163 "pgscript/parser.tab.cc" // lalr1.cc:479
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -144,7 +189,7 @@ namespace pgscript
             case '\\':
               if (*++yyp != '\\')
                 goto do_not_strip_quotes;
-              /* Fall through.  */
+              // Fall through.
             default:
               yyr += *yyp;
               break;
@@ -158,317 +203,604 @@ namespace pgscript
     return yystr;
   }
 
-#endif
 
   /// Build a parser object.
   pgsParser::pgsParser (class pgsDriver & driver_yyarg)
-    : yydebug_ (false),
+    :
+#if YYDEBUG
+      yydebug_ (false),
       yycdebug_ (&std::cerr),
+#endif
       driver (driver_yyarg)
-  {
-  }
+  {}
 
   pgsParser::~pgsParser ()
+  {}
+
+
+  /*---------------.
+  | Symbol types.  |
+  `---------------*/
+
+  inline
+  pgsParser::syntax_error::syntax_error (const location_type& l, const std::string& m)
+    : std::runtime_error (m)
+    , location (l)
+  {}
+
+  // basic_symbol.
+  template <typename Base>
+  inline
+  pgsParser::basic_symbol<Base>::basic_symbol ()
+    : value ()
+  {}
+
+  template <typename Base>
+  inline
+  pgsParser::basic_symbol<Base>::basic_symbol (const basic_symbol& other)
+    : Base (other)
+    , value ()
+    , location (other.location)
   {
+    value = other.value;
+  }
+
+
+  template <typename Base>
+  inline
+  pgsParser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const semantic_type& v, const location_type& l)
+    : Base (t)
+    , value (v)
+    , location (l)
+  {}
+
+
+  /// Constructor for valueless symbols.
+  template <typename Base>
+  inline
+  pgsParser::basic_symbol<Base>::basic_symbol (typename Base::kind_type t, const location_type& l)
+    : Base (t)
+    , value ()
+    , location (l)
+  {}
+
+  template <typename Base>
+  inline
+  pgsParser::basic_symbol<Base>::~basic_symbol ()
+  {
+    clear ();
+  }
+
+  template <typename Base>
+  inline
+  void
+  pgsParser::basic_symbol<Base>::clear ()
+  {
+    Base::clear ();
+  }
+
+  template <typename Base>
+  inline
+  bool
+  pgsParser::basic_symbol<Base>::empty () const
+  {
+    return Base::type_get () == empty_symbol;
+  }
+
+  template <typename Base>
+  inline
+  void
+  pgsParser::basic_symbol<Base>::move (basic_symbol& s)
+  {
+    super_type::move(s);
+    value = s.value;
+    location = s.location;
+  }
+
+  // by_type.
+  inline
+  pgsParser::by_type::by_type ()
+    : type (empty_symbol)
+  {}
+
+  inline
+  pgsParser::by_type::by_type (const by_type& other)
+    : type (other.type)
+  {}
+
+  inline
+  pgsParser::by_type::by_type (token_type t)
+    : type (yytranslate_ (t))
+  {}
+
+  inline
+  void
+  pgsParser::by_type::clear ()
+  {
+    type = empty_symbol;
+  }
+
+  inline
+  void
+  pgsParser::by_type::move (by_type& that)
+  {
+    type = that.type;
+    that.clear ();
+  }
+
+  inline
+  int
+  pgsParser::by_type::type_get () const
+  {
+    return type;
+  }
+
+
+  // by_state.
+  inline
+  pgsParser::by_state::by_state ()
+    : state (empty_state)
+  {}
+
+  inline
+  pgsParser::by_state::by_state (const by_state& other)
+    : state (other.state)
+  {}
+
+  inline
+  void
+  pgsParser::by_state::clear ()
+  {
+    state = empty_state;
+  }
+
+  inline
+  void
+  pgsParser::by_state::move (by_state& that)
+  {
+    state = that.state;
+    that.clear ();
+  }
+
+  inline
+  pgsParser::by_state::by_state (state_type s)
+    : state (s)
+  {}
+
+  inline
+  pgsParser::symbol_number_type
+  pgsParser::by_state::type_get () const
+  {
+    if (state == empty_state)
+      return empty_symbol;
+    else
+      return yystos_[state];
+  }
+
+  inline
+  pgsParser::stack_symbol_type::stack_symbol_type ()
+  {}
+
+
+  inline
+  pgsParser::stack_symbol_type::stack_symbol_type (state_type s, symbol_type& that)
+    : super_type (s, that.location)
+  {
+    value = that.value;
+    // that is emptied.
+    that.type = empty_symbol;
+  }
+
+  inline
+  pgsParser::stack_symbol_type&
+  pgsParser::stack_symbol_type::operator= (const stack_symbol_type& that)
+  {
+    state = that.state;
+    value = that.value;
+    location = that.location;
+    return *this;
+  }
+
+
+  template <typename Base>
+  inline
+  void
+  pgsParser::yy_destroy_ (const char* yymsg, basic_symbol<Base>& yysym) const
+  {
+    if (yymsg)
+      YY_SYMBOL_PRINT (yymsg, yysym);
+
+    // User destructor.
+    switch (yysym.type_get ())
+    {
+            case 42: // "ABORT"
+
+#line 171 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 416 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 43: // "ALTER"
+
+#line 172 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 423 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 44: // "ANALYZE"
+
+#line 173 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 430 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 45: // "BEGIN"
+
+#line 174 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 437 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 46: // "CHECKPOINT"
+
+#line 175 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 444 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 47: // "CLOSE"
+
+#line 176 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 451 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 48: // "CLUSTER"
+
+#line 177 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 458 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 49: // "COMMENT"
+
+#line 178 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 465 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 50: // "COMMIT"
+
+#line 179 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 472 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 51: // "COPY"
+
+#line 180 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 479 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 52: // "CREATE"
+
+#line 181 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 486 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 53: // "DEALLOCATE"
+
+#line 182 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 493 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 54: // "DECLARE"
+
+#line 183 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 500 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 55: // "DELETE"
+
+#line 184 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 507 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 56: // "DISCARD"
+
+#line 185 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 514 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 57: // "DROP"
+
+#line 186 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 521 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 58: // "END"
+
+#line 187 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 528 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 59: // "EXECUTE"
+
+#line 188 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 535 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 60: // "EXPLAIN"
+
+#line 189 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 542 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 61: // "FETCH"
+
+#line 190 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 549 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 62: // "GRANT"
+
+#line 191 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 556 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 63: // "INSERT"
+
+#line 192 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 563 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 64: // "LISTEN"
+
+#line 193 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 570 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 65: // "LOAD"
+
+#line 194 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 577 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 66: // "LOCK"
+
+#line 195 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 584 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 67: // "MOVE"
+
+#line 196 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 591 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 68: // "NOTIFY"
+
+#line 197 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 598 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 69: // "PREPARE"
+
+#line 198 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 605 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 70: // "REASSIGN"
+
+#line 199 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 612 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 71: // "REINDEX"
+
+#line 200 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 619 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 72: // "RELEASE"
+
+#line 201 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 626 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 73: // "RESET"
+
+#line 202 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 633 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 74: // "REVOKE"
+
+#line 203 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 640 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 75: // "ROLLBACK"
+
+#line 204 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 647 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 76: // "SAVEPOINT"
+
+#line 205 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 654 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 77: // "SELECT"
+
+#line 206 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 661 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 78: // "SET"
+
+#line 207 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 668 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 79: // "SHOW"
+
+#line 208 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 675 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 80: // "START"
+
+#line 209 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 682 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 81: // "TRUNCATE"
+
+#line 210 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 689 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 82: // "UNLISTEN"
+
+#line 211 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 696 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 83: // "UPDATE"
+
+#line 212 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 703 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 84: // "VACUUM"
+
+#line 213 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 710 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 85: // "VALUES"
+
+#line 214 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 717 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 86: // "IDENTIFIER"
+
+#line 216 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 724 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 87: // "INTEGER VALUE"
+
+#line 217 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 731 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 88: // "REAL VALUE"
+
+#line 218 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 738 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+      case 89: // "STRING VALUE"
+
+#line 219 "pgscript/pgsParser.yy" // lalr1.cc:614
+        { pdelete((yysym.value.str)); }
+#line 745 "pgscript/parser.tab.cc" // lalr1.cc:614
+        break;
+
+
+      default:
+        break;
+    }
   }
 
 #if YYDEBUG
-  /*--------------------------------.
-  | Print this symbol on YYOUTPUT.  |
-  `--------------------------------*/
-
-  inline void
-  pgsParser::yy_symbol_value_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
-  {
-    YYUSE (yylocationp);
-    YYUSE (yyvaluep);
-    switch (yytype)
-      {
-         default:
-	  break;
-      }
-  }
-
-
+  template <typename Base>
   void
-  pgsParser::yy_symbol_print_ (int yytype,
-			   const semantic_type* yyvaluep, const location_type* yylocationp)
+  pgsParser::yy_print_ (std::ostream& yyo,
+                                     const basic_symbol<Base>& yysym) const
   {
-    *yycdebug_ << (yytype < yyntokens_ ? "token" : "nterm")
-	       << ' ' << yytname_[yytype] << " ("
-	       << *yylocationp << ": ";
-    yy_symbol_value_print_ (yytype, yyvaluep, yylocationp);
-    *yycdebug_ << ')';
+    std::ostream& yyoutput = yyo;
+    YYUSE (yyoutput);
+    symbol_number_type yytype = yysym.type_get ();
+    // Avoid a (spurious) G++ 4.8 warning about "array subscript is
+    // below array bounds".
+    if (yysym.empty ())
+      std::abort ();
+    yyo << (yytype < yyntokens_ ? "token" : "nterm")
+        << ' ' << yytname_[yytype] << " ("
+        << yysym.location << ": ";
+    YYUSE (yytype);
+    yyo << ')';
   }
-#endif /* ! YYDEBUG */
+#endif
 
+  inline
   void
-  pgsParser::yydestruct_ (const char* yymsg,
-			   int yytype, semantic_type* yyvaluep, location_type* yylocationp)
+  pgsParser::yypush_ (const char* m, state_type s, symbol_type& sym)
   {
-    YYUSE (yylocationp);
-    YYUSE (yymsg);
-    YYUSE (yyvaluep);
-
-    YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
-
-    switch (yytype)
-      {
-        case 42: /* "\"ABORT\"" */
-#line 167 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 217 "pgscript/parser.tab.cc"
-	break;
-      case 43: /* "\"ALTER\"" */
-#line 168 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 222 "pgscript/parser.tab.cc"
-	break;
-      case 44: /* "\"ANALYZE\"" */
-#line 169 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 227 "pgscript/parser.tab.cc"
-	break;
-      case 45: /* "\"BEGIN\"" */
-#line 170 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 232 "pgscript/parser.tab.cc"
-	break;
-      case 46: /* "\"CHECKPOINT\"" */
-#line 171 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 237 "pgscript/parser.tab.cc"
-	break;
-      case 47: /* "\"CLOSE\"" */
-#line 172 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 242 "pgscript/parser.tab.cc"
-	break;
-      case 48: /* "\"CLUSTER\"" */
-#line 173 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 247 "pgscript/parser.tab.cc"
-	break;
-      case 49: /* "\"COMMENT\"" */
-#line 174 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 252 "pgscript/parser.tab.cc"
-	break;
-      case 50: /* "\"COMMIT\"" */
-#line 175 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 257 "pgscript/parser.tab.cc"
-	break;
-      case 51: /* "\"COPY\"" */
-#line 176 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 262 "pgscript/parser.tab.cc"
-	break;
-      case 52: /* "\"CREATE\"" */
-#line 177 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 267 "pgscript/parser.tab.cc"
-	break;
-      case 53: /* "\"DEALLOCATE\"" */
-#line 178 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 272 "pgscript/parser.tab.cc"
-	break;
-      case 54: /* "\"DECLARE\"" */
-#line 179 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 277 "pgscript/parser.tab.cc"
-	break;
-      case 55: /* "\"DELETE\"" */
-#line 180 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 282 "pgscript/parser.tab.cc"
-	break;
-      case 56: /* "\"DISCARD\"" */
-#line 181 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 287 "pgscript/parser.tab.cc"
-	break;
-      case 57: /* "\"DROP\"" */
-#line 182 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 292 "pgscript/parser.tab.cc"
-	break;
-      case 58: /* "\"END\"" */
-#line 183 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 297 "pgscript/parser.tab.cc"
-	break;
-      case 59: /* "\"EXECUTE\"" */
-#line 184 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 302 "pgscript/parser.tab.cc"
-	break;
-      case 60: /* "\"EXPLAIN\"" */
-#line 185 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 307 "pgscript/parser.tab.cc"
-	break;
-      case 61: /* "\"FETCH\"" */
-#line 186 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 312 "pgscript/parser.tab.cc"
-	break;
-      case 62: /* "\"GRANT\"" */
-#line 187 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 317 "pgscript/parser.tab.cc"
-	break;
-      case 63: /* "\"INSERT\"" */
-#line 188 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 322 "pgscript/parser.tab.cc"
-	break;
-      case 64: /* "\"LISTEN\"" */
-#line 189 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 327 "pgscript/parser.tab.cc"
-	break;
-      case 65: /* "\"LOAD\"" */
-#line 190 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 332 "pgscript/parser.tab.cc"
-	break;
-      case 66: /* "\"LOCK\"" */
-#line 191 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 337 "pgscript/parser.tab.cc"
-	break;
-      case 67: /* "\"MOVE\"" */
-#line 192 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 342 "pgscript/parser.tab.cc"
-	break;
-      case 68: /* "\"NOTIFY\"" */
-#line 193 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 347 "pgscript/parser.tab.cc"
-	break;
-      case 69: /* "\"PREPARE\"" */
-#line 194 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 352 "pgscript/parser.tab.cc"
-	break;
-      case 70: /* "\"REASSIGN\"" */
-#line 195 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 357 "pgscript/parser.tab.cc"
-	break;
-      case 71: /* "\"REINDEX\"" */
-#line 196 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 362 "pgscript/parser.tab.cc"
-	break;
-      case 72: /* "\"RELEASE\"" */
-#line 197 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 367 "pgscript/parser.tab.cc"
-	break;
-      case 73: /* "\"RESET\"" */
-#line 198 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 372 "pgscript/parser.tab.cc"
-	break;
-      case 74: /* "\"REVOKE\"" */
-#line 199 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 377 "pgscript/parser.tab.cc"
-	break;
-      case 75: /* "\"ROLLBACK\"" */
-#line 200 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 382 "pgscript/parser.tab.cc"
-	break;
-      case 76: /* "\"SAVEPOINT\"" */
-#line 201 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 387 "pgscript/parser.tab.cc"
-	break;
-      case 77: /* "\"SELECT\"" */
-#line 202 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 392 "pgscript/parser.tab.cc"
-	break;
-      case 78: /* "\"SET\"" */
-#line 203 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 397 "pgscript/parser.tab.cc"
-	break;
-      case 79: /* "\"SHOW\"" */
-#line 204 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 402 "pgscript/parser.tab.cc"
-	break;
-      case 80: /* "\"START\"" */
-#line 205 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 407 "pgscript/parser.tab.cc"
-	break;
-      case 81: /* "\"TRUNCATE\"" */
-#line 206 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 412 "pgscript/parser.tab.cc"
-	break;
-      case 82: /* "\"UNLISTEN\"" */
-#line 207 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 417 "pgscript/parser.tab.cc"
-	break;
-      case 83: /* "\"UPDATE\"" */
-#line 208 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 422 "pgscript/parser.tab.cc"
-	break;
-      case 84: /* "\"VACUUM\"" */
-#line 209 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 427 "pgscript/parser.tab.cc"
-	break;
-      case 85: /* "\"VALUES\"" */
-#line 210 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 432 "pgscript/parser.tab.cc"
-	break;
-      case 86: /* "\"IDENTIFIER\"" */
-#line 212 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 437 "pgscript/parser.tab.cc"
-	break;
-      case 87: /* "\"INTEGER VALUE\"" */
-#line 213 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 442 "pgscript/parser.tab.cc"
-	break;
-      case 88: /* "\"REAL VALUE\"" */
-#line 214 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 447 "pgscript/parser.tab.cc"
-	break;
-      case 89: /* "\"STRING VALUE\"" */
-#line 215 "pgscript/pgsParser.yy"
-	{ pdelete((yyvaluep->str)); };
-#line 452 "pgscript/parser.tab.cc"
-	break;
-
-	default:
-	  break;
-      }
+    stack_symbol_type t (s, sym);
+    yypush_ (m, t);
   }
 
+  inline
+  void
+  pgsParser::yypush_ (const char* m, stack_symbol_type& s)
+  {
+    if (m)
+      YY_SYMBOL_PRINT (m, s);
+    yystack_.push (s);
+  }
+
+  inline
   void
   pgsParser::yypop_ (unsigned int n)
   {
-    yystate_stack_.pop (n);
-    yysemantic_stack_.pop (n);
-    yylocation_stack_.pop (n);
+    yystack_.pop (n);
   }
 
+#if YYDEBUG
   std::ostream&
   pgsParser::debug_stream () const
   {
@@ -493,136 +825,137 @@ namespace pgscript
   {
     yydebug_ = l;
   }
+#endif // YYDEBUG
 
+  inline pgsParser::state_type
+  pgsParser::yy_lr_goto_state_ (state_type yystate, int yysym)
+  {
+    int yyr = yypgoto_[yysym - yyntokens_] + yystate;
+    if (0 <= yyr && yyr <= yylast_ && yycheck_[yyr] == yystate)
+      return yytable_[yyr];
+    else
+      return yydefgoto_[yysym - yyntokens_];
+  }
+
+  inline bool
+  pgsParser::yy_pact_value_is_default_ (int yyvalue)
+  {
+    return yyvalue == yypact_ninf_;
+  }
+
+  inline bool
+  pgsParser::yy_table_value_is_error_ (int yyvalue)
+  {
+    return yyvalue == yytable_ninf_;
+  }
 
   int
   pgsParser::parse ()
   {
-    /// Look-ahead and look-ahead in internal form.
-    int yychar = yyempty_;
-    int yytoken = 0;
-
-    /* State.  */
+    // State.
     int yyn;
+    /// Length of the RHS of the rule being reduced.
     int yylen = 0;
-    int yystate = 0;
 
-    /* Error handling.  */
+    // Error handling.
     int yynerrs_ = 0;
     int yyerrstatus_ = 0;
 
-    /// Semantic value of the look-ahead.
-    semantic_type yylval;
-    /// Location of the look-ahead.
-    location_type yylloc;
+    /// The lookahead symbol.
+    symbol_type yyla;
+
     /// The locations where the error started and ended.
-    location yyerror_range[2];
+    stack_symbol_type yyerror_range[3];
 
-    /// $$.
-    semantic_type yyval;
-    /// @$.
-    location_type yyloc;
-
+    /// The return value of parse ().
     int yyresult;
 
+    // FIXME: This shoud be completely indented.  It is not yet to
+    // avoid gratuitous conflicts when merging into the master branch.
+    try
+      {
     YYCDEBUG << "Starting parse" << std::endl;
 
 
-    /* User initialization code.  */
-    #line 43 "pgscript/pgsParser.yy"
+    // User initialization code.
+    #line 47 "pgscript/pgsParser.yy" // lalr1.cc:741
 {
 	// Initialize the initial location object
-	yylloc.begin.filename = yylloc.end.filename;
+	yyla.location.begin.filename = yyla.location.end.filename;
 }
-  /* Line 547 of yacc.c.  */
-#line 534 "pgscript/parser.tab.cc"
-    /* Initialize the stacks.  The initial state will be pushed in
+
+#line 883 "pgscript/parser.tab.cc" // lalr1.cc:741
+
+    /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
        location values to have been already stored, initialize these
        stacks with a primary value.  */
-    yystate_stack_ = state_stack_type (0);
-    yysemantic_stack_ = semantic_stack_type (0);
-    yylocation_stack_ = location_stack_type (0);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
+    yystack_.clear ();
+    yypush_ (YY_NULLPTR, 0, yyla);
 
-    /* New state.  */
+    // A new symbol was pushed on the stack.
   yynewstate:
-    yystate_stack_.push (yystate);
-    YYCDEBUG << "Entering state " << yystate << std::endl;
+    YYCDEBUG << "Entering state " << yystack_[0].state << std::endl;
+
+    // Accept?
+    if (yystack_[0].state == yyfinal_)
+      goto yyacceptlab;
+
     goto yybackup;
 
-    /* Backup.  */
+    // Backup.
   yybackup:
 
-    /* Try to take a decision without look-ahead.  */
-    yyn = yypact_[yystate];
-    if (yyn == yypact_ninf_)
+    // Try to take a decision without lookahead.
+    yyn = yypact_[yystack_[0].state];
+    if (yy_pact_value_is_default_ (yyn))
       goto yydefault;
 
-    /* Read a look-ahead token.  */
-    if (yychar == yyempty_)
+    // Read a lookahead token.
+    if (yyla.empty ())
       {
-	YYCDEBUG << "Reading a token: ";
-	yychar = yylex (&yylval, &yylloc);
+        YYCDEBUG << "Reading a token: ";
+        try
+          {
+            yyla.type = yytranslate_ (yylex (&yyla.value, &yyla.location));
+          }
+        catch (const syntax_error& yyexc)
+          {
+            error (yyexc);
+            goto yyerrlab1;
+          }
       }
+    YY_SYMBOL_PRINT ("Next token is", yyla);
 
-
-    /* Convert token to internal form.  */
-    if (yychar <= yyeof_)
-      {
-	yychar = yytoken = yyeof_;
-	YYCDEBUG << "Now at end of input." << std::endl;
-      }
-    else
-      {
-	yytoken = yytranslate_ (yychar);
-	YY_SYMBOL_PRINT ("Next token is", yytoken, &yylval, &yylloc);
-      }
-
-    /* If the proper action on seeing token YYTOKEN is to reduce or to
-       detect an error, take that action.  */
-    yyn += yytoken;
-    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yytoken)
+    /* If the proper action on seeing token YYLA.TYPE is to reduce or
+       to detect an error, take that action.  */
+    yyn += yyla.type_get ();
+    if (yyn < 0 || yylast_ < yyn || yycheck_[yyn] != yyla.type_get ())
       goto yydefault;
 
-    /* Reduce or error.  */
+    // Reduce or error.
     yyn = yytable_[yyn];
     if (yyn <= 0)
       {
-	if (yyn == 0 || yyn == yytable_ninf_)
-	goto yyerrlab;
-	yyn = -yyn;
-	goto yyreduce;
+        if (yy_table_value_is_error_ (yyn))
+          goto yyerrlab;
+        yyn = -yyn;
+        goto yyreduce;
       }
 
-    /* Accept?  */
-    if (yyn == yyfinal_)
-      goto yyacceptlab;
-
-    /* Shift the look-ahead token.  */
-    YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
-
-    /* Discard the token being shifted unless it is eof.  */
-    if (yychar != yyeof_)
-      yychar = yyempty_;
-
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yylloc);
-
-    /* Count tokens shifted since error; after three, turn off error
-       status.  */
+    // Count tokens shifted since error; after three, turn off error status.
     if (yyerrstatus_)
       --yyerrstatus_;
 
-    yystate = yyn;
+    // Shift the lookahead token.
+    yypush_ ("Shifting", yyn, yyla);
     goto yynewstate;
 
   /*-----------------------------------------------------------.
   | yydefault -- do the default action for the current state.  |
   `-----------------------------------------------------------*/
   yydefault:
-    yyn = yydefact_[yystate];
+    yyn = yydefact_[yystack_[0].state];
     if (yyn == 0)
       goto yyerrlab;
     goto yyreduce;
@@ -632,1295 +965,1448 @@ namespace pgscript
   `-----------------------------*/
   yyreduce:
     yylen = yyr2_[yyn];
-    /* If YYLEN is nonzero, implement the default value of the action:
-       `$$ = $1'.  Otherwise, use the top of the stack.
-
-       Otherwise, the following line sets YYVAL to garbage.
-       This behavior is undocumented and Bison
-       users should not rely upon it.  */
-    if (yylen)
-      yyval = yysemantic_stack_[yylen - 1];
-    else
-      yyval = yysemantic_stack_[0];
-
     {
-      slice<location_type, location_stack_type> slice (yylocation_stack_, yylen);
-      YYLLOC_DEFAULT (yyloc, slice, yylen);
-    }
-    YY_REDUCE_PRINT (yyn);
-    switch (yyn)
+      stack_symbol_type yylhs;
+      yylhs.state = yy_lr_goto_state_(yystack_[yylen].state, yyr1_[yyn]);
+      /* If YYLEN is nonzero, implement the default value of the
+         action: '$$ = $1'.  Otherwise, use the top of the stack.
+
+         Otherwise, the following line sets YYLHS.VALUE to garbage.
+         This behavior is undocumented and Bison users should not rely
+         upon it.  */
+      if (yylen)
+        yylhs.value = yystack_[yylen - 1].value;
+      else
+        yylhs.value = yystack_[0].value;
+
+      // Compute the default @$.
       {
-	  case 2:
-#line 268 "pgscript/pgsParser.yy"
+        slice<stack_symbol_type, stack_type> slice (yystack_, yylen);
+        YYLLOC_DEFAULT (yylhs.location, slice, yylen);
+      }
+
+      // Perform the reduction.
+      YY_REDUCE_PRINT (yyn);
+      try
+        {
+          switch (yyn)
+            {
+  case 2:
+#line 272 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsIdentRecord(*((yysemantic_stack_[(7) - (1)].str)), (yysemantic_stack_[(7) - (3)].expr), (yysemantic_stack_[(7) - (6)].expr));
-									pdelete((yysemantic_stack_[(7) - (1)].str));
+									(yylhs.value.expr) = pnew pgsIdentRecord(*((yystack_[6].value.str)), (yystack_[4].value.expr), (yystack_[1].value.expr));
+									pdelete((yystack_[6].value.str));
 									driver.context.pop_var(); driver.context.pop_var(); // $3 & $6
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 998 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 3:
-#line 275 "pgscript/pgsParser.yy"
+#line 279 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsIdentRecord(*((yysemantic_stack_[(4) - (1)].str)), (yysemantic_stack_[(4) - (3)].expr));
-									pdelete((yysemantic_stack_[(4) - (1)].str));
+									(yylhs.value.expr) = pnew pgsIdentRecord(*((yystack_[3].value.str)), (yystack_[1].value.expr));
+									pdelete((yystack_[3].value.str));
 									driver.context.pop_var(); // $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1009 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 4:
-#line 282 "pgscript/pgsParser.yy"
+#line 286 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsLines(*((yysemantic_stack_[(4) - (3)].str)));
-									pdelete((yysemantic_stack_[(4) - (3)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsLines(*((yystack_[1].value.str)));
+									pdelete((yystack_[1].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1019 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 5:
-#line 288 "pgscript/pgsParser.yy"
+#line 292 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsColumns(*((yysemantic_stack_[(4) - (3)].str)));
-									pdelete((yysemantic_stack_[(4) - (3)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsColumns(*((yystack_[1].value.str)));
+									pdelete((yystack_[1].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1029 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 6:
-#line 294 "pgscript/pgsParser.yy"
+#line 298 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsTrim((yysemantic_stack_[(4) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsTrim((yystack_[1].value.expr));
 									driver.context.pop_var(); // $3
-									driver.context.push_var((yyval.expr)); // assert
-								;}
+									driver.context.push_var((yylhs.value.expr)); // assert
+								}
+#line 1039 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 7:
-#line 300 "pgscript/pgsParser.yy"
+#line 304 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsIdent(*((yysemantic_stack_[(1) - (1)].str)));
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsIdent(*((yystack_[0].value.str)));
+									pdelete((yystack_[0].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1049 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 8:
-#line 306 "pgscript/pgsParser.yy"
+#line 310 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsNumber(*((yysemantic_stack_[(1) - (1)].str)), pgsInt);
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsNumber(*((yystack_[0].value.str)), pgsInt);
+									pdelete((yystack_[0].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1059 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 9:
-#line 312 "pgscript/pgsParser.yy"
+#line 316 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsNumber(*((yysemantic_stack_[(1) - (1)].str)), pgsReal);
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsNumber(*((yystack_[0].value.str)), pgsReal);
+									pdelete((yystack_[0].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1069 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 10:
-#line 318 "pgscript/pgsParser.yy"
+#line 322 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsString(*((yysemantic_stack_[(1) - (1)].str)));
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-									driver.context.push_var((yyval.expr));
-								;}
+									(yylhs.value.expr) = pnew pgsString(*((yystack_[0].value.str)));
+									pdelete((yystack_[0].value.str));
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1079 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 11:
-#line 323 "pgscript/pgsParser.yy"
+#line 327 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsExecute(*((yysemantic_stack_[(3) - (2)].str)), &driver.context.m_cout,
+									(yylhs.value.expr) = pnew pgsExecute(*((yystack_[1].value.str)), &driver.context.m_cout,
 											&(driver.thread));
-									pdelete((yysemantic_stack_[(3) - (2)].str));
-									driver.context.push_var((yyval.expr)); // SQL Expression statement
-								;}
+									pdelete((yystack_[1].value.str));
+									driver.context.push_var((yylhs.value.expr)); // SQL Expression statement
+								}
+#line 1090 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 12:
-#line 329 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 333 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1096 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 13:
-#line 330 "pgscript/pgsParser.yy"
+#line 334 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsParenthesis((yysemantic_stack_[(3) - (2)].expr));
+									(yylhs.value.expr) = pnew pgsParenthesis((yystack_[1].value.expr));
 									driver.context.pop_var(); // $2
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1106 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 14:
-#line 338 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 342 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1112 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 15:
-#line 339 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(2) - (2)].expr); ;}
+#line 343 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1118 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 16:
-#line 340 "pgscript/pgsParser.yy"
+#line 344 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsNegate((yysemantic_stack_[(2) - (2)].expr));
+									(yylhs.value.expr) = pnew pgsNegate((yystack_[0].value.expr));
 									driver.context.pop_var(); // $2
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1128 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 17:
-#line 346 "pgscript/pgsParser.yy"
+#line 350 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsNot((yysemantic_stack_[(2) - (2)].expr));
+									(yylhs.value.expr) = pnew pgsNot((yystack_[0].value.expr));
 									driver.context.pop_var(); // $2
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1138 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 18:
-#line 354 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 358 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1144 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 19:
-#line 356 "pgscript/pgsParser.yy"
+#line 360 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsCast((yysemantic_stack_[(6) - (5)].integer), (yysemantic_stack_[(6) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsCast((yystack_[1].value.integer), (yystack_[3].value.expr));
 									driver.context.pop_var(); // $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1154 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 20:
-#line 364 "pgscript/pgsParser.yy"
-    { (yyval.integer) = pgscript::pgsParser::token::PGS_INTEGER; ;}
+#line 368 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.integer) = pgscript::pgsParser::token::PGS_INTEGER; }
+#line 1160 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 21:
-#line 365 "pgscript/pgsParser.yy"
-    { (yyval.integer) = pgscript::pgsParser::token::PGS_REAL; ;}
+#line 369 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.integer) = pgscript::pgsParser::token::PGS_REAL; }
+#line 1166 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 22:
-#line 366 "pgscript/pgsParser.yy"
-    { (yyval.integer) = pgscript::pgsParser::token::PGS_STRING; ;}
+#line 370 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.integer) = pgscript::pgsParser::token::PGS_STRING; }
+#line 1172 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 23:
-#line 367 "pgscript/pgsParser.yy"
-    { (yyval.integer) = pgscript::pgsParser::token::PGS_RECORD; ;}
+#line 371 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.integer) = pgscript::pgsParser::token::PGS_RECORD; }
+#line 1178 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 24:
-#line 371 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 375 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1184 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 25:
-#line 373 "pgscript/pgsParser.yy"
+#line 377 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsTimes((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsTimes((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1195 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 26:
-#line 380 "pgscript/pgsParser.yy"
+#line 384 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsOver((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsOver((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1206 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 27:
-#line 387 "pgscript/pgsParser.yy"
+#line 391 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsModulo((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsModulo((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1217 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 28:
-#line 396 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 400 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1223 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 29:
-#line 398 "pgscript/pgsParser.yy"
+#line 402 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsPlus((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsPlus((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1234 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 30:
-#line 405 "pgscript/pgsParser.yy"
+#line 409 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsMinus((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsMinus((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1245 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 31:
-#line 414 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 418 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1251 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 32:
-#line 416 "pgscript/pgsParser.yy"
+#line 420 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsLower((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsLower((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1262 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 33:
-#line 423 "pgscript/pgsParser.yy"
+#line 427 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGreater((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsGreater((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1273 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 34:
-#line 430 "pgscript/pgsParser.yy"
+#line 434 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsLowerEqual((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsLowerEqual((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1284 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 35:
-#line 437 "pgscript/pgsParser.yy"
+#line 441 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGreaterEqual((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsGreaterEqual((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1295 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 36:
-#line 446 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 450 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1301 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 37:
-#line 448 "pgscript/pgsParser.yy"
+#line 452 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsEqual((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsEqual((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1312 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 38:
-#line 455 "pgscript/pgsParser.yy"
+#line 459 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsEqual((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr), false);
+									(yylhs.value.expr) = pnew pgsEqual((yystack_[2].value.expr), (yystack_[0].value.expr), false);
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1323 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 39:
-#line 462 "pgscript/pgsParser.yy"
+#line 466 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsDifferent((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsDifferent((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1334 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 40:
-#line 471 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 475 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1340 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 41:
-#line 473 "pgscript/pgsParser.yy"
+#line 477 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsAnd((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsAnd((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1351 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 42:
-#line 482 "pgscript/pgsParser.yy"
-    { (yyval.expr) = (yysemantic_stack_[(1) - (1)].expr); ;}
+#line 486 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.expr) = (yystack_[0].value.expr); }
+#line 1357 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 43:
-#line 484 "pgscript/pgsParser.yy"
+#line 488 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsOr((yysemantic_stack_[(3) - (1)].expr), (yysemantic_stack_[(3) - (3)].expr));
+									(yylhs.value.expr) = pnew pgsOr((yystack_[2].value.expr), (yystack_[0].value.expr));
 									driver.context.pop_var();
 									driver.context.pop_var(); // $1 & $3
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1368 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 44:
-#line 493 "pgscript/pgsParser.yy"
+#line 497 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("%s"), (yysemantic_stack_[(1) - (1)].expr)->value().c_str());
-									(yyval.expr) = (yysemantic_stack_[(1) - (1)].expr);
-								;}
+									wxLogScriptVerbose(wxT("%s"), (yystack_[0].value.expr)->value());
+									(yylhs.value.expr) = (yystack_[0].value.expr);
+								}
+#line 1377 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 45:
-#line 501 "pgscript/pgsParser.yy"
+#line 505 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenInt((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenInt((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1389 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 46:
-#line 509 "pgscript/pgsParser.yy"
+#line 513 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenInt((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenInt((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1400 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 47:
-#line 516 "pgscript/pgsParser.yy"
+#line 520 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenInt((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenInt((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1411 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 48:
-#line 523 "pgscript/pgsParser.yy"
+#line 527 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReal((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenReal((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1424 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 49:
-#line 532 "pgscript/pgsParser.yy"
+#line 536 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReal((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenReal((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1436 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 50:
-#line 540 "pgscript/pgsParser.yy"
+#line 544 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReal((yysemantic_stack_[(12) - (3)].expr), (yysemantic_stack_[(12) - (5)].expr), (yysemantic_stack_[(12) - (7)].expr), (yysemantic_stack_[(12) - (9)].expr), (yysemantic_stack_[(12) - (11)].expr));
+									(yylhs.value.expr) = pnew pgsGenReal((yystack_[9].value.expr), (yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1448 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 51:
-#line 548 "pgscript/pgsParser.yy"
+#line 552 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenString((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.one(),
+									(yylhs.value.expr) = pnew pgsGenString((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.one(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1460 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 52:
-#line 556 "pgscript/pgsParser.yy"
+#line 560 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenString((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenString((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1471 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 53:
-#line 563 "pgscript/pgsParser.yy"
+#line 567 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenString((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenString((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1482 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 54:
-#line 570 "pgscript/pgsParser.yy"
+#line 574 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenRegex((yysemantic_stack_[(4) - (3)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenRegex((yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1492 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 55:
-#line 576 "pgscript/pgsParser.yy"
+#line 580 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenRegex((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr));
+									(yylhs.value.expr) = pnew pgsGenRegex((yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1502 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 56:
-#line 582 "pgscript/pgsParser.yy"
+#line 586 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDictionary((yysemantic_stack_[(4) - (3)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenDictionary((yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed(), driver.context.encoding());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1514 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 57:
-#line 590 "pgscript/pgsParser.yy"
+#line 594 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDictionary((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.seed(),
+									(yylhs.value.expr) = pnew pgsGenDictionary((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed(),
 											driver.context.encoding());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1526 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 58:
-#line 598 "pgscript/pgsParser.yy"
+#line 602 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDictionary((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.encoding());
+									(yylhs.value.expr) = pnew pgsGenDictionary((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.encoding());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1537 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 59:
-#line 605 "pgscript/pgsParser.yy"
+#line 609 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDictionary((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenDictionary((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1548 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 60:
-#line 612 "pgscript/pgsParser.yy"
+#line 616 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDate((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenDate((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1560 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 61:
-#line 620 "pgscript/pgsParser.yy"
+#line 624 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDate((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenDate((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1571 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 62:
-#line 627 "pgscript/pgsParser.yy"
+#line 631 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDate((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenDate((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1582 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 63:
-#line 634 "pgscript/pgsParser.yy"
+#line 638 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenTime((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenTime((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1594 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 64:
-#line 642 "pgscript/pgsParser.yy"
+#line 646 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenTime((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenTime((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1605 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 65:
-#line 649 "pgscript/pgsParser.yy"
+#line 653 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenTime((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenTime((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1616 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 66:
-#line 656 "pgscript/pgsParser.yy"
+#line 660 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDateTime((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenDateTime((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1628 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 67:
-#line 664 "pgscript/pgsParser.yy"
+#line 668 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDateTime((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed());
+									(yylhs.value.expr) = pnew pgsGenDateTime((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed());
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1639 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 68:
-#line 671 "pgscript/pgsParser.yy"
+#line 675 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenDateTime((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr));
+									(yylhs.value.expr) = pnew pgsGenDateTime((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1650 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 69:
-#line 678 "pgscript/pgsParser.yy"
+#line 682 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReference((yysemantic_stack_[(6) - (3)].expr), (yysemantic_stack_[(6) - (5)].expr), driver.context.zero(),
+									(yylhs.value.expr) = pnew pgsGenReference((yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.zero(),
 											driver.context.seed(), &(driver.thread));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1662 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 70:
-#line 686 "pgscript/pgsParser.yy"
+#line 690 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReference((yysemantic_stack_[(8) - (3)].expr), (yysemantic_stack_[(8) - (5)].expr), (yysemantic_stack_[(8) - (7)].expr), driver.context.seed(),
+									(yylhs.value.expr) = pnew pgsGenReference((yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), driver.context.seed(),
 											&(driver.thread));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1674 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 71:
-#line 694 "pgscript/pgsParser.yy"
+#line 698 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsGenReference((yysemantic_stack_[(10) - (3)].expr), (yysemantic_stack_[(10) - (5)].expr), (yysemantic_stack_[(10) - (7)].expr), (yysemantic_stack_[(10) - (9)].expr), &(driver.thread));
+									(yylhs.value.expr) = pnew pgsGenReference((yystack_[7].value.expr), (yystack_[5].value.expr), (yystack_[3].value.expr), (yystack_[1].value.expr), &(driver.thread));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); driver.context.pop_var();
-									driver.context.push_var((yyval.expr));
-								;}
+									driver.context.push_var((yylhs.value.expr));
+								}
+#line 1685 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 72:
-#line 703 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(1) - (1)].stmt); ;}
+#line 707 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[0].value.stmt); }
+#line 1691 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 73:
-#line 704 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(1) - (1)].stmt); ;}
+#line 708 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[0].value.stmt); }
+#line 1697 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 74:
-#line 705 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(1) - (1)].stmt); ;}
+#line 709 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[0].value.stmt); }
+#line 1703 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 75:
-#line 706 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(2) - (1)].stmt); ;}
+#line 710 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[1].value.stmt); }
+#line 1709 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 76:
-#line 707 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(2) - (1)].stmt); ;}
+#line 711 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[1].value.stmt); }
+#line 1715 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 77:
-#line 708 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(2) - (1)].stmt); ;}
+#line 712 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[1].value.stmt); }
+#line 1721 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 78:
-#line 709 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(2) - (1)].stmt); ;}
+#line 713 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[1].value.stmt); }
+#line 1727 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 79:
-#line 710 "pgscript/pgsParser.yy"
-    { (yyval.stmt) = (yysemantic_stack_[(2) - (1)].stmt); ;}
+#line 714 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.stmt) = (yystack_[1].value.stmt); }
+#line 1733 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 80:
-#line 714 "pgscript/pgsParser.yy"
+#line 718 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $1
-									(yyval.stmt_list) = driver.context.stmt_list(&(driver.thread));
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(1) - (1)].stmt));
-								;}
+									(yylhs.value.stmt_list) = driver.context.stmt_list(&(driver.thread));
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
+								}
+#line 1743 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 81:
-#line 719 "pgscript/pgsParser.yy"
+#line 723 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $2
-									(yyval.stmt_list) = (yysemantic_stack_[(2) - (1)].stmt_list);						
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(2) - (2)].stmt));
-								;}
+									(yylhs.value.stmt_list) = (yystack_[1].value.stmt_list);
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
+								}
+#line 1753 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 82:
-#line 727 "pgscript/pgsParser.yy"
+#line 731 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("BEGIN END"));
-									(yyval.stmt) = driver.context.stmt_list(&(driver.thread));
-								;}
+									(yylhs.value.stmt) = driver.context.stmt_list(&(driver.thread));
+								}
+#line 1762 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 83:
-#line 732 "pgscript/pgsParser.yy"
+#line 736 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("BEGIN ... END"));
-									(yyval.stmt) = (yysemantic_stack_[(3) - (2)].stmt_list);
-								;}
+									(yylhs.value.stmt) = (yystack_[1].value.stmt_list);
+								}
+#line 1771 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 84:
-#line 739 "pgscript/pgsParser.yy"
+#line 743 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("%s"), (yysemantic_stack_[(1) - (1)].expr)->value().c_str());
-									(yyval.stmt) = pnew pgsExpressionStmt((yysemantic_stack_[(1) - (1)].expr), &(driver.thread));
+									wxLogScriptVerbose(wxT("%s"), (yystack_[0].value.expr)->value());
+									(yylhs.value.stmt) = pnew pgsExpressionStmt((yystack_[0].value.expr), &(driver.thread));
 									driver.context.pop_var(); // $1
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 1783 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 85:
-#line 749 "pgscript/pgsParser.yy"
+#line 753 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.expr) = pnew pgsExecute(*((yysemantic_stack_[(1) - (1)].str)), &driver.context.m_cout,
+									(yylhs.value.expr) = pnew pgsExecute(*((yystack_[0].value.str)), &driver.context.m_cout,
 											&(driver.thread));
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-									driver.context.push_var((yyval.expr)); // pgsExecute
-								;}
+									pdelete((yystack_[0].value.str));
+									driver.context.push_var((yylhs.value.expr)); // pgsExecute
+								}
+#line 1794 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 86:
-#line 758 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 762 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1800 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 87:
-#line 759 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 763 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1806 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 88:
-#line 760 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 764 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1812 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 89:
-#line 761 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 765 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1818 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 90:
-#line 762 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 766 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1824 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 91:
-#line 763 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 767 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1830 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 92:
-#line 764 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 768 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1836 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 93:
-#line 765 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 769 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1842 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 94:
-#line 766 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 770 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1848 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 95:
-#line 767 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 771 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1854 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 96:
-#line 768 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 772 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1860 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 97:
-#line 769 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 773 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1866 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 98:
-#line 770 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 774 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1872 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 99:
-#line 771 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 775 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1878 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 100:
-#line 772 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 776 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1884 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 101:
-#line 773 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 777 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1890 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 102:
-#line 774 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 778 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1896 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 103:
-#line 775 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 779 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1902 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 104:
-#line 776 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 780 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1908 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 105:
-#line 777 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 781 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1914 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 106:
-#line 778 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 782 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1920 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 107:
-#line 779 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 783 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1926 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 108:
-#line 780 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 784 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1932 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 109:
-#line 781 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 785 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1938 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 110:
-#line 782 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 786 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1944 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 111:
-#line 783 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 787 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1950 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 112:
-#line 784 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 788 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1956 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 113:
-#line 785 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 789 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1962 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 114:
-#line 786 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 790 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1968 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 115:
-#line 787 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 791 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1974 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 116:
-#line 788 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 792 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1980 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 117:
-#line 789 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 793 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1986 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 118:
-#line 790 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 794 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1992 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 119:
-#line 791 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 795 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 1998 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 120:
-#line 792 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 796 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2004 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 121:
-#line 793 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 797 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2010 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 122:
-#line 794 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 798 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2016 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 123:
-#line 795 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 799 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2022 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 124:
-#line 796 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 800 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2028 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 125:
-#line 797 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 801 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2034 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 126:
-#line 798 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 802 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2040 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 127:
-#line 799 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 803 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2046 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 128:
-#line 800 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 804 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2052 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 129:
-#line 801 "pgscript/pgsParser.yy"
-    { (yyval.str) = (yysemantic_stack_[(1) - (1)].str); ;}
+#line 805 "pgscript/pgsParser.yy" // lalr1.cc:859
+    { (yylhs.value.str) = (yystack_[0].value.str); }
+#line 2058 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 130:
-#line 806 "pgscript/pgsParser.yy"
+#line 810 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.stmt) = (yysemantic_stack_[(2) - (2)].stmt_list);
-								;}
+									(yylhs.value.stmt) = (yystack_[0].value.stmt_list);
+								}
+#line 2066 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 131:
-#line 812 "pgscript/pgsParser.yy"
+#line 816 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $1
-									(yyval.stmt_list) = driver.context.stmt_list(&(driver.thread));
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(1) - (1)].stmt));
+									(yylhs.value.stmt_list) = driver.context.stmt_list(&(driver.thread));
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
 
-								;}
+								}
+#line 2077 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 132:
-#line 819 "pgscript/pgsParser.yy"
+#line 823 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $3
-									(yyval.stmt_list) = (yysemantic_stack_[(3) - (1)].stmt_list);
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(3) - (3)].stmt));
-								;}
+									(yylhs.value.stmt_list) = (yystack_[2].value.stmt_list);
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
+								}
+#line 2087 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 133:
-#line 827 "pgscript/pgsParser.yy"
+#line 831 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("DECLARE %s"), (yysemantic_stack_[(1) - (1)].str)->c_str());
-									
-									(yyval.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yysemantic_stack_[(1) - (1)].str)),
+									wxLogScriptVerbose(wxT("DECLARE %s"), (yystack_[0].value.str)->c_str());
+
+									(yylhs.value.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yystack_[0].value.str)),
 											pnew pgsString(wxT(""))), &(driver.thread));
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
+									pdelete((yystack_[0].value.str));
+								}
+#line 2102 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 134:
-#line 838 "pgscript/pgsParser.yy"
+#line 842 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("DECLARE %s"), (yysemantic_stack_[(4) - (1)].str)->c_str());
-									
-									(yyval.stmt) = pnew pgsDeclareRecordStmt(*((yysemantic_stack_[(4) - (1)].str)), driver.context.columns(),
+									wxLogScriptVerbose(wxT("DECLARE %s"), (yystack_[3].value.str)->c_str());
+
+									(yylhs.value.stmt) = pnew pgsDeclareRecordStmt(*((yystack_[3].value.str)), driver.context.columns(),
 											&(driver.thread));
-									driver.context.push_stmt((yyval.stmt)); // pgsDeclareRecordStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsDeclareRecordStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
 									driver.context.clear_columns();
-									pdelete((yysemantic_stack_[(4) - (1)].str));
-								;}
+									pdelete((yystack_[3].value.str));
+								}
+#line 2118 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 135:
-#line 853 "pgscript/pgsParser.yy"
+#line 857 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									(yyval.stmt) = (yysemantic_stack_[(2) - (2)].stmt_list);
-								;}
+									(yylhs.value.stmt) = (yystack_[0].value.stmt_list);
+								}
+#line 2126 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 136:
-#line 859 "pgscript/pgsParser.yy"
+#line 863 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $1
-									(yyval.stmt_list) = driver.context.stmt_list(&(driver.thread));
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(1) - (1)].stmt));
-								;}
+									(yylhs.value.stmt_list) = driver.context.stmt_list(&(driver.thread));
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
+								}
+#line 2136 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 137:
-#line 865 "pgscript/pgsParser.yy"
+#line 869 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									driver.context.pop_stmt(); // $3
-									(yyval.stmt_list) = (yysemantic_stack_[(3) - (1)].stmt_list);
-									(yyval.stmt_list)->insert_back((yysemantic_stack_[(3) - (3)].stmt));
-								;}
+									(yylhs.value.stmt_list) = (yystack_[2].value.stmt_list);
+									(yylhs.value.stmt_list)->insert_back((yystack_[0].value.stmt));
+								}
+#line 2146 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 138:
-#line 874 "pgscript/pgsParser.yy"
+#line 878 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("SET %s = %s"), (yysemantic_stack_[(3) - (1)].str)->c_str(),
-											(yysemantic_stack_[(3) - (3)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yysemantic_stack_[(3) - (1)].str)), (yysemantic_stack_[(3) - (3)].expr)),
+									wxLogScriptVerbose(wxT("SET %s = %s"), (yystack_[2].value.str)->c_str(),
+											(yystack_[0].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yystack_[2].value.str)), (yystack_[0].value.expr)),
 											&(driver.thread));
 									driver.context.pop_var(); // $3
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
-									pdelete((yysemantic_stack_[(3) - (1)].str));
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
+									pdelete((yystack_[2].value.str));
+								}
+#line 2163 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 139:
-#line 887 "pgscript/pgsParser.yy"
+#line 891 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("SET %s[%s][%s] = %s"),
-											(yysemantic_stack_[(9) - (1)].str)->c_str(), (yysemantic_stack_[(9) - (3)].expr)->value().c_str(),
-											(yysemantic_stack_[(9) - (6)].expr)->value().c_str(), (yysemantic_stack_[(9) - (9)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsExpressionStmt(pnew pgsAssignToRecord(*((yysemantic_stack_[(9) - (1)].str)),
-											(yysemantic_stack_[(9) - (3)].expr), (yysemantic_stack_[(9) - (6)].expr), (yysemantic_stack_[(9) - (9)].expr)), &(driver.thread));
+											(yystack_[8].value.str)->c_str(), (yystack_[6].value.expr)->value(),
+											(yystack_[3].value.expr)->value(), (yystack_[0].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsExpressionStmt(pnew pgsAssignToRecord(*((yystack_[8].value.str)),
+											(yystack_[6].value.expr), (yystack_[3].value.expr), (yystack_[0].value.expr)), &(driver.thread));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); // $3 & $6 & $9
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
-									pdelete((yysemantic_stack_[(9) - (1)].str));
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
+									pdelete((yystack_[8].value.str));
+								}
+#line 2182 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 140:
-#line 902 "pgscript/pgsParser.yy"
+#line 906 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("SET %s = %s"), (yysemantic_stack_[(3) - (1)].str)->c_str(),
-											(yysemantic_stack_[(3) - (3)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yysemantic_stack_[(3) - (1)].str)), (yysemantic_stack_[(3) - (3)].expr)),
+									wxLogScriptVerbose(wxT("SET %s = %s"), (yystack_[2].value.str)->c_str(),
+											(yystack_[0].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsExpressionStmt(pnew pgsAssign(*((yystack_[2].value.str)), (yystack_[0].value.expr)),
 											&(driver.thread));
 									driver.context.pop_var(); // $3
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
-									pdelete((yysemantic_stack_[(3) - (1)].str));
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
+									pdelete((yystack_[2].value.str));
+								}
+#line 2199 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 141:
-#line 918 "pgscript/pgsParser.yy"
+#line 922 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("IF %s"), (yysemantic_stack_[(3) - (2)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsIfStmt((yysemantic_stack_[(3) - (2)].expr), (yysemantic_stack_[(3) - (3)].stmt), driver.context
+									wxLogScriptVerbose(wxT("IF %s"), (yystack_[1].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsIfStmt((yystack_[1].value.expr), (yystack_[0].value.stmt), driver.context
 											.stmt_list(&(driver.thread)), &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
 									driver.context.pop_stmt(); // stmt_list
-									driver.context.push_stmt((yyval.stmt)); // pgsIfStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsIfStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2215 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 142:
-#line 930 "pgscript/pgsParser.yy"
+#line 934 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("IF %s"), (yysemantic_stack_[(5) - (2)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsIfStmt((yysemantic_stack_[(5) - (2)].expr), (yysemantic_stack_[(5) - (3)].stmt), (yysemantic_stack_[(5) - (5)].stmt), &(driver.thread));
+									wxLogScriptVerbose(wxT("IF %s"), (yystack_[3].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsIfStmt((yystack_[3].value.expr), (yystack_[2].value.stmt), (yystack_[0].value.stmt), &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
 									driver.context.pop_stmt(); // $5
-									driver.context.push_stmt((yyval.stmt)); // pgsIfStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsIfStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2230 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 143:
-#line 944 "pgscript/pgsParser.yy"
+#line 948 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("WHILE %s"), (yysemantic_stack_[(3) - (2)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsWhileStmt((yysemantic_stack_[(3) - (2)].expr), (yysemantic_stack_[(3) - (3)].stmt), &(driver.thread));
+									wxLogScriptVerbose(wxT("WHILE %s"), (yystack_[1].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsWhileStmt((yystack_[1].value.expr), (yystack_[0].value.stmt), &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
-									driver.context.push_stmt((yyval.stmt)); // pgsWhileStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsWhileStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2244 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 144:
-#line 956 "pgscript/pgsParser.yy"
+#line 960 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("BREAK"));
-									
-									(yyval.stmt) = pnew pgsBreakStmt(&(driver.thread));
-									driver.context.push_stmt((yyval.stmt)); // pgsBreakStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+
+									(yylhs.value.stmt) = pnew pgsBreakStmt(&(driver.thread));
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsBreakStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2256 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 145:
-#line 963 "pgscript/pgsParser.yy"
+#line 967 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("RETURN"));
-									
-									(yyval.stmt) = pnew pgsBreakStmt(&(driver.thread));
-									driver.context.push_stmt((yyval.stmt)); // pgsBreakStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+
+									(yylhs.value.stmt) = pnew pgsBreakStmt(&(driver.thread));
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsBreakStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2268 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 146:
-#line 970 "pgscript/pgsParser.yy"
+#line 974 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
 									wxLogScriptVerbose(wxT("CONTINUE"));
-									
-									(yyval.stmt) = pnew pgsContinueStmt(&(driver.thread));
-									driver.context.push_stmt((yyval.stmt)); // pgsContinueStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+
+									(yylhs.value.stmt) = pnew pgsContinueStmt(&(driver.thread));
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsContinueStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2280 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 147:
-#line 981 "pgscript/pgsParser.yy"
+#line 985 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("PRINT %s"), (yysemantic_stack_[(2) - (2)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsPrintStmt((yysemantic_stack_[(2) - (2)].expr), driver.context.m_cout,
+									wxLogScriptVerbose(wxT("PRINT %s"), (yystack_[0].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsPrintStmt((yystack_[0].value.expr), driver.context.m_cout,
 											&(driver.thread));
 									driver.context.pop_var(); // $2
-									driver.context.push_stmt((yyval.stmt)); // pgsPrintStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsPrintStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2294 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 148:
-#line 991 "pgscript/pgsParser.yy"
+#line 995 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("ASSERT %s"), (yysemantic_stack_[(2) - (2)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsAssertStmt((yysemantic_stack_[(2) - (2)].expr), &(driver.thread));
+									wxLogScriptVerbose(wxT("ASSERT %s"), (yystack_[0].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsAssertStmt((yystack_[0].value.expr), &(driver.thread));
 									driver.context.pop_var(); // $2
-									driver.context.push_stmt((yyval.stmt)); // pgsAssertStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsAssertStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+								}
+#line 2307 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 149:
-#line 1000 "pgscript/pgsParser.yy"
+#line 1004 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									wxLogScriptVerbose(wxT("RMLINE %s[%s]"), (yysemantic_stack_[(7) - (3)].str)->c_str(),
-											(yysemantic_stack_[(7) - (5)].expr)->value().c_str());
-									
-									(yyval.stmt) = pnew pgsExpressionStmt(pnew pgsRemoveLine(*((yysemantic_stack_[(7) - (3)].str)), (yysemantic_stack_[(7) - (5)].expr)),
+									wxLogScriptVerbose(wxT("RMLINE %s[%s]"), (yystack_[4].value.str)->c_str(),
+											(yystack_[2].value.expr)->value());
+
+									(yylhs.value.stmt) = pnew pgsExpressionStmt(pnew pgsRemoveLine(*((yystack_[4].value.str)), (yystack_[2].value.expr)),
 											&(driver.thread));
 									driver.context.pop_var(); // $5
-									driver.context.push_stmt((yyval.stmt)); // pgsExpressionStmt
-									(yyval.stmt)->set_position(yyloc.begin.line);
-									
-									pdelete((yysemantic_stack_[(7) - (3)].str));
-								;}
+									driver.context.push_stmt((yylhs.value.stmt)); // pgsExpressionStmt
+									(yylhs.value.stmt)->set_position(yyla.location.begin.line);
+
+									pdelete((yystack_[4].value.str));
+								}
+#line 2324 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 150:
-#line 1015 "pgscript/pgsParser.yy"
+#line 1019 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									driver.context.add_column(*(yysemantic_stack_[(1) - (1)].str));
-									pdelete((yysemantic_stack_[(1) - (1)].str));
-								;}
+									driver.context.add_column(*(yystack_[0].value.str));
+									pdelete((yystack_[0].value.str));
+								}
+#line 2333 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 151:
-#line 1020 "pgscript/pgsParser.yy"
+#line 1024 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									driver.context.add_column(*(yysemantic_stack_[(3) - (3)].str));
-									pdelete((yysemantic_stack_[(3) - (3)].str));
-								;}
+									driver.context.add_column(*(yystack_[0].value.str));
+									pdelete((yystack_[0].value.str));
+								}
+#line 2342 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
   case 153:
-#line 1028 "pgscript/pgsParser.yy"
+#line 1032 "pgscript/pgsParser.yy" // lalr1.cc:859
     {
-									driver.program.eval((yysemantic_stack_[(2) - (1)].stmt_list));
-									
+									driver.program.eval((yystack_[1].value.stmt_list));
+
 									driver.context.pop_stmt();
-									pdelete((yysemantic_stack_[(2) - (1)].stmt_list)); // delete root statement $1
-								;}
+									pdelete((yystack_[1].value.stmt_list)); // delete root statement $1
+								}
+#line 2353 "pgscript/parser.tab.cc" // lalr1.cc:859
     break;
 
 
-    /* Line 675 of lalr1.cc.  */
-#line 1866 "pgscript/parser.tab.cc"
-	default: break;
-      }
-    YY_SYMBOL_PRINT ("-> $$ =", yyr1_[yyn], &yyval, &yyloc);
+#line 2357 "pgscript/parser.tab.cc" // lalr1.cc:859
+            default:
+              break;
+            }
+        }
+      catch (const syntax_error& yyexc)
+        {
+          error (yyexc);
+          YYERROR;
+        }
+      YY_SYMBOL_PRINT ("-> $$ =", yylhs);
+      yypop_ (yylen);
+      yylen = 0;
+      YY_STACK_PRINT ();
 
-    yypop_ (yylen);
-    yylen = 0;
-    YY_STACK_PRINT ();
-
-    yysemantic_stack_.push (yyval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the result of the reduction.  */
-    yyn = yyr1_[yyn];
-    yystate = yypgoto_[yyn - yyntokens_] + yystate_stack_[0];
-    if (0 <= yystate && yystate <= yylast_
-	&& yycheck_[yystate] == yystate_stack_[0])
-      yystate = yytable_[yystate];
-    else
-      yystate = yydefgoto_[yyn - yyntokens_];
+      // Shift the result of the reduction.
+      yypush_ (YY_NULLPTR, yylhs);
+    }
     goto yynewstate;
 
-  /*------------------------------------.
-  | yyerrlab -- here on detecting error |
-  `------------------------------------*/
+  /*--------------------------------------.
+  | yyerrlab -- here on detecting error.  |
+  `--------------------------------------*/
   yyerrlab:
-    /* If not already recovering from an error, report this error.  */
+    // If not already recovering from an error, report this error.
     if (!yyerrstatus_)
       {
-	++yynerrs_;
-	error (yylloc, yysyntax_error_ (yystate, yytoken));
+        ++yynerrs_;
+        error (yyla.location, yysyntax_error_ (yystack_[0].state, yyla));
       }
 
-    yyerror_range[0] = yylloc;
+
+    yyerror_range[1].location = yyla.location;
     if (yyerrstatus_ == 3)
       {
-	/* If just tried and failed to reuse look-ahead token after an
-	 error, discard it.  */
+        /* If just tried and failed to reuse lookahead token after an
+           error, discard it.  */
 
-	if (yychar <= yyeof_)
-	  {
-	  /* Return failure if at end of input.  */
-	  if (yychar == yyeof_)
-	    YYABORT;
-	  }
-	else
-	  {
-	    yydestruct_ ("Error: discarding", yytoken, &yylval, &yylloc);
-	    yychar = yyempty_;
-	  }
+        // Return failure if at end of input.
+        if (yyla.type_get () == yyeof_)
+          YYABORT;
+        else if (!yyla.empty ())
+          {
+            yy_destroy_ ("Error: discarding", yyla);
+            yyla.clear ();
+          }
       }
 
-    /* Else will try to reuse look-ahead token after shifting the error
-       token.  */
+    // Else will try to reuse lookahead token after shifting the error token.
     goto yyerrlab1;
 
 
@@ -1934,151 +2420,207 @@ namespace pgscript
        code.  */
     if (false)
       goto yyerrorlab;
-
-    yyerror_range[0] = yylocation_stack_[yylen - 1];
-    /* Do not reclaim the symbols of the rule which action triggered
+    yyerror_range[1].location = yystack_[yylen - 1].location;
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYERROR.  */
     yypop_ (yylen);
     yylen = 0;
-    yystate = yystate_stack_[0];
     goto yyerrlab1;
 
   /*-------------------------------------------------------------.
   | yyerrlab1 -- common code for both syntax error and YYERROR.  |
   `-------------------------------------------------------------*/
   yyerrlab1:
-    yyerrstatus_ = 3;	/* Each real token shifted decrements this.  */
+    yyerrstatus_ = 3;   // Each real token shifted decrements this.
+    {
+      stack_symbol_type error_token;
+      for (;;)
+        {
+          yyn = yypact_[yystack_[0].state];
+          if (!yy_pact_value_is_default_ (yyn))
+            {
+              yyn += yyterror_;
+              if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
+                {
+                  yyn = yytable_[yyn];
+                  if (0 < yyn)
+                    break;
+                }
+            }
 
-    for (;;)
-      {
-	yyn = yypact_[yystate];
-	if (yyn != yypact_ninf_)
-	{
-	  yyn += yyterror_;
-	  if (0 <= yyn && yyn <= yylast_ && yycheck_[yyn] == yyterror_)
-	    {
-	      yyn = yytable_[yyn];
-	      if (0 < yyn)
-		break;
-	    }
-	}
+          // Pop the current state because it cannot handle the error token.
+          if (yystack_.size () == 1)
+            YYABORT;
 
-	/* Pop the current state because it cannot handle the error token.  */
-	if (yystate_stack_.height () == 1)
-	YYABORT;
+          yyerror_range[1].location = yystack_[0].location;
+          yy_destroy_ ("Error: popping", yystack_[0]);
+          yypop_ ();
+          YY_STACK_PRINT ();
+        }
 
-	yyerror_range[0] = yylocation_stack_[0];
-	yydestruct_ ("Error: popping",
-		     yystos_[yystate],
-		     &yysemantic_stack_[0], &yylocation_stack_[0]);
-	yypop_ ();
-	yystate = yystate_stack_[0];
-	YY_STACK_PRINT ();
-      }
+      yyerror_range[2].location = yyla.location;
+      YYLLOC_DEFAULT (error_token.location, yyerror_range, 2);
 
-    if (yyn == yyfinal_)
-      goto yyacceptlab;
-
-    yyerror_range[1] = yylloc;
-    // Using YYLLOC is tempting, but would change the location of
-    // the look-ahead.  YYLOC is available though.
-    YYLLOC_DEFAULT (yyloc, (yyerror_range - 1), 2);
-    yysemantic_stack_.push (yylval);
-    yylocation_stack_.push (yyloc);
-
-    /* Shift the error token.  */
-    YY_SYMBOL_PRINT ("Shifting", yystos_[yyn],
-		   &yysemantic_stack_[0], &yylocation_stack_[0]);
-
-    yystate = yyn;
+      // Shift the error token.
+      error_token.state = yyn;
+      yypush_ ("Shifting", error_token);
+    }
     goto yynewstate;
 
-    /* Accept.  */
+    // Accept.
   yyacceptlab:
     yyresult = 0;
     goto yyreturn;
 
-    /* Abort.  */
+    // Abort.
   yyabortlab:
     yyresult = 1;
     goto yyreturn;
 
   yyreturn:
-    if (yychar != yyeof_ && yychar != yyempty_)
-      yydestruct_ ("Cleanup: discarding lookahead", yytoken, &yylval, &yylloc);
+    if (!yyla.empty ())
+      yy_destroy_ ("Cleanup: discarding lookahead", yyla);
 
-    /* Do not reclaim the symbols of the rule which action triggered
+    /* Do not reclaim the symbols of the rule whose action triggered
        this YYABORT or YYACCEPT.  */
     yypop_ (yylen);
-    while (yystate_stack_.height () != 1)
+    while (1 < yystack_.size ())
       {
-	yydestruct_ ("Cleanup: popping",
-		   yystos_[yystate_stack_[0]],
-		   &yysemantic_stack_[0],
-		   &yylocation_stack_[0]);
-	yypop_ ();
+        yy_destroy_ ("Cleanup: popping", yystack_[0]);
+        yypop_ ();
       }
 
     return yyresult;
   }
+    catch (...)
+      {
+        YYCDEBUG << "Exception caught: cleaning lookahead and stack"
+                 << std::endl;
+        // Do not try to display the values of the reclaimed symbols,
+        // as their printer might throw an exception.
+        if (!yyla.empty ())
+          yy_destroy_ (YY_NULLPTR, yyla);
+
+        while (1 < yystack_.size ())
+          {
+            yy_destroy_ (YY_NULLPTR, yystack_[0]);
+            yypop_ ();
+          }
+        throw;
+      }
+  }
+
+  void
+  pgsParser::error (const syntax_error& yyexc)
+  {
+    error (yyexc.location, yyexc.what());
+  }
 
   // Generate an error message.
   std::string
-  pgsParser::yysyntax_error_ (int yystate, int tok)
+  pgsParser::yysyntax_error_ (state_type yystate, const symbol_type& yyla) const
   {
-    std::string res;
-    YYUSE (yystate);
-#if YYERROR_VERBOSE
-    int yyn = yypact_[yystate];
-    if (yypact_ninf_ < yyn && yyn <= yylast_)
+    // Number of reported tokens (one for the "unexpected", one per
+    // "expected").
+    size_t yycount = 0;
+    // Its maximum.
+    enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
+    // Arguments of yyformat.
+    char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+
+    /* There are many possibilities here to consider:
+       - If this state is a consistent state with a default action, then
+         the only way this function was invoked is if the default action
+         is an error action.  In that case, don't check for expected
+         tokens because there are none.
+       - The only way there can be no lookahead present (in yyla) is
+         if this state is a consistent state with a default action.
+         Thus, detecting the absence of a lookahead is sufficient to
+         determine that there is no unexpected or expected token to
+         report.  In that case, just report a simple "syntax error".
+       - Don't assume there isn't a lookahead just because this state is
+         a consistent state with a default action.  There might have
+         been a previous inconsistent state, consistent state with a
+         non-default action, or user semantic action that manipulated
+         yyla.  (However, yyla is currently not documented for users.)
+       - Of course, the expected token list depends on states to have
+         correct lookahead information, and it depends on the parser not
+         to perform extra reductions after fetching a lookahead from the
+         scanner and before detecting a syntax error.  Thus, state
+         merging (from LALR or IELR) and default reductions corrupt the
+         expected token list.  However, the list is correct for
+         canonical LR with one exception: it will still contain any
+         token that will not be accepted due to an error action in a
+         later state.
+    */
+    if (!yyla.empty ())
       {
-	/* Start YYX at -YYN if negative to avoid negative indexes in
-	   YYCHECK.  */
-	int yyxbegin = yyn < 0 ? -yyn : 0;
-
-	/* Stay within bounds of both yycheck and yytname.  */
-	int yychecklim = yylast_ - yyn + 1;
-	int yyxend = yychecklim < yyntokens_ ? yychecklim : yyntokens_;
-	int count = 0;
-	for (int x = yyxbegin; x < yyxend; ++x)
-	  if (yycheck_[x + yyn] == x && x != yyterror_)
-	    ++count;
-
-	// FIXME: This method of building the message is not compatible
-	// with internationalization.  It should work like yacc.c does it.
-	// That is, first build a string that looks like this:
-	// "syntax error, unexpected %s or %s or %s"
-	// Then, invoke YY_ on this string.
-	// Finally, use the string as a format to output
-	// yytname_[tok], etc.
-	// Until this gets fixed, this message appears in English only.
-	res = "syntax error, unexpected ";
-	res += yytnamerr_ (yytname_[tok]);
-	if (count < 5)
-	  {
-	    count = 0;
-	    for (int x = yyxbegin; x < yyxend; ++x)
-	      if (yycheck_[x + yyn] == x && x != yyterror_)
-		{
-		  res += (!count++) ? ", expecting " : " or ";
-		  res += yytnamerr_ (yytname_[x]);
-		}
-	  }
+        int yytoken = yyla.type_get ();
+        yyarg[yycount++] = yytname_[yytoken];
+        int yyn = yypact_[yystate];
+        if (!yy_pact_value_is_default_ (yyn))
+          {
+            /* Start YYX at -YYN if negative to avoid negative indexes in
+               YYCHECK.  In other words, skip the first -YYN actions for
+               this state because they are default actions.  */
+            int yyxbegin = yyn < 0 ? -yyn : 0;
+            // Stay within bounds of both yycheck and yytname.
+            int yychecklim = yylast_ - yyn + 1;
+            int yyxend = yychecklim < yyntokens_ ? yychecklim : yyntokens_;
+            for (int yyx = yyxbegin; yyx < yyxend; ++yyx)
+              if (yycheck_[yyx + yyn] == yyx && yyx != yyterror_
+                  && !yy_table_value_is_error_ (yytable_[yyx + yyn]))
+                {
+                  if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+                    {
+                      yycount = 1;
+                      break;
+                    }
+                  else
+                    yyarg[yycount++] = yytname_[yyx];
+                }
+          }
       }
-    else
-#endif
-      res = YY_("syntax error");
-    return res;
+
+    char const* yyformat = YY_NULLPTR;
+    switch (yycount)
+      {
+#define YYCASE_(N, S)                         \
+        case N:                               \
+          yyformat = S;                       \
+        break
+        YYCASE_(0, YY_("syntax error"));
+        YYCASE_(1, YY_("syntax error, unexpected %s"));
+        YYCASE_(2, YY_("syntax error, unexpected %s, expecting %s"));
+        YYCASE_(3, YY_("syntax error, unexpected %s, expecting %s or %s"));
+        YYCASE_(4, YY_("syntax error, unexpected %s, expecting %s or %s or %s"));
+        YYCASE_(5, YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s"));
+#undef YYCASE_
+      }
+
+    std::string yyres;
+    // Argument number.
+    size_t yyi = 0;
+    for (char const* yyp = yyformat; *yyp; ++yyp)
+      if (yyp[0] == '%' && yyp[1] == 's' && yyi < yycount)
+        {
+          yyres += yytnamerr_ (yyarg[yyi++]);
+          ++yyp;
+        }
+      else
+        yyres += *yyp;
+    return yyres;
   }
 
 
-  /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
-     STATE-NUM.  */
   const signed char pgsParser::yypact_ninf_ = -93;
+
+  const signed char pgsParser::yytable_ninf_ = -1;
+
   const short int
   pgsParser::yypact_[] =
   {
-       284,   -93,     6,   -93,   -93,   -93,     6,   453,     6,     6,
+     284,   -93,     6,   -93,   -93,   -93,     6,   453,     6,     6,
      -88,   -76,   -61,   -93,   -93,   -93,   -93,   -93,   -93,   -93,
      -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,
      -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,   -93,
@@ -2111,13 +2653,10 @@ namespace pgscript
        6,   -93,   -93,   -93,   -93,   -93,   -93,   126,   -93
   };
 
-  /* YYDEFACT[S] -- default rule to reduce with in state S when YYTABLE
-     doesn't specify something else to do.  Zero means the default is an
-     error.  */
   const unsigned char
   pgsParser::yydefact_[] =
   {
-         0,   152,     0,   144,   145,   146,     0,     0,     0,     0,
+       0,   152,     0,   144,   145,   146,     0,     0,     0,     0,
        0,     0,     0,    86,    87,    88,    89,    90,    91,    92,
       93,    94,    95,    96,    97,    98,    99,   100,   101,   102,
      103,   104,   105,   106,   107,   108,   109,   110,   111,   112,
@@ -2150,34 +2689,28 @@ namespace pgscript
        0,    53,    59,    62,    65,    68,    71,     0,    50
   };
 
-  /* YYPGOTO[NTERM-NUM].  */
   const short int
   pgsParser::yypgoto_[] =
   {
-       -93,   -93,   -93,   -29,   -93,   -92,    -3,   -83,    28,    59,
+     -93,   -93,   -93,   -29,   -93,   -92,    -3,   -83,    28,    59,
      -93,    -6,   -93,   -57,   175,   -93,   -93,    58,   -93,   -93,
      -93,    33,   -93,   -93,    60,   -93,   -93,   -93,   -93,   -93,
      -93
   };
 
-  /* YYDEFGOTO[NTERM-NUM].  */
   const short int
   pgsParser::yydefgoto_[] =
   {
-        -1,    91,    92,    93,   228,    94,    95,    96,    97,    98,
+      -1,    91,    92,    93,   228,    94,    95,    96,    97,    98,
       99,   100,   101,    57,    58,    59,    60,    61,    62,    63,
      112,   113,    64,   109,   110,    65,    66,    67,    68,   201,
       69
   };
 
-  /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
-     positive, shift that token.  If negative, reduce the rule which
-     number is the opposite.  If zero, do what YYDEFACT says.  */
-  const signed char pgsParser::yytable_ninf_ = -1;
   const unsigned short int
   pgsParser::yytable_[] =
   {
-       102,   115,   105,   106,   107,    70,    71,    72,   159,    73,
+     102,   115,   105,   106,   107,    70,    71,    72,   159,    73,
      108,    74,    75,    76,    77,    78,    79,    80,    81,    82,
      144,   145,    70,    71,    72,   111,    73,    83,    74,    75,
       76,    77,    78,    79,    80,    81,    82,   116,   146,   147,
@@ -2258,11 +2791,10 @@ namespace pgscript
        0,    88,     0,    89,    90
   };
 
-  /* YYCHECK.  */
   const short int
   pgsParser::yycheck_[] =
   {
-         6,    58,     8,     9,    92,    16,    17,    18,    33,    20,
+       6,    58,     8,     9,    92,    16,    17,    18,    33,    20,
       86,    22,    23,    24,    25,    26,    27,    28,    29,    30,
       94,    95,    16,    17,    18,    86,    20,    38,    22,    23,
       24,    25,    26,    27,    28,    29,    30,   102,    31,    32,
@@ -2343,12 +2875,10 @@ namespace pgscript
       -1,    92,    -1,    94,    95
   };
 
-  /* STOS_[STATE-NUM] -- The (internal number of the) accessing
-     symbol of state STATE-NUM.  */
   const unsigned char
   pgsParser::yystos_[] =
   {
-         0,     0,     3,     4,     5,     6,     7,    11,    13,    14,
+       0,     0,     3,     4,     5,     6,     7,    11,    13,    14,
       19,    40,    41,    42,    43,    44,    45,    46,    47,    48,
       49,    50,    51,    52,    53,    54,    55,    56,    57,    58,
       59,    60,    61,    62,    63,    64,    65,    66,    67,    68,
@@ -2381,31 +2911,10 @@ namespace pgscript
      101,    93,    93,    93,    93,    93,    93,   116,    93
   };
 
-#if YYDEBUG
-  /* TOKEN_NUMBER_[YYLEX-NUM] -- Internal symbol number corresponding
-     to YYLEX-NUM.  */
-  const unsigned short int
-  pgsParser::yytoken_number_[] =
-  {
-         0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
-     285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
-     305,   306,   307,   308,   309,   310,   311,   312,   313,   314,
-     315,   316,   317,   318,   319,   320,   321,   322,   323,   324,
-     325,   326,   327,   328,   329,   330,   331,   332,   333,   334,
-     335,   336,   337,   338,   339,   340,   341,   342,   343,   344,
-      91,    93,    40,    41,    43,    45,    42,    47,    37,    60,
-      62,    44,    59,   123,   125
-  };
-#endif
-
-  /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
   const unsigned char
   pgsParser::yyr1_[] =
   {
-         0,   105,   106,   106,   106,   106,   106,   106,   106,   106,
+       0,   105,   106,   106,   106,   106,   106,   106,   106,   106,
      106,   106,   106,   106,   107,   107,   107,   107,   108,   108,
      109,   109,   109,   109,   110,   110,   110,   110,   111,   111,
      111,   112,   112,   112,   112,   112,   113,   113,   113,   113,
@@ -2423,11 +2932,10 @@ namespace pgscript
      134,   134,   135,   135
   };
 
-  /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
   const unsigned char
   pgsParser::yyr2_[] =
   {
-         0,     2,     7,     4,     4,     4,     4,     1,     1,     1,
+       0,     2,     7,     4,     4,     4,     4,     1,     1,     1,
        1,     3,     1,     3,     1,     2,     2,     2,     1,     6,
        1,     1,     1,     1,     1,     3,     3,     3,     1,     3,
        3,     1,     3,     3,     3,     3,     1,     3,     3,     3,
@@ -2445,13 +2953,14 @@ namespace pgscript
        1,     3,     1,     2
   };
 
-#if YYDEBUG || YYERROR_VERBOSE || YYTOKEN_TABLE
-  /* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
-     First, the terminals, then, starting at \a yyntokens_, nonterminals.  */
+
+
+  // YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
+  // First, the terminals, then, starting at \a yyntokens_, nonterminals.
   const char*
   const pgsParser::yytname_[] =
   {
-    "\"END OF FILE\"", "error", "$undefined", "\"WHILE\"", "\"BREAK\"",
+  "\"END OF FILE\"", "error", "$undefined", "\"WHILE\"", "\"BREAK\"",
   "\"RETURN\"", "\"CONTINUE\"", "\"IF\"", "\"ELSE\"", "\"WAITFOR\"",
   "\"AS\"", "\"BEGIN (BLOCK)\"", "\"END (BLOCK)\"", "\"ASSERT\"",
   "\"PRINT\"", "\"LOG\"", "\"COLUMNS\"", "\"LINES\"", "\"TRIM\"",
@@ -2480,120 +2989,29 @@ namespace pgscript
   "declaration_list", "declaration_element", "assign_statement",
   "assign_list", "assign_element", "selection_statement",
   "iteration_statement", "jump_statement", "procedure_statement",
-  "record_declaration_list", "translation_unit", 0
+  "record_declaration_list", "translation_unit", YY_NULLPTR
   };
-#endif
 
 #if YYDEBUG
-  /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
-  const pgsParser::rhs_number_type
-  pgsParser::yyrhs_[] =
-  {
-       135,     0,    -1,    86,    90,   116,    91,    90,   116,    91,
-      -1,    86,    90,   116,    91,    -1,    17,    92,    86,    93,
-      -1,    16,    92,    86,    93,    -1,    18,    92,   116,    93,
-      -1,    86,    -1,    87,    -1,    88,    -1,    89,    -1,    92,
-      77,    93,    -1,   117,    -1,    92,   116,    93,    -1,   106,
-      -1,    94,   108,    -1,    95,   108,    -1,    38,   108,    -1,
-     107,    -1,    20,    92,   108,    10,   109,    93,    -1,    22,
-      -1,    23,    -1,    24,    -1,    21,    -1,   108,    -1,   110,
-      96,   108,    -1,   110,    97,   108,    -1,   110,    98,   108,
-      -1,   110,    -1,   111,    94,   110,    -1,   111,    95,   110,
-      -1,   111,    -1,   112,    99,   111,    -1,   112,   100,   111,
-      -1,   112,    31,   111,    -1,   112,    32,   111,    -1,   112,
-      -1,   113,    33,   112,    -1,   113,    34,   112,    -1,   113,
-      35,   112,    -1,   113,    -1,   114,    36,   113,    -1,   114,
-      -1,   115,    37,   114,    -1,   115,    -1,    22,    92,   116,
-     101,   116,    93,    -1,    22,    92,   116,   101,   116,   101,
-     116,    93,    -1,    22,    92,   116,   101,   116,   101,   116,
-     101,   116,    93,    -1,    23,    92,   116,   101,   116,   101,
-     116,    93,    -1,    23,    92,   116,   101,   116,   101,   116,
-     101,   116,    93,    -1,    23,    92,   116,   101,   116,   101,
-     116,   101,   116,   101,   116,    93,    -1,    24,    92,   116,
-     101,   116,    93,    -1,    24,    92,   116,   101,   116,   101,
-     116,    93,    -1,    24,    92,   116,   101,   116,   101,   116,
-     101,   116,    93,    -1,    25,    92,   116,    93,    -1,    25,
-      92,   116,   101,   116,    93,    -1,    26,    92,   116,    93,
-      -1,    26,    92,   116,   101,   116,    93,    -1,    26,    92,
-     116,   101,   116,   101,   116,    93,    -1,    26,    92,   116,
-     101,   116,   101,   116,   101,   116,    93,    -1,    27,    92,
-     116,   101,   116,    93,    -1,    27,    92,   116,   101,   116,
-     101,   116,    93,    -1,    27,    92,   116,   101,   116,   101,
-     116,   101,   116,    93,    -1,    28,    92,   116,   101,   116,
-      93,    -1,    28,    92,   116,   101,   116,   101,   116,    93,
-      -1,    28,    92,   116,   101,   116,   101,   116,   101,   116,
-      93,    -1,    29,    92,   116,   101,   116,    93,    -1,    29,
-      92,   116,   101,   116,   101,   116,    93,    -1,    29,    92,
-     116,   101,   116,   101,   116,   101,   116,    93,    -1,    30,
-      92,   116,   101,   116,    93,    -1,    30,    92,   116,   101,
-     116,   101,   116,    93,    -1,    30,    92,   116,   101,   116,
-     101,   116,   101,   116,    93,    -1,   120,    -1,   130,    -1,
-     131,    -1,   121,   102,    -1,   133,   102,    -1,   132,   102,
-      -1,   124,   102,    -1,   127,   102,    -1,   118,    -1,   119,
-     118,    -1,    11,    12,    -1,    11,   119,    12,    -1,   122,
-      -1,   123,    -1,    42,    -1,    43,    -1,    44,    -1,    45,
-      -1,    46,    -1,    47,    -1,    48,    -1,    49,    -1,    50,
-      -1,    51,    -1,    52,    -1,    53,    -1,    54,    -1,    55,
-      -1,    56,    -1,    57,    -1,    58,    -1,    59,    -1,    60,
-      -1,    61,    -1,    62,    -1,    63,    -1,    64,    -1,    65,
-      -1,    66,    -1,    67,    -1,    68,    -1,    69,    -1,    70,
-      -1,    71,    -1,    72,    -1,    73,    -1,    74,    -1,    75,
-      -1,    76,    -1,    77,    -1,    78,    -1,    79,    -1,    80,
-      -1,    81,    -1,    82,    -1,    83,    -1,    84,    -1,    85,
-      -1,    41,   125,    -1,   126,    -1,   125,   101,   126,    -1,
-      86,    -1,    86,   103,   134,   104,    -1,    40,   128,    -1,
-     129,    -1,   128,   101,   129,    -1,    86,    33,   116,    -1,
-      86,    90,   116,    91,    90,   116,    91,    33,   116,    -1,
-      86,    33,   122,    -1,     7,   116,   118,    -1,     7,   116,
-     118,     8,   118,    -1,     3,   116,   118,    -1,     4,    -1,
-       5,    -1,     6,    -1,    14,   116,    -1,    13,   116,    -1,
-      19,    92,    86,    90,   116,    91,    93,    -1,    86,    -1,
-     134,   101,    86,    -1,     0,    -1,   119,     0,    -1
-  };
-
-  /* YYPRHS[YYN] -- Index of the first RHS symbol of rule number YYN in
-     YYRHS.  */
-  const unsigned short int
-  pgsParser::yyprhs_[] =
-  {
-         0,     0,     3,    11,    16,    21,    26,    31,    33,    35,
-      37,    39,    43,    45,    49,    51,    54,    57,    60,    62,
-      69,    71,    73,    75,    77,    79,    83,    87,    91,    93,
-      97,   101,   103,   107,   111,   115,   119,   121,   125,   129,
-     133,   135,   139,   141,   145,   147,   154,   163,   174,   183,
-     194,   207,   214,   223,   234,   239,   246,   251,   258,   267,
-     278,   285,   294,   305,   312,   321,   332,   339,   348,   359,
-     366,   375,   386,   388,   390,   392,   395,   398,   401,   404,
-     407,   409,   412,   415,   419,   421,   423,   425,   427,   429,
-     431,   433,   435,   437,   439,   441,   443,   445,   447,   449,
-     451,   453,   455,   457,   459,   461,   463,   465,   467,   469,
-     471,   473,   475,   477,   479,   481,   483,   485,   487,   489,
-     491,   493,   495,   497,   499,   501,   503,   505,   507,   509,
-     511,   514,   516,   520,   522,   527,   530,   532,   536,   540,
-     550,   554,   558,   564,   568,   570,   572,   574,   577,   580,
-     588,   590,   594,   596
-  };
-
-  /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
   const unsigned short int
   pgsParser::yyrline_[] =
   {
-         0,   267,   267,   274,   281,   287,   293,   299,   305,   311,
-     317,   323,   329,   330,   338,   339,   340,   345,   354,   355,
-     364,   365,   366,   367,   371,   372,   379,   386,   396,   397,
-     404,   414,   415,   422,   429,   436,   446,   447,   454,   461,
-     471,   472,   482,   483,   493,   500,   508,   515,   522,   531,
-     539,   547,   555,   562,   569,   575,   581,   589,   597,   604,
-     611,   619,   626,   633,   641,   648,   655,   663,   670,   677,
-     685,   693,   703,   704,   705,   706,   707,   708,   709,   710,
-     714,   719,   727,   731,   739,   749,   758,   759,   760,   761,
-     762,   763,   764,   765,   766,   767,   768,   769,   770,   771,
-     772,   773,   774,   775,   776,   777,   778,   779,   780,   781,
-     782,   783,   784,   785,   786,   787,   788,   789,   790,   791,
-     792,   793,   794,   795,   796,   797,   798,   799,   800,   801,
-     805,   812,   818,   827,   837,   852,   859,   864,   873,   886,
-     901,   917,   929,   943,   956,   963,   970,   980,   990,   999,
-    1015,  1019,  1027,  1028
+       0,   271,   271,   278,   285,   291,   297,   303,   309,   315,
+     321,   327,   333,   334,   342,   343,   344,   349,   358,   359,
+     368,   369,   370,   371,   375,   376,   383,   390,   400,   401,
+     408,   418,   419,   426,   433,   440,   450,   451,   458,   465,
+     475,   476,   486,   487,   497,   504,   512,   519,   526,   535,
+     543,   551,   559,   566,   573,   579,   585,   593,   601,   608,
+     615,   623,   630,   637,   645,   652,   659,   667,   674,   681,
+     689,   697,   707,   708,   709,   710,   711,   712,   713,   714,
+     718,   723,   731,   735,   743,   753,   762,   763,   764,   765,
+     766,   767,   768,   769,   770,   771,   772,   773,   774,   775,
+     776,   777,   778,   779,   780,   781,   782,   783,   784,   785,
+     786,   787,   788,   789,   790,   791,   792,   793,   794,   795,
+     796,   797,   798,   799,   800,   801,   802,   803,   804,   805,
+     809,   816,   822,   831,   841,   856,   863,   868,   877,   890,
+     905,   921,   933,   947,   960,   967,   974,   984,   994,  1003,
+    1019,  1023,  1031,  1032
   };
 
   // Print the state stack on the debug stream.
@@ -2601,9 +3019,11 @@ namespace pgscript
   pgsParser::yystack_print_ ()
   {
     *yycdebug_ << "Stack now";
-    for (state_stack_type::const_iterator i = yystate_stack_.begin ();
-	 i != yystate_stack_.end (); ++i)
-      *yycdebug_ << ' ' << *i;
+    for (stack_type::const_iterator
+           i = yystack_.begin (),
+           i_end = yystack_.end ();
+         i != i_end; ++i)
+      *yycdebug_ << ' ' << i->state;
     *yycdebug_ << std::endl;
   }
 
@@ -2613,19 +3033,18 @@ namespace pgscript
   {
     unsigned int yylno = yyrline_[yyrule];
     int yynrhs = yyr2_[yyrule];
-    /* Print the symbols being reduced, and their result.  */
+    // Print the symbols being reduced, and their result.
     *yycdebug_ << "Reducing stack by rule " << yyrule - 1
-	       << " (line " << yylno << "), ";
-    /* The symbols being reduced.  */
+               << " (line " << yylno << "):" << std::endl;
+    // The symbols being reduced.
     for (int yyi = 0; yyi < yynrhs; yyi++)
       YY_SYMBOL_PRINT ("   $" << yyi + 1 << " =",
-		       yyrhs_[yyprhs_[yyrule] + yyi],
-		       &(yysemantic_stack_[(yynrhs) - (yyi + 1)]),
-		       &(yylocation_stack_[(yynrhs) - (yyi + 1)]));
+                       yystack_[(yynrhs) - (yyi + 1)]);
   }
 #endif // YYDEBUG
 
-  /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
+  // Symbol number corresponding to token number t.
+  inline
   pgsParser::token_number_type
   pgsParser::yytranslate_ (int t)
   {
@@ -2633,7 +3052,7 @@ namespace pgscript
     const token_number_type
     translate_table[] =
     {
-           0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+     0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,    98,     2,     2,
@@ -2669,27 +3088,21 @@ namespace pgscript
       75,    76,    77,    78,    79,    80,    81,    82,    83,    84,
       85,    86,    87,    88,    89
     };
-    if ((unsigned int) t <= yyuser_token_number_max_)
+    const unsigned int user_token_number_max_ = 344;
+    const token_number_type undef_token_ = 2;
+
+    if (static_cast<int>(t) <= yyeof_)
+      return yyeof_;
+    else if (static_cast<unsigned int> (t) <= user_token_number_max_)
       return translate_table[t];
     else
-      return yyundef_token_;
+      return undef_token_;
   }
 
-  const int pgsParser::yyeof_ = 0;
-  const int pgsParser::yylast_ = 784;
-  const int pgsParser::yynnts_ = 31;
-  const int pgsParser::yyempty_ = -2;
-  const int pgsParser::yyfinal_ = 121;
-  const int pgsParser::yyterror_ = 1;
-  const int pgsParser::yyerrcode_ = 256;
-  const int pgsParser::yyntokens_ = 105;
 
-  const unsigned int pgsParser::yyuser_token_number_max_ = 344;
-  const pgsParser::token_number_type pgsParser::yyundef_token_ = 2;
-
-} // namespace pgscript
-
-#line 1036 "pgscript/pgsParser.yy"
+} // pgscript
+#line 3100 "pgscript/parser.tab.cc" // lalr1.cc:1167
+#line 1040 "pgscript/pgsParser.yy" // lalr1.cc:1168
  /*** Additional Code ***/
 
 void pgscript::pgsParser::error(const pgsParser::location_type & l,
@@ -2700,4 +3113,3 @@ void pgscript::pgsParser::error(const pgsParser::location_type & l,
 	driver.context.clear_stacks();
 	driver.error(l, wxString(m.c_str(), wxConvUTF8));
 }
-

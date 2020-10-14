@@ -39,7 +39,9 @@ bool pgsDriver::parse_stream(std::istream &in)
 	this->lexer = &scanner;
 
 	pgsParser parser(*this);
+#if YYDEBUG
 	parser.set_debug_level(trace_parsing);
+#endif
 	return (parser.parse() == 0);
 }
 
@@ -55,7 +57,7 @@ bool pgsDriver::parse_file(const wxString &filename, wxMBConv &conv)
 	}
 	else
 	{
-		wxLogError(wxT("PGSCRIPT: File %s does not exist"), filename.c_str());
+		wxLogError(wxT("PGSCRIPT: File %s does not exist"), filename);
 		return false;
 	}
 }
@@ -73,8 +75,8 @@ void pgsDriver::error(const class location &l, const wxString &m)
 	thread.last_error_line(l.begin.line);
 	thread.LockOutput();
 	context.m_cout << PGSOUTERROR
-	               << wx_static_cast(const wxString, wxString(oss.str()
-	                                 .c_str(), wxConvUTF8)) << wxT(": ") << m << wxT("\n");
+	               << wx_static_cast(const wxString, wxString(oss.str().c_str()
+	                                 , wxConvUTF8)) << wxT(": ") << m << wxT("\n");
 	thread.UnlockOutput();
 }
 

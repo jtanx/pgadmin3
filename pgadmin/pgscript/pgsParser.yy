@@ -1,19 +1,23 @@
-%{ /*** C/C++ Declarations ***/
-	
-//////////////////////////////////////////////////////////////////////////
-//
-// pgScript - PostgreSQL Tools
-// 
-// Copyright (C) 2002 - 2016, The pgAdmin Development Team
-// This software is released under the PostgreSQL Licence
-//
-//////////////////////////////////////////////////////////////////////////
+%code requires {
 
 #include "pgscript/pgScript.h"
 #include "pgscript/statements/pgsStatements.h"
 #include "pgscript/expressions/pgsExpressions.h"
 #include "pgscript/objects/pgsObjects.h"
 #include "pgscript/utilities/pgsContext.h"
+
+}
+
+%{ /*** C/C++ Declarations ***/
+
+//////////////////////////////////////////////////////////////////////////
+//
+// pgScript - PostgreSQL Tools
+//
+// Copyright (C) 2002 - 2016, The pgAdmin Development Team
+// This software is released under the PostgreSQL Licence
+//
+//////////////////////////////////////////////////////////////////////////
 
 %}
 
@@ -32,10 +36,10 @@
 %skeleton "lalr1.cc"
 
 /* Namespace to enclose parser in */
-%name-prefix="pgscript"
+%name-prefix "pgscript"
 
 /* Set the parser's class identifier */
-%define "parser_class_name" "pgsParser"
+%define "parser_class_name" {pgsParser}
 
 /* Keep track of the current position within the input */
 %locations
@@ -262,7 +266,7 @@
 %}
 
 %% /*** Grammar Rules ***/
-	
+
 postfix_expression
 	: PGS_IDENTIFIER '[' expression ']' '[' expression ']'
 								{
@@ -358,7 +362,7 @@ cast_expression
 									driver.context.pop_var(); // $3
 									driver.context.push_var($$);
 								}
-	;	
+	;
 
 type_name
 	: PGS_INTEGER				{ $$ = pgscript::pgsParser::token::PGS_INTEGER; }
@@ -366,7 +370,7 @@ type_name
 	| PGS_STRING				{ $$ = pgscript::pgsParser::token::PGS_STRING; }
 	| PGS_RECORD				{ $$ = pgscript::pgsParser::token::PGS_RECORD; }
 	;
-	
+
 multiplicative_expression
 	: cast_expression			{ $$ = $1; }
 	| multiplicative_expression '*' cast_expression
@@ -391,7 +395,7 @@ multiplicative_expression
 									driver.context.push_var($$);
 								}
 	;
-	
+
 additive_expression
 	: multiplicative_expression	{ $$ = $1; }
 	| additive_expression '+' multiplicative_expression
@@ -491,13 +495,13 @@ logical_or_expression
 
 expression
 	: logical_or_expression		{
-									wxLogScriptVerbose(wxT("%s"), $1->value().c_str());
+									wxLogScriptVerbose(wxT("%s"), $1->value());
 									$$ = $1;
 								}
 	;
-	
+
 random_generator
-	: PGS_INTEGER '(' expression ',' expression ')' 
+	: PGS_INTEGER '(' expression ',' expression ')'
 								{
 									$$ = pnew pgsGenInt($3, $5, driver.context.zero(),
 											driver.context.seed());
@@ -718,11 +722,11 @@ statement_list
 								}
 	| statement_list statement	{
 									driver.context.pop_stmt(); // $2
-									$$ = $1;						
+									$$ = $1;
 									$$->insert_back($2);
 								}
 	;
-	
+
 compound_statement
 	: PGS_OPEN PGS_CLOSE		{
 									wxLogScriptVerbose(wxT("BEGIN END"));
@@ -734,17 +738,17 @@ compound_statement
 									$$ = $2;
 								}
 	;
-	
+
 sql_statement
 	: sql_expression			{
-									wxLogScriptVerbose(wxT("%s"), $1->value().c_str());
+									wxLogScriptVerbose(wxT("%s"), $1->value());
 									$$ = pnew pgsExpressionStmt($1, &(driver.thread));
 									driver.context.pop_var(); // $1
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	;
-	
+
 sql_expression
 	: sql_query 				{
 									$$ = pnew pgsExecute(*($1), &driver.context.m_cout,
@@ -753,7 +757,7 @@ sql_expression
 									driver.context.push_var($$); // pgsExecute
 								}
 	;
-	
+
 sql_query
 	: PGS_ABORT					{ $$ = $1; }
 	| PGS_ALTER					{ $$ = $1; }
@@ -800,14 +804,14 @@ sql_query
 	| PGS_VACUUM				{ $$ = $1; }
 	| PGS_VALUES				{ $$ = $1; }
 	;
-	
+
 declaration_statement
 	: PGS_DECLARE_ASSGN declaration_list
 								{
 									$$ = $2;
 								}
 	;
-	
+
 declaration_list
 	: declaration_element		{
 									driver.context.pop_stmt(); // $1
@@ -822,27 +826,27 @@ declaration_list
 									$$->insert_back($3);
 								}
 	;
-	
+
 declaration_element
 	: PGS_IDENTIFIER			{
 									wxLogScriptVerbose(wxT("DECLARE %s"), $1->c_str());
-									
+
 									$$ = pnew pgsExpressionStmt(pnew pgsAssign(*($1),
 											pnew pgsString(wxT(""))), &(driver.thread));
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									pdelete($1);
 								}
 	|  PGS_IDENTIFIER '{' record_declaration_list '}'
 								{
 									wxLogScriptVerbose(wxT("DECLARE %s"), $1->c_str());
-									
+
 									$$ = pnew pgsDeclareRecordStmt(*($1), driver.context.columns(),
 											&(driver.thread));
 									driver.context.push_stmt($$); // pgsDeclareRecordStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									driver.context.clear_columns();
 									pdelete($1);
 								}
@@ -873,42 +877,42 @@ assign_element
 	: PGS_IDENTIFIER PGS_EQ_OP expression
 								{
 									wxLogScriptVerbose(wxT("SET %s = %s"), $1->c_str(),
-											$3->value().c_str());
-									
+											$3->value());
+
 									$$ = pnew pgsExpressionStmt(pnew pgsAssign(*($1), $3),
 											&(driver.thread));
 									driver.context.pop_var(); // $3
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									pdelete($1);
 								}
 	| PGS_IDENTIFIER '[' expression ']' '[' expression ']' PGS_EQ_OP expression
 								{
 									wxLogScriptVerbose(wxT("SET %s[%s][%s] = %s"),
-											$1->c_str(), $3->value().c_str(),
-											$6->value().c_str(), $9->value().c_str());
-									
+											$1->c_str(), $3->value(),
+											$6->value(), $9->value());
+
 									$$ = pnew pgsExpressionStmt(pnew pgsAssignToRecord(*($1),
 											$3, $6, $9), &(driver.thread));
 									driver.context.pop_var(); driver.context.pop_var();
 									driver.context.pop_var(); // $3 & $6 & $9
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									pdelete($1);
 								}
 	| PGS_IDENTIFIER PGS_EQ_OP sql_expression
 								{
 									wxLogScriptVerbose(wxT("SET %s = %s"), $1->c_str(),
-											$3->value().c_str());
-									
+											$3->value());
+
 									$$ = pnew pgsExpressionStmt(pnew pgsAssign(*($1), $3),
 											&(driver.thread));
 									driver.context.pop_var(); // $3
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									pdelete($1);
 								}
 	;
@@ -916,101 +920,101 @@ assign_element
 selection_statement
 	: PGS_IF expression statement %prec PGS_ELSE
 								{
-									wxLogScriptVerbose(wxT("IF %s"), $2->value().c_str());
-									
+									wxLogScriptVerbose(wxT("IF %s"), $2->value());
+
 									$$ = pnew pgsIfStmt($2, $3, driver.context
 											.stmt_list(&(driver.thread)), &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
 									driver.context.pop_stmt(); // stmt_list
 									driver.context.push_stmt($$); // pgsIfStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	| PGS_IF expression statement PGS_ELSE statement
 								{
-									wxLogScriptVerbose(wxT("IF %s"), $2->value().c_str());
-									
+									wxLogScriptVerbose(wxT("IF %s"), $2->value());
+
 									$$ = pnew pgsIfStmt($2, $3, $5, &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
 									driver.context.pop_stmt(); // $5
 									driver.context.push_stmt($$); // pgsIfStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	;
 
 iteration_statement
 	: PGS_WHILE expression statement
 								{
-									wxLogScriptVerbose(wxT("WHILE %s"), $2->value().c_str());
-									
+									wxLogScriptVerbose(wxT("WHILE %s"), $2->value());
+
 									$$ = pnew pgsWhileStmt($2, $3, &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.pop_stmt(); // $3
 									driver.context.push_stmt($$); // pgsWhileStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	;
-	
+
 jump_statement
 	: PGS_BREAK					{
 									wxLogScriptVerbose(wxT("BREAK"));
-									
+
 									$$ = pnew pgsBreakStmt(&(driver.thread));
 									driver.context.push_stmt($$); // pgsBreakStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	| PGS_RETURN				{
 									wxLogScriptVerbose(wxT("RETURN"));
-									
+
 									$$ = pnew pgsBreakStmt(&(driver.thread));
 									driver.context.push_stmt($$); // pgsBreakStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	| PGS_CONTINUE				{
 									wxLogScriptVerbose(wxT("CONTINUE"));
-									
+
 									$$ = pnew pgsContinueStmt(&(driver.thread));
 									driver.context.push_stmt($$); // pgsContinueStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	;
-	
+
 procedure_statement
 	: PGS_PRINT expression
 								{
-									wxLogScriptVerbose(wxT("PRINT %s"), $2->value().c_str());
-									
+									wxLogScriptVerbose(wxT("PRINT %s"), $2->value());
+
 									$$ = pnew pgsPrintStmt($2, driver.context.m_cout,
 											&(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.push_stmt($$); // pgsPrintStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	| PGS_ASSERT expression
 								{
-									wxLogScriptVerbose(wxT("ASSERT %s"), $2->value().c_str());
-									
+									wxLogScriptVerbose(wxT("ASSERT %s"), $2->value());
+
 									$$ = pnew pgsAssertStmt($2, &(driver.thread));
 									driver.context.pop_var(); // $2
 									driver.context.push_stmt($$); // pgsAssertStmt
-									$$->set_position(yyloc.begin.line);
+									$$->set_position(yyla.location.begin.line);
 								}
 	| PGS_RM_LINE '(' PGS_IDENTIFIER '[' expression ']' ')'
 								{
 									wxLogScriptVerbose(wxT("RMLINE %s[%s]"), $3->c_str(),
-											$5->value().c_str());
-									
+											$5->value());
+
 									$$ = pnew pgsExpressionStmt(pnew pgsRemoveLine(*($3), $5),
 											&(driver.thread));
 									driver.context.pop_var(); // $5
 									driver.context.push_stmt($$); // pgsExpressionStmt
-									$$->set_position(yyloc.begin.line);
-									
+									$$->set_position(yyla.location.begin.line);
+
 									pdelete($3);
 								}
 	;
-	
+
 record_declaration_list
 	: PGS_IDENTIFIER			{
 									driver.context.add_column(*$1);
@@ -1027,7 +1031,7 @@ translation_unit
 	: PGS_END
 	| statement_list PGS_END	{
 									driver.program.eval($1);
-									
+
 									driver.context.pop_stmt();
 									pdelete($1); // delete root statement $1
 								}

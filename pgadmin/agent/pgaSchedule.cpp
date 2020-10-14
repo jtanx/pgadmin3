@@ -65,7 +65,7 @@ wxString pgaSchedule::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop schedule \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPTITLE:
 			message = _("Drop schedule?");

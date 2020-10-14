@@ -25,8 +25,8 @@ pgsApplication::pgsApplication(const wxString &host, const wxString &database,
 	if (m_connection->GetStatus() != PGCONN_OK)
 	{
 		wxLogError(wxT("PGSCRIPT: Cannot connect to database %s:%d/%s with ")
-		           wxT("credentials '%s'/'%s'"), host.c_str(), port, database.c_str(),
-		           user.c_str(), password.c_str());
+		           wxT("credentials '%s'/'%s'"), host, port, database,
+		           user, password);
 	}
 
 	wxLogScript(wxT("Application created"));

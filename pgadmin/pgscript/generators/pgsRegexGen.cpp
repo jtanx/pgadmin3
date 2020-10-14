@@ -83,7 +83,7 @@ const long &pgsRegexGen::pgsRegex::get_second() const
 pgsRegexGen::pgsRegexGen(const wxString &regex, const long &seed) :
 	pgsObjectGen(seed), m_regex(regex), m_valid(true), m_string_gens(pgsVectorStringGen())
 {
-	wxLogScriptVerbose(wxT("REGEXGEN: %s"), m_regex.c_str());
+	wxLogScriptVerbose(wxT("REGEXGEN: %s"), m_regex);
 
 	// Transform regular expression into XML structure
 	bool escape = false, first_regex = true, list = false;
@@ -168,7 +168,7 @@ pgsRegexGen::pgsRegexGen(const wxString &regex, const long &seed) :
 		result.Append(wxT(" </regex>\n"));
 	result.Append(wxT("</regexpressions>\n"));
 
-	wxLogScriptVerbose(wxT("REGEXGEN: %s"), result.c_str());
+	wxLogScriptVerbose(wxT("REGEXGEN: %s"), result);
 
 	// Load this XML structure with the wxXmlDocument from wxWidgets
 	wxStringInputStream input(result);

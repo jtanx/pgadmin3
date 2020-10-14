@@ -83,11 +83,11 @@ wxString slNode::GetTranslatedMessage(int kindOfMessage) const
 			break;
 		case DROPINCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony node \"%s\" including all objects that depend on it?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPEXCLUDINGDEPS:
 			message = wxString::Format(_("Are you sure you wish to drop Slony node \"%s\"?"),
-			                           GetFullIdentifier().c_str());
+			                           GetFullIdentifier());
 			break;
 		case DROPCASCADETITLE:
 			message = _("Drop Slony node cascaded?");
@@ -275,7 +275,7 @@ void slNode::ShowTreeDetail(ctlTree *browser, frmMain *form, ctlListView *proper
 
 		browser->RemoveDummyChild(this);
 		// Log
-		wxLogInfo(wxT("Adding child object to node %s"), GetIdentifier().c_str());
+		wxLogInfo(wxT("Adding child object to node %s"), GetIdentifier());
 
 		browser->AppendCollection(this, pathFactory);
 		browser->AppendCollection(this, listenFactory);
@@ -409,7 +409,7 @@ wxString slNodeCollection::GetTranslatedMessage(int kindOfMessage) const
 
 void slNodeCollection::ShowStatistics(frmMain *form, ctlListView *statistics)
 {
-	wxLogInfo(wxT("Displaying statistics for nodes on Cluster %s"), GetCluster()->GetIdentifier().c_str());
+	wxLogInfo(wxT("Displaying statistics for nodes on Cluster %s"), GetCluster()->GetIdentifier());
 
 	// Add the statistics view columns
 	statistics->ClearAll();

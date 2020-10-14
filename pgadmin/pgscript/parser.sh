@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #######################################################################
 #
@@ -49,7 +49,7 @@ echo "done"
 
 # Add pgAdmin3.h include at the beginning and change <FlexLexer.h> to
 # "pgscript/FlexLexer.h" for the Flex output
-echo -n "+ Processing Flex output... "
+echo -n "+ Processing Flex output... ${LEXER}"
 cat "${LEXER}" | awk 'BEGIN {print "#include \"pgAdmin3.h\"\n\n"}{print $0}' \
 	| sed -e 's/<FlexLexer\.h>/"pgscript\/FlexLexer\.h"/g' > "${AUX}"
 mv -f "${AUX}" "${LEXER}"
