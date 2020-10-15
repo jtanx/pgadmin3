@@ -486,7 +486,7 @@ frmQuery::frmQuery(frmMain *form, const wxString &_title, pgConn *_conn, const w
 	sqlQueries = new wxComboBox(pnlQuery, CTL_SQLQUERYCBOX, wxT(""), wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_DROPDOWN | wxCB_READONLY);
 	sqlQueries->SetToolTip(_("Previous queries"));
 	LoadQueries();
-	boxHistory->Add(sqlQueries, 1, wxEXPAND | wxALL | wxALIGN_CENTER_VERTICAL, 1);
+	boxHistory->Add(sqlQueries, 1, wxEXPAND | wxALL, 1);
 
 	// Delete Current button
 	btnDeleteCurrent = new wxButton(pnlQuery, CTL_DELETECURRENTBTN, _("Delete"));
@@ -2318,7 +2318,7 @@ void frmQuery::OnExecScript(wxCommandEvent &event)
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
-	sqlQuery->StartStyling(0, wxSTC_INDICS_MASK);
+	sqlQuery->StartStyling(0);
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	// Menu stuff to initialize
@@ -2473,7 +2473,7 @@ void frmQuery::execQuery(const wxString &query, int resultToRetrieve, bool singl
 
 	// Clear markers and indicators
 	sqlQuery->MarkerDeleteAll(0);
-	sqlQuery->StartStyling(0, wxSTC_INDICS_MASK);
+	sqlQuery->StartStyling(0);
 	sqlQuery->SetStyling(sqlQuery->GetText().Length(), 0);
 
 	if (!sqlQuery->IsChanged())
@@ -2849,7 +2849,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 
 				// Set an indicator on the error word (break on any kind of bracket, a space or full stop)
 				int sPos = errPos + selStart - 1, wEnd = 1;
-				sqlQueryExec->StartStyling(sPos, wxSTC_INDICS_MASK);
+				sqlQueryExec->StartStyling(sPos);
 				int c = sqlQueryExec->GetCharAt(sPos + wEnd);
 				size_t len = sqlQueryExec->GetText().Length();
 				while(c != ' ' && c != '(' && c != '{' && c != '[' && c != '.' &&
@@ -2858,7 +2858,7 @@ void frmQuery::OnQueryComplete(pgQueryResultEvent &ev)
 					wEnd++;
 					c = sqlQueryExec->GetCharAt(sPos + wEnd);
 				}
-				sqlQueryExec->SetStyling(wEnd, wxSTC_INDIC0_MASK);
+				sqlQueryExec->SetStyling(wEnd, 0);
 
 				int line = 0, maxLine = sqlQueryExec->GetLineCount();
 				while (line < maxLine && sqlQueryExec->GetLineEndPosition(line) < errPos + selStart + 1)
@@ -3664,7 +3664,7 @@ void frmQuery::SqlBookAddPage()
 	box->Connect(wxID_ANY, wxEVT_KILL_FOCUS, wxFocusEventHandler(frmQuery::OnFocus));
 
 	sqlQueryCounter ++;
-	caption = wxString::Format(_("Query %i"), sqlQueryCounter);
+	caption = wxString::Format(_("Query %i"), (int)sqlQueryCounter);
 	box->SetTitle(caption);
 	sqlQueryBook->AddPage(box, caption, true);
 

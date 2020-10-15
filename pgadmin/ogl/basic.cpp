@@ -1240,7 +1240,7 @@ void wxShape::OnDragLeft(bool draw, double x, double y, int keys, int attachment
 
 	dc.SetLogicalFunction(OGLRBLF);
 
-	wxPen dottedPen(wxColour(0, 0, 0), 1, wxDOT);
+	wxPen dottedPen(wxColour(0, 0, 0), 1, wxPENSTYLE_DOT);
 	dc.SetPen(dottedPen);
 	dc.SetBrush(* wxTRANSPARENT_BRUSH);
 
@@ -1282,7 +1282,7 @@ void wxShape::OnBeginDragLeft(double x, double y, int keys, int attachment)
 //  m_xpos = xx; m_ypos = yy;
 	dc.SetLogicalFunction(OGLRBLF);
 
-	wxPen dottedPen(wxColour(0, 0, 0), 1, wxDOT);
+	wxPen dottedPen(wxColour(0, 0, 0), 1, wxPENSTYLE_DOT);
 	dc.SetPen(dottedPen);
 	dc.SetBrush((* wxTRANSPARENT_BRUSH));
 
@@ -1621,7 +1621,7 @@ void wxShape::WriteAttributes(wxExpr *clause)
 		int penStyle = m_pen->GetStyle();
 		if (penWidth != 1)
 			clause->AddAttributeValue(wxT("pen_width"), (long)penWidth);
-		if (penStyle != wxSOLID)
+		if (penStyle != wxPENSTYLE_SOLID)
 			clause->AddAttributeValue(wxT("pen_style"), (long)penStyle);
 
 		wxString penColour = wxTheColourDatabase->FindName(m_pen->GetColour());
@@ -1648,7 +1648,7 @@ void wxShape::WriteAttributes(wxExpr *clause)
 		else if (brushColour != wxT("WHITE"))
 			clause->AddAttributeValueString(wxT("brush_colour"), brushColour);
 
-		if (m_brush->GetStyle() != wxSOLID)
+		if (m_brush->GetStyle() != wxBRUSHSTYLE_SOLID)
 			clause->AddAttributeValue(wxT("brush_style"), (long)m_brush->GetStyle());
 	}
 
@@ -1758,9 +1758,9 @@ void wxShape::WriteRegions(wxExpr *clause)
 		regionExpr->Append(new wxExpr((long)region->m_formatMode));
 
 		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetPointSize() : 10)));
-		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetFamily() : wxDEFAULT)));
-		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetStyle() : wxDEFAULT)));
-		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetWeight() : wxNORMAL)));
+		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetFamily() : wxFONTFAMILY_DEFAULT)));
+		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetStyle() : wxFONTSTYLE_DEFAULT)));
+		regionExpr->Append(new wxExpr((long)(region->m_font ? region->m_font->GetWeight() : wxFONTWEIGHT_NORMAL)));
 		regionExpr->Append(new wxExpr(wxExprString, region->m_textColour));
 
 		// New members for pen colour/style
@@ -1854,8 +1854,8 @@ void wxShape::ReadAttributes(wxExpr *clause)
 	wxString pen_string = wxEmptyString;
 	wxString brush_string = wxEmptyString;
 	int pen_width = 1;
-	int pen_style = wxSOLID;
-	int brush_style = wxSOLID;
+	int pen_style = wxPENSTYLE_SOLID;
+	int brush_style = wxBRUSHSTYLE_SOLID;
 	m_attachmentMode = ATTACHMENT_MODE_NONE;
 
 	clause->GetAttributeValue(wxT("pen_colour"), pen_string);
@@ -2012,12 +2012,12 @@ void wxShape::ReadRegions(wxExpr *clause)
 		double m_regionProportionY = -1.0;
 		int formatMode = FORMAT_NONE;
 		int fontSize = 10;
-		int fontFamily = wxSWISS;
-		int fontStyle = wxNORMAL;
-		int fontWeight = wxNORMAL;
+		wxFontFamily fontFamily = wxFONTFAMILY_SWISS;
+		wxFontStyle fontStyle = wxFONTSTYLE_NORMAL;
+		wxFontWeight fontWeight = wxFONTWEIGHT_NORMAL;
 		wxString regionTextColour = wxEmptyString;
 		wxString penColour = wxEmptyString;
-		int penStyle = wxSOLID;
+		int penStyle = wxPENSTYLE_SOLID;
 
 		if (regionExpr->Type() == wxExprList)
 		{
@@ -2057,9 +2057,9 @@ void wxShape::ReadRegions(wxExpr *clause)
 
 			formatMode = (int) formatExpr->IntegerValue();
 			fontSize = (int)sizeExpr->IntegerValue();
-			fontFamily = (int)familyExpr->IntegerValue();
-			fontStyle = (int)styleExpr->IntegerValue();
-			fontWeight = (int)weightExpr->IntegerValue();
+			fontFamily = (wxFontFamily)familyExpr->IntegerValue();
+			fontStyle = (wxFontStyle)styleExpr->IntegerValue();
+			fontWeight = (wxFontWeight)weightExpr->IntegerValue();
 
 			if (colourExpr)
 			{
@@ -3199,7 +3199,7 @@ wxPen wxShape::GetBackgroundPen()
 	if (GetCanvas())
 	{
 		wxColour c = GetCanvas()->GetBackgroundColour();
-		return wxPen(c, 1, wxSOLID);
+		return wxPen(c, 1, wxPENSTYLE_SOLID);
 	}
 	return * g_oglWhiteBackgroundPen;
 }
@@ -3210,7 +3210,7 @@ wxBrush wxShape::GetBackgroundBrush()
 	if (GetCanvas())
 	{
 		wxColour c = GetCanvas()->GetBackgroundColour();
-		return wxBrush(c, wxSOLID);
+		return wxBrush(c, wxBRUSHSTYLE_SOLID);
 	}
 	return * g_oglWhiteBackgroundBrush;
 }

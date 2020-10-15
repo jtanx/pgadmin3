@@ -136,7 +136,7 @@ void wxCompositeShape::OnDragLeft(bool WXUNUSED(draw), double x, double y, int W
 	GetCanvas()->PrepareDC(dc);
 
 	dc.SetLogicalFunction(OGLRBLF);
-	wxPen dottedPen(wxColour(0, 0, 0), 1, wxDOT);
+	wxPen dottedPen(wxColour(0, 0, 0), 1, wxPENSTYLE_DOT);
 	dc.SetPen(dottedPen);
 	dc.SetBrush((* wxTRANSPARENT_BRUSH));
 
@@ -156,7 +156,7 @@ void wxCompositeShape::OnBeginDragLeft(double x, double y, int WXUNUSED(keys), i
 
 	dc.SetLogicalFunction(OGLRBLF);
 
-	wxPen dottedPen(wxColour(0, 0, 0), 1, wxDOT);
+	wxPen dottedPen(wxColour(0, 0, 0), 1, wxPENSTYLE_DOT);
 	dc.SetPen(dottedPen);
 	dc.SetBrush((* wxTRANSPARENT_BRUSH));
 	m_canvas->CaptureMouse();
@@ -1675,19 +1675,19 @@ void wxDivisionShape::EditEdge(int WXUNUSED(side))
 	wxEndBusyCursor();
 	dialog->Show(TRUE);
 
-	int lineStyle = wxSOLID;
+	wxPenStyle lineStyle = wxPENSTYLE_SOLID;
 	if (*pStyle)
 	{
 		if (strcmp(*pStyle, "Solid") == 0)
-			lineStyle = wxSOLID;
+			lineStyle = wxPENSTYLE_SOLID;
 		else if (strcmp(*pStyle, "Dot") == 0)
-			lineStyle = wxDOT;
+			lineStyle = wxPENSTYLE_DOT;
 		else if (strcmp(*pStyle, "Short Dash") == 0)
-			lineStyle = wxSHORT_DASH;
+			lineStyle = wxPENSTYLE_SHORT_DASH;
 		else if (strcmp(*pStyle, "Long Dash") == 0)
-			lineStyle = wxLONG_DASH;
+			lineStyle = wxPENSTYLE_LONG_DASH;
 		else if (strcmp(*pStyle, "Dot Dash") == 0)
-			lineStyle = wxDOT_DASH;
+			lineStyle = wxPENSTYLE_DOT_DASH;
 	}
 
 	wxPen *newPen = wxThePenList->FindOrCreatePen(*pColour, lineWidth, lineStyle);

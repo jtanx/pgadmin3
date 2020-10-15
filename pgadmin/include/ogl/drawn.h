@@ -153,6 +153,7 @@ public:
 
 	// Pen/brush specifying outline/fill colours
 	// to override operations.
+	// FIXME: wxList is deprecated (there is a typesafe alternative now)
 	wxPen            *m_outlinePen;
 	wxBrush          *m_fillBrush;
 	wxList            m_outlineColours; // List of the GDI operations that comprise the outline
