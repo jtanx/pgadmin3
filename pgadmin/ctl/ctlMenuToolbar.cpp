@@ -109,7 +109,25 @@ void ctlMenuButton::DoProcessLeftClick(wxMouseEvent &event)
 		menu_pos.y = button_size.GetHeight();
 	}
 
-	DoPopupMenu(m_menu, menu_pos.x, menu_pos.y);
+	// HACK: The menu may already be attached to a menu bar
+	// This worked on wx 2.8, but with wx 3, it complains if this
+	// is the case - so detach first, then reattach to the menu bar
+	// after showing the popup...
+#if wxUSE_MENUBAR
+	wxMenuBar *old_menubar = NULL;
+	if (m_menu->IsAttached())
+	{
+		old_menubar = m_menu->GetMenuBar();
+		m_menu->Detach();
+	}
+#endif
+	PopupMenu(m_menu, menu_pos.x, menu_pos.y);
+#if wxUSE_MENUBAR
+	if (old_menubar)
+	{
+		m_menu->Attach(old_menubar);
+	}
+#endif
 }
 
 
@@ -189,5 +207,20 @@ void ctlMenuToolbar::DoProcessLeftClick(wxMouseEvent &event)
 	menu_pos.x = event.m_x - 20;
 	menu_pos.y = tbar_size.GetHeight() - 2;
 
+	// HACK - see ctlMenuButton::DoProcessLeftClick
+#if wxUSE_MENUBAR
+	wxMenuBar *old_menubar = NULL;
+	if (m_menu->IsAttached())
+	{
+		old_menubar = m_menu->GetMenuBar();
+		m_menu->Detach();
+	}
+#endif
 	PopupMenu(menu_tool->m_menu, menu_pos);
+#if wxUSE_MENUBAR
+	if (old_menubar)
+	{
+		m_menu->Attach(old_menubar);
+	}
+#endif
 }
