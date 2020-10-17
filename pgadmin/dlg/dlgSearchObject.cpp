@@ -640,9 +640,16 @@ void dlgSearchObject::OnSearch(wxCommandEvent &ev)
 		             wxT("       p_.proname AS objectname,")
 		             wxT("       ':Schemas/' || n.nspname || '/' ||")
 		             wxT("         case when p_t.typname = 'trigger' then ':Trigger Functions/' else ':Functions/' end || p_.proname AS path, n.nspname")
-		             wxT("  from ") + pd +
-		             wxT("  join pg_proc p_  on pd.relname = 'pg_proc' and pd.objoid = p_.oid and p_.proisagg = false")
-		             wxT("	left join pg_type p_t on p_.prorettype = p_t.oid")
+		             wxT("  from ") + pd;
+		if (currentdb->BackendMinimumVersion(11, 0))
+		{
+			searchSQL += wxT("  join pg_proc p_  on pd.relname = 'pg_proc' and pd.objoid = p_.oid and p_.prokind <> 'a'");
+		}
+		else
+		{
+			searchSQL += wxT("  join pg_proc p_  on pd.relname = 'pg_proc' and pd.objoid = p_.oid and p_.proisagg = false");
+		}
+		searchSQL += wxT("	left join pg_type p_t on p_.prorettype = p_t.oid")
 		             wxT("	left join pg_namespace n on p_.pronamespace = n.oid")
 		             wxT("	union")
 		             wxT("	select 'Schemas', n_.nspname, ':Schemas/' || n_.nspname, n_.nspname")
